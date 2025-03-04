@@ -175,17 +175,22 @@ export default function BlogPage() {
               platforms.
             </p>
             <div className="flex gap-4 justify-center">
-              <Button asChild variant="outline">
+              {/* <Button asChild variant="outline">
                 <Link href="https://blog.openreplay.com/" target="_blank">
                   OpenReplay Blog
                 </Link>
-              </Button>
-              <Button asChild variant="outline">
+              </Button> */}
+              <Button asChild >
                 <Link href="https://dev.to/" target="_blank">
                   Dev.to
                 </Link>
               </Button>
-              <Button asChild variant="outline">
+              <Button asChild >
+                <Link href="https://hashnode.com/" target="_blank">
+                  Hashnode
+                </Link>
+              </Button>
+              <Button asChild >
                 <Link href="https://medium.com/" target="_blank">
                   Medium
                 </Link>

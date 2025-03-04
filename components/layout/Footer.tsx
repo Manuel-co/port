@@ -8,10 +8,10 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
             <Link href="/" className="text-xl font-bold">
-              Dev Portfolio
+              Manuel.code
             </Link>
             <p className="text-sm text-gray-400 mt-2">
-              &copy; {new Date().getFullYear()} Your Name. All rights reserved.
+              &copy; {new Date().getFullYear()} Manuel. All rights reserved.
             </p>
           </div>
           <div className="flex space-x-6">

@@ -20,7 +20,7 @@ export function Projects() {
             <CardContent className="p-6">
               <div className="flex justify-between items-start mb-4">
                 <h3 className="text-xl font-bold">E-Commerce Dashboard</h3>
-                <Badge>Front-end</Badge>
+                {/* <Badge>Front-end</Badge> */}
               </div>
               <p className="text-gray-600 mb-4">
                 A responsive dashboard for e-commerce businesses with real-time analytics, inventory management, and
@@ -56,7 +56,7 @@ export function Projects() {
             <CardContent className="p-6">
               <div className="flex justify-between items-start mb-4">
                 <h3 className="text-xl font-bold">Technical Documentation Portal</h3>
-                <Badge>Technical Writing</Badge>
+                {/* <Badge>Technical Writing</Badge> */}
               </div>
               <p className="text-gray-600 mb-4">
                 A comprehensive documentation portal for a SaaS product, featuring interactive tutorials and API
@@ -92,7 +92,7 @@ export function Projects() {
             <CardContent className="p-6">
               <div className="flex justify-between items-start mb-4">
                 <h3 className="text-xl font-bold">NFT Marketplace</h3>
-                <Badge>Web3</Badge>
+                {/* <Badge>Web3</Badge> */}
               </div>
               <p className="text-gray-400 mb-4">
                 A decentralized marketplace for creating, buying, and selling NFTs with wallet integration and
