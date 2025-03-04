@@ -9,6 +9,8 @@ import { Github, ExternalLink, Search } from "lucide-react"
 import { Header } from "../../components/layout/Header"
 import { Footer } from "../../components/layout/Footer"
 import { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { AnimatedPage, AnimatedSection, AnimatedGrid } from "@/components/ui/animated-page"
 
 export default function ProjectPage() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -78,7 +80,7 @@ export default function ProjectPage() {
       <Header />
       <main className="py-24">
         <div className="container">
-          <div className="max-w-3xl mx-auto">
+          <AnimatedPage className="max-w-3xl mx-auto">
             <h1 className="text-4xl font-bold mb-4">Projects</h1>
             <p className="text-gray-400 mb-8">
               A collection of my work in web development, technical writing, and Web3 development.
@@ -100,84 +102,97 @@ export default function ProjectPage() {
             <p className="text-gray-400 mb-8">
               {filteredProjects.length} project{filteredProjects.length !== 1 ? "s" : ""} found
             </p>
-          </div>
+          </AnimatedPage>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            {filteredProjects.map((project, index) => (
-              <Card 
-                key={index} 
-                className="bg-white/5 border-white/10 text-white overflow-hidden group hover:border-white/20 transition-colors"
-              >
-                <div className="relative h-48">
-                  <Image 
-                    src={project.image} 
-                    alt={project.title} 
-                    fill 
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                </div>
-                <CardContent className="p-6">
-                  <h2 className="text-xl font-bold mb-4 group-hover:text-white/90 transition-colors">
-                    {project.title}
-                  </h2>
-                  <p className="text-gray-400 mb-4 line-clamp-2">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.map((tech, techIndex) => (
-                      <Badge 
-                        key={techIndex} 
-                        variant="outline" 
-                        className="border-white/10 text-gray-300 hover:bg-white/5 transition-colors"
-                      >
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
-                  <div className="flex space-x-4">
-                    <Button 
-                      asChild 
-                      size="sm" 
-                      className="border-white/10 hover:bg-white/5 transition-colors"
-                    >
-                      <Link href={project.github} className="flex items-center">
-                        <Github className="h-4 w-4 mr-2" />
-                        Code
-                      </Link>
-                    </Button>
-                    <Button 
-                      asChild 
-                      size="sm" 
-                      className="hover:bg-white/20 transition-colors"
-                    >
-                      <Link href={project.demo} className="flex items-center">
-                        <ExternalLink className="h-4 w-4 mr-2" />
-                        Demo
-                      </Link>
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <AnimatedGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            <AnimatePresence>
+              {filteredProjects.map((project, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  whileHover={{ scale: 1.02 }}
+                  className="w-full"
+                >
+                  <Card 
+                    className="bg-white/5 border-white/10 text-white overflow-hidden group hover:border-white/20 transition-colors"
+                  >
+                    <div className="relative h-48">
+                      <Image 
+                        src={project.image} 
+                        alt={project.title} 
+                        fill 
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                    </div>
+                    <CardContent className="p-6">
+                      <h2 className="text-xl font-bold mb-4 group-hover:text-white/90 transition-colors">
+                        {project.title}
+                      </h2>
+                      <p className="text-gray-400 mb-4 line-clamp-2">
+                        {project.description}
+                      </p>
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {project.technologies.map((tech, techIndex) => (
+                          <Badge 
+                            key={techIndex} 
+                            variant="outline" 
+                            className="border-white/10 text-gray-300 hover:bg-white/5 transition-colors"
+                          >
+                            {tech}
+                          </Badge>
+                        ))}
+                      </div>
+                      <div className="flex space-x-4">
+                        <Button 
+                          asChild 
+                          size="sm" 
+                          className="border-white/10 hover:bg-white/5 transition-colors"
+                        >
+                          <Link href={project.github} className="flex items-center">
+                            <Github className="h-4 w-4 mr-2" />
+                            Code
+                          </Link>
+                        </Button>
+                        <Button 
+                          asChild 
+                          size="sm" 
+                          className="hover:bg-white/20 transition-colors"
+                        >
+                          <Link href={project.demo} className="flex items-center">
+                            <ExternalLink className="h-4 w-4 mr-2" />
+                            Demo
+                          </Link>
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </AnimatedGrid>
 
-          {filteredProjects.length === 0 && (
-            <div className="text-center py-12">
-              <p className="text-gray-400 mb-4">No projects found matching your search.</p>
-              <Button variant="outline" onClick={() => setSearchQuery("")}>
-                Clear Search
-              </Button>
-            </div>
-          )}
+          <AnimatePresence>
+            {filteredProjects.length === 0 && (
+              <AnimatedSection className="text-center py-12">
+                <p className="text-gray-400 mb-4">No projects found matching your search.</p>
+                <Button variant="outline" onClick={() => setSearchQuery("")}>
+                  Clear Search
+                </Button>
+              </AnimatedSection>
+            )}
+          </AnimatePresence>
 
-          <div className="max-w-3xl mx-auto text-center">
+          <AnimatedSection className="max-w-3xl mx-auto text-center" delay={0.2}>
             <p className="text-gray-400 mb-8">
               Interested in working together? Feel free to reach out!
             </p>
             <Button asChild className="hover:bg-white/20 transition-colors">
               <Link href="/contact">Get in Touch</Link>
             </Button>
-          </div>
+          </AnimatedSection>
         </div>
       </main>
       <Footer />

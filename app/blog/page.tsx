@@ -8,6 +8,8 @@ import { ExternalLink, Search } from "lucide-react";
 import { Header } from "../../components/layout/Header";
 import { Footer } from "../../components/layout/Footer";
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { AnimatedPage, AnimatedSection, AnimatedGrid } from "@/components/ui/animated-page";
 
 export default function BlogPage() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -106,7 +108,7 @@ export default function BlogPage() {
       <Header />
       <main className="py-24">
         <div className="container">
-          <div className="max-w-3xl mx-auto">
+          <AnimatedPage className="max-w-3xl mx-auto">
             <h1 className="text-4xl font-bold mb-4">Blog Posts</h1>
             <p className="text-gray-400 mb-8">
               Technical articles, tutorials, and insights about web development,
@@ -129,65 +131,72 @@ export default function BlogPage() {
             <p className="text-gray-400 mb-8">
               {filteredArticles.length} article{filteredArticles.length !== 1 ? "s" : ""} found
             </p>
-          </div>
+          </AnimatedPage>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            {filteredArticles.map((article, index) => (
-              <Card
-                key={index}
-                className="bg-white/5 border-white/10 text-white overflow-hidden group hover:border-white/20 transition-colors"
-              >
-                <CardContent className="p-6">
-                  <Badge className="mb-4">{article.category}</Badge>
-                  <h2 className="text-xl font-bold mb-2 group-hover:text-white/90 transition-colors">
-                    {article.title}
-                  </h2>
-                  <p className="text-gray-400 mb-4 line-clamp-2">
-                    {article.description}
-                  </p>
-                  <Button asChild className="group-hover:bg-white/20 transition-colors">
-                    <Link
-                      href={article.link}
-                      className="flex items-center"
-                      target="_blank"
-                    >
-                      <ExternalLink className="h-4 w-4 mr-2" />
-                      Read Article
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <AnimatedGrid className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <AnimatePresence>
+              {filteredArticles.map((article, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  whileHover={{ scale: 1.02 }}
+                >
+                  <Card
+                    className="bg-white/5 border-white/10 text-white overflow-hidden group hover:border-white/20 transition-colors"
+                  >
+                    <CardContent className="p-6">
+                      <Badge className="mb-4">{article.category}</Badge>
+                      <h2 className="text-xl font-bold mb-2 group-hover:text-white/90 transition-colors">
+                        {article.title}
+                      </h2>
+                      <p className="text-gray-400 mb-4 line-clamp-2">
+                        {article.description}
+                      </p>
+                      <Button asChild className="group-hover:bg-white/20 transition-colors">
+                        <Link
+                          href={article.link}
+                          className="flex items-center"
+                          target="_blank"
+                        >
+                          <ExternalLink className="h-4 w-4 mr-2" />
+                          Read Article
+                        </Link>
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </AnimatedGrid>
 
-          {filteredArticles.length === 0 && (
-            <div className="text-center py-12">
-              <p className="text-gray-400 mb-4">No articles found matching your search.</p>
-              <Button variant="outline" onClick={() => setSearchQuery("")}>
-                Clear Search
-              </Button>
-            </div>
-          )}
+          <AnimatePresence>
+            {filteredArticles.length === 0 && (
+              <AnimatedSection className="text-center py-12">
+                <p className="text-gray-400 mb-4">No articles found matching your search.</p>
+                <Button variant="outline" onClick={() => setSearchQuery("")}>
+                  Clear Search
+                </Button>
+              </AnimatedSection>
+            )}
+          </AnimatePresence>
 
-          <div className="max-w-3xl mx-auto text-center">
+          <AnimatedSection className="max-w-3xl mx-auto text-center" delay={0.2}>
             <p className="text-gray-400 mb-8">
               Want to read more? Check out my latest articles on various
               platforms.
             </p>
             <div className="flex gap-4 justify-center">
-              {/* <Button asChild variant="outline">
-                <Link href="https://blog.openreplay.com/" target="_blank">
-                  OpenReplay Blog
-                </Link>
-              </Button> */}
               <Button asChild >
-                <Link href="https://dev.to/" target="_blank">
-                  Dev.to
+                <Link href="https://hashnode.com/" target="_blank">
+                Hashnode
                 </Link>
               </Button>
               <Button asChild >
-                <Link href="https://hashnode.com/" target="_blank">
-                  Hashnode
+                <Link href="https://dev.to/" target="_blank">
+                  Dev.to
                 </Link>
               </Button>
               <Button asChild >
@@ -196,7 +205,7 @@ export default function BlogPage() {
                 </Link>
               </Button>
             </div>
-          </div>
+          </AnimatedSection>
         </div>
       </main>
       <Footer />

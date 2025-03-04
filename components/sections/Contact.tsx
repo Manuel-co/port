@@ -1,9 +1,58 @@
+"use client"
+
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Mail, Twitter, Linkedin } from "lucide-react"
+import { useState } from "react"
+import emailjs from "@emailjs/browser"
+import toast from "react-hot-toast"
 
 export function Contact() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    // subject: "",
+    message: "",
+  })
+  const [isLoading, setIsLoading] = useState(false)
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormData(prev => ({ ...prev, [name]: value }))
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsLoading(true)
+
+    try {
+      const response = await emailjs.send(
+        "service_r2qxwiz",
+        "template_pk6b3r9",
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          // subject: formData.subject,
+          message: formData.message,
+        },
+        "fbDuzOWDOGuIi5_JV"
+      )
+
+      if (response.status === 200) {
+        toast.success("Message sent successfully!")
+        setFormData({ name: "", email: "",  message: "" })
+      } else {
+        throw new Error("Failed to send message")
+      }
+    } catch (error) {
+      console.error("Failed to send email:", error)
+      toast.error("Failed to send message. Please try again.")
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   return (
     <section id="contact" className="py-20 bg-black text-white">
       <div className="container">
@@ -49,7 +98,7 @@ export function Contact() {
           </div>
 
           <div className="bg-white/5 p-8 rounded-lg backdrop-blur-sm border border-white/10">
-            <form className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                 <div className="space-y-2">
                   <label htmlFor="name" className="text-sm font-medium">
@@ -57,7 +106,10 @@ export function Contact() {
                   </label>
                   <input
                     id="name"
+                    name="name"
                     type="text"
+                    value={formData.name}
+                    onChange={handleChange}
                     className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-md focus:outline-none focus:ring-2 focus:ring-white/50"
                     required
                   />
@@ -68,36 +120,45 @@ export function Contact() {
                   </label>
                   <input
                     id="email"
+                    name="email"
                     type="email"
+                    value={formData.email}
+                    onChange={handleChange}
                     className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-md focus:outline-none focus:ring-2 focus:ring-white/50"
                     required
                   />
                 </div>
               </div>
-              <div className="space-y-2">
+              {/* <div className="space-y-2">
                 <label htmlFor="subject" className="text-sm font-medium">
                   Subject
                 </label>
                 <input
                   id="subject"
+                  name="subject"
                   type="text"
+                  value={formData.subject}
+                  onChange={handleChange}
                   className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-md focus:outline-none focus:ring-2 focus:ring-white/50"
                   required
                 />
-              </div>
+              </div> */}
               <div className="space-y-2">
                 <label htmlFor="message" className="text-sm font-medium">
                   Message
                 </label>
                 <textarea
                   id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
                   rows={4}
                   className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-md focus:outline-none focus:ring-2 focus:ring-white/50"
                   required
                 ></textarea>
               </div>
-              <Button type="submit" className="w-full">
-                Send Message
+              <Button type="submit" className="w-full" disabled={isLoading}>
+                {isLoading ? "Sending..." : "Send Message"}
               </Button>
             </form>
           </div>
