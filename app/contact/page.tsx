@@ -30,14 +30,14 @@ export default function ContactPage() {
 
     try {
       const response = await emailjs.send(
-        "service_r2qxwiz",
-        "template_pk6b3r9",
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
         {
           from_name: formData.name,
           from_email: formData.email,
           message: formData.message,
         },
-        "fbDuzOWDOGuIi5_JV"
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
       )
 
       if (response.status === 200) {

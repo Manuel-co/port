@@ -15,31 +15,30 @@ export function Projects() {
           {/* Project 1 */}
           <Card className="bg-white border-gray-200 overflow-hidden">
             <div className="relative h-48">
-              <Image src="/placeholder.svg?height=200&width=400" alt="Project 1" fill className="object-cover" />
+              <Image src="/share.png?height=200&width=400" alt="Project 1" fill className="object-cover" />
             </div>
             <CardContent className="p-6">
               <div className="flex justify-between items-start mb-4">
-                <h3 className="text-xl font-bold">E-Commerce Dashboard</h3>
+                <h3 className="text-xl font-bold">File Sharing App</h3>
                 {/* <Badge>Front-end</Badge> */}
               </div>
               <p className="text-gray-600 mb-4">
-                A responsive dashboard for e-commerce businesses with real-time analytics, inventory management, and
-                order processing.
+                A file sharing app that allows users to share files with each other.
               </p>
               <div className="flex flex-wrap gap-2 mb-4">
-                <Badge variant="outline">React</Badge>
+                {/* <Badge variant="outline">React</Badge> */}
                 <Badge variant="outline">Next.js</Badge>
                 <Badge variant="outline">Tailwind CSS</Badge>
               </div>
               <div className="flex space-x-4">
                 <Button asChild variant="outline" size="sm">
-                  <Link href="#" className="flex items-center">
+                  <Link href="https://github.com/Manuel-co/fileshare" className="flex items-center">
                     <Github className="h-4 w-4 mr-2" />
                     Code
                   </Link>
                 </Button>
                 <Button asChild size="sm">
-                  <Link href="#" className="flex items-center">
+                  <Link href="https://file-share-nine-pi.vercel.app/" className="flex items-center">
                     <ExternalLink className="h-4 w-4 mr-2" />
                     Demo
                   </Link>
