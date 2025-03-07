@@ -27,7 +27,6 @@ export default function NotFound() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button 
                 asChild 
-                variant="outline" 
                 className="group hover:bg-white/10 transition-all duration-300"
               >
                 <Link href="/" className="flex items-center gap-2">
