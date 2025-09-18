@@ -92,6 +92,13 @@ export default function BlogPage() {
       category: "Technical Blog",
       link: "https://blog.openreplay.com/all-about-css-animations/",
     },
+    {
+      title: "Building a Next Generation File Sharing App with Next.js and Permit.io",
+      description:
+        "In this tutorial, you will learn how to build a next generation file sharing app with Next.js and Permit.io. You will learn how to use Next.js and Permit.io to build a file sharing app that allows you to share files with your friends and family.",
+      category: "Tutorial",
+      link: "https://medium.com/@manuchimsoemmanuel2k/building-a-next-generation-file-sharing-app-with-next-js-and-permit-io-00b8fb7e66bf",
+    },
   ];
 
   const filteredArticles = articles.filter((article) => {
@@ -143,19 +150,18 @@ export default function BlogPage() {
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
                   whileHover={{ scale: 1.02 }}
+                  className="h-full"
                 >
-                  <Card
-                    className="bg-white/5 border-white/10 text-white overflow-hidden group hover:border-white/20 transition-colors"
-                  >
-                    <CardContent className="p-6">
-                      <Badge className="mb-4">{article.category}</Badge>
+                  <Card className="bg-white/5 border-white/10 text-white overflow-hidden group hover:border-white/20 transition-colors h-full">
+                    <CardContent className="p-6 h-full flex flex-col">
+                      <Badge className="mb-4 w-fit">{article.category}</Badge>
                       <h2 className="text-xl font-bold mb-2 group-hover:text-white/90 transition-colors">
                         {article.title}
                       </h2>
-                      <p className="text-gray-400 mb-4 line-clamp-2">
+                      <p className="text-gray-400 mb-4 flex-grow line-clamp-3">
                         {article.description}
                       </p>
-                      <Button asChild className="group-hover:bg-white/20 transition-colors">
+                      <Button asChild className="group-hover:bg-white/20 transition-colors mt-auto">
                         <Link
                           href={article.link}
                           className="flex items-center"

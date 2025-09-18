@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { Github, Twitter, Linkedin, Mail } from "lucide-react"
-
+import Image from "next/image"
 export function Footer() {
   return (
     <footer className="py-8 bg-black text-white border-t border-white/10">
@@ -8,7 +8,7 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
             <Link href="/" className="text-xl font-bold">
-              Manuel.code
+              <Image src="/logo.png" alt="Manuel.code" width={100} height={100} />
             </Link>
             <p className="text-sm text-gray-400 mt-2">
               &copy; {new Date().getFullYear()} Manuel. All rights reserved.

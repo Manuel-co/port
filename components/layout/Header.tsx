@@ -7,13 +7,14 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import Image from "next/image"
 
 export function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-black/80 backdrop-blur-sm">
       <div className="container flex h-16 items-center justify-between">
         <Link href="/" className="text-xl font-bold text-gray-300">
-          Manuel.code
+          <Image src="/logo.png" alt="Manuel.code" width={100} height={100} />
         </Link>
         <nav className="hidden md:block">
           <ul className="flex space-x-8">
