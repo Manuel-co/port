@@ -3,7 +3,8 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Github, Twitter, Linkedin } from "lucide-react";
 import BlurText from "@/components/BlurText";
-import LightRays from "../LightRays";
+// import LightRays from "../LightRays";
+import Prism from "@/components/Prism";
 
 export function Hero() {
   const handleAnimationComplete = () => {
@@ -14,18 +15,17 @@ export function Hero() {
     <section className="relative h-screen flex items-center justify-center">
       <div className="absolute inset-0 z-0">
         {/* <div className="h-full w-full bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.1)_0,_rgba(0,0,0,0)_70%)]"></div> */}
-        <div style={{ width: "100%", height: "80%", position: "relative" }}>
-          <LightRays
-            raysOrigin="top-center"
-            raysColor="#ffffff"
-            raysSpeed={1.5}
-            lightSpread={0.8}
-            rayLength={1.2}
-            followMouse={true}
-            mouseInfluence={0.1}
-            noiseAmount={0.1}
-            distortion={0.05}
-            className="custom-rays"
+        <div style={{ width: "100%", height: "100%", position: "relative" }}>
+          <Prism
+            animationType="rotate"
+            timeScale={0.5}
+            height={3.0}
+            baseWidth={3.5}
+            scale={3.6}
+            hueShift={0}
+            colorFrequency={1}
+            noise={0}
+            glow={1}
           />
         </div>
       </div>
@@ -40,7 +40,7 @@ export function Hero() {
               animateBy="words"
               direction="top"
               onAnimationComplete={handleAnimationComplete}
-              className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500"
+              className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500 font-zalando"
             />
           </span>
         </h1>

@@ -2,6 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Zalando+Sans+Expanded&display=swap');
+
+.zalando-sans-expanded {
+  font-family: "Zalando Sans Expanded", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.zalando-sans-expanded-global {
+  font-family: "Zalando Sans Expanded", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.zalando-font {
+  font-family: "Zalando Sans Expanded", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+.font-zalando {
+  font-family: "Zalando Sans Expanded", sans-serif;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -71,9 +99,11 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-zalando;
   }
 }
+
+
 
 html {
   scroll-behavior: smooth;
