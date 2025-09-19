@@ -1,5 +1,5 @@
 {
-  "name": "my-v0-project",
+  "name": "my-portfolio-project",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -48,8 +48,10 @@
     "framer-motion": "^12.4.10",
     "input-otp": "1.4.1",
     "lucide-react": "^0.454.0",
+    "motion": "^12.23.15",
     "next": "14.2.16",
     "next-themes": "^0.4.4",
+    "ogl": "^1.0.11",
     "react": "^18",
     "react-day-picker": "^9.5.1",
     "react-dom": "^18",

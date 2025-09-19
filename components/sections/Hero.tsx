@@ -1,18 +1,47 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Github, Twitter, Linkedin } from "lucide-react"
+"use client";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Github, Twitter, Linkedin } from "lucide-react";
+import BlurText from "@/components/BlurText";
+import LightRays from "../LightRays";
 
 export function Hero() {
+  const handleAnimationComplete = () => {
+    console.log("Animation completed!");
+  };
+
   return (
     <section className="relative h-screen flex items-center justify-center">
       <div className="absolute inset-0 z-0">
-        <div className="h-full w-full bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.1)_0,_rgba(0,0,0,0)_70%)]"></div>
+        {/* <div className="h-full w-full bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.1)_0,_rgba(0,0,0,0)_70%)]"></div> */}
+        <div style={{ width: "100%", height: "80%", position: "relative" }}>
+          <LightRays
+            raysOrigin="top-center"
+            raysColor="#ffffff"
+            raysSpeed={1.5}
+            lightSpread={0.8}
+            rayLength={1.2}
+            followMouse={true}
+            mouseInfluence={0.1}
+            noiseAmount={0.1}
+            distortion={0.05}
+            className="custom-rays"
+          />
+        </div>
       </div>
       <div className="container relative z-10 flex flex-col items-center text-center">
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
           <span className="block">Hello, I'm</span>
-          <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">
-            Nweke Emmanuel
+
+          <span className="block mt-2">
+            <BlurText
+              text="Nweke Manuchimso"
+              delay={150}
+              animateBy="words"
+              direction="top"
+              onAnimationComplete={handleAnimationComplete}
+              className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500"
+            />
           </span>
         </h1>
         <p className="text-xl md:text-2xl text-gray-300 max-w-2xl mb-8">
@@ -54,7 +83,10 @@ export function Hero() {
         </div>
       </div>
       <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <Link href="#about" className="text-gray-400 hover:text-white transition-colors">
+        <Link
+          href="#about"
+          className="text-gray-400 hover:text-white transition-colors"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -72,5 +104,5 @@ export function Hero() {
         </Link>
       </div>
     </section>
-  )
-} 
+  );
+}

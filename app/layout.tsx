@@ -10,7 +10,6 @@ export const metadata: Metadata = {
   title: "Dev Portfolio | Front-End Developer | Technical Writer | Web3 Developer",
   description:
     "Professional portfolio showcasing my work as a front-end developer, technical writer, and web3 developer.",
-    generator: 'v0.dev'
 }
 
 export default function RootLayout({
