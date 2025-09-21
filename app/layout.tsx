@@ -3,7 +3,6 @@ import type { Metadata } from "next"
 import "./globals.css"
 import { Toaster } from "react-hot-toast"
 
-
 export const metadata: Metadata = {
   title: "Dev Portfolio | Front-End Developer | Technical Writer | Web3 Developer",
   description:
@@ -17,6 +16,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
+      <head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Zalando+Sans+Expanded&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body className="font-zalando">
         {children}
         <Toaster position="top-center" />

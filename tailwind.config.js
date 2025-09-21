@@ -18,10 +18,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ["DM Sans", "sans-serif"],
-        heading: ["Syne", "sans-serif"],
-        urbanist: ["Urbanist", "sans-serif"],
-        zalando: ["Zalando Sans Expanded", "sans-serif"],
+        'zalando': ['Zalando Sans Expanded', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",

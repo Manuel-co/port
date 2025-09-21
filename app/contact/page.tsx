@@ -10,22 +10,35 @@ import { AnimatedPage, AnimatedSection } from "@/components/ui/animated-page"
 import { useState } from "react"
 import emailjs from "@emailjs/browser"
 import toast from "react-hot-toast"
+import { Formik, Form, Field, ErrorMessage } from "formik"
+import * as Yup from "yup"
+
+// Validation schema
+const validationSchema = Yup.object({
+  name: Yup.string()
+    .min(2, "Name must be at least 2 characters")
+    .max(50, "Name must be less than 50 characters")
+    .matches(/^[a-zA-Z\s]+$/, "Name should only contain letters and spaces")
+    .required("Name is required"),
+  email: Yup.string()
+    .email("Please enter a valid email address")
+    .required("Email is required"),
+  message: Yup.string()
+    .min(10, "Message must be at least 10 characters")
+    .max(1000, "Message must be less than 1000 characters")
+    .required("Message is required")
+})
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
+  const [isLoading, setIsLoading] = useState(false)
+
+  const initialValues = {
     name: "",
     email: "",
     message: "",
-  })
-  const [isLoading, setIsLoading] = useState(false)
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData(prev => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+  const handleSubmit = async (values: typeof initialValues, { resetForm }: any) => {
     setIsLoading(true)
 
     try {
@@ -33,16 +46,16 @@ export default function ContactPage() {
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
         process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
         {
-          from_name: formData.name,
-          from_email: formData.email,
-          message: formData.message,
+          from_name: values.name,
+          from_email: values.email,
+          message: values.message,
         },
         process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
       )
 
       if (response.status === 200) {
         toast.success("Message sent successfully!")
-        setFormData({ name: "", email: "", message: "" })
+        resetForm()
       } else {
         throw new Error("Failed to send message")
       }
@@ -70,58 +83,89 @@ export default function ContactPage() {
             {/* Contact Form */}
             <AnimatedSection>
               <Card className="bg-white/5 p-8 rounded-lg backdrop-blur-sm border border-white/10">
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                    <div className="space-y-2">
-                      <label htmlFor="name" className="text-sm font-medium text-gray-200">
-                        Name
-                      </label>
-                      <input
-                        id="name"
-                        name="name"
-                        type="text"
-                        value={formData.name}
-                        onChange={handleChange}
-                        className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-md focus:outline-none focus:ring-2 focus:ring-white/50 text-white placeholder-gray-400"
-                        required
-                        placeholder="Your name"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label htmlFor="email" className="text-sm font-medium text-gray-200">
-                        Email
-                      </label>
-                      <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-md focus:outline-none focus:ring-2 focus:ring-white/50 text-white placeholder-gray-400"
-                        required
-                        placeholder="your.email@example.com"
-                      />
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="message" className="text-sm font-medium text-gray-200">
-                      Message
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      rows={4}
-                      className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-md focus:outline-none focus:ring-2 focus:ring-white/50 text-white placeholder-gray-400"
-                      required
-                      placeholder="Your message here..."
-                    ></textarea>
-                  </div>
-                  <Button type="submit" className="w-full hover:bg-white/20" disabled={isLoading}>
-                    {isLoading ? "Sending..." : "Send Message"}
-                  </Button>
-                </form>
+                <Formik
+                  initialValues={initialValues}
+                  validationSchema={validationSchema}
+                  onSubmit={handleSubmit}
+                >
+                  {({ errors, touched, isValid, dirty }) => (
+                    <Form className="space-y-6">
+                      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                        <div className="space-y-2">
+                          <label htmlFor="name" className="text-sm font-medium text-gray-200">
+                            Name
+                          </label>
+                          <Field
+                            id="name"
+                            name="name"
+                            type="text"
+                            placeholder="Your name"
+                            className={`w-full px-3 py-2 bg-white/10 border rounded-md focus:outline-none focus:ring-2 text-white placeholder-gray-400 transition-colors ${
+                              errors.name && touched.name
+                                ? "border-red-500 focus:ring-red-500/50"
+                                : "border-white/20 focus:ring-white/50"
+                            }`}
+                          />
+                          <ErrorMessage 
+                            name="name" 
+                            component="div" 
+                            className="text-red-400 text-sm mt-1" 
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <label htmlFor="email" className="text-sm font-medium text-gray-200">
+                            Email
+                          </label>
+                          <Field
+                            id="email"
+                            name="email"
+                            type="email"
+                            placeholder="your.email@example.com"
+                            className={`w-full px-3 py-2 bg-white/10 border rounded-md focus:outline-none focus:ring-2 text-white placeholder-gray-400 transition-colors ${
+                              errors.email && touched.email
+                                ? "border-red-500 focus:ring-red-500/50"
+                                : "border-white/20 focus:ring-white/50"
+                            }`}
+                          />
+                          <ErrorMessage 
+                            name="email" 
+                            component="div" 
+                            className="text-red-400 text-sm mt-1" 
+                          />
+                        </div>
+                      </div>
+                      <div className="space-y-2">
+                        <label htmlFor="message" className="text-sm font-medium text-gray-200">
+                          Message
+                        </label>
+                        <Field
+                          as="textarea"
+                          id="message"
+                          name="message"
+                          rows={4}
+                          placeholder="Your message here..."
+                          className={`w-full px-3 py-2 bg-white/10 border rounded-md focus:outline-none focus:ring-2 text-white placeholder-gray-400 resize-vertical transition-colors ${
+                            errors.message && touched.message
+                              ? "border-red-500 focus:ring-red-500/50"
+                              : "border-white/20 focus:ring-white/50"
+                          }`}
+                        />
+                        <ErrorMessage 
+                          name="message" 
+                          component="div" 
+                          className="text-red-400 text-sm mt-1" 
+                        />
+                      </div>
+                      <Button 
+                        type="submit" 
+                        className="w-full hover:bg-white/20" 
+                        disabled={isLoading || !isValid || !dirty}
+                      >
+                        {isLoading ? "Sending..." : "Send Message"}
+                      </Button>
+                    </Form>
+                  )}
+                </Formik>
               </Card>
             </AnimatedSection>
 

@@ -1,6 +1,7 @@
 import Link from "next/link"
-import { Github, Twitter, Linkedin, Mail } from "lucide-react"
+import { Github, Linkedin, Mail, Twitter } from "lucide-react"
 import Image from "next/image"
+
 export function Footer() {
   return (
     <footer className="py-8 bg-black text-white border-t border-white/10">
@@ -29,7 +30,7 @@ export function Footer() {
               className="text-gray-400 hover:text-white transition-colors"
             >
               <Twitter className="h-5 w-5" />
-              <span className="sr-only">Twitter</span>
+              <span className="sr-only">X.com</span>
             </Link>
             <Link
               href="https://www.linkedin.com/in/nweke-emmanuel-435a3923b/" 

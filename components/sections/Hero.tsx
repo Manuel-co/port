@@ -4,39 +4,45 @@ import { Button } from "@/components/ui/button";
 import { Github, Twitter, Linkedin } from "lucide-react";
 import BlurText from "@/components/BlurText";
 // import LightRays from "../LightRays";
-import Prism from "@/components/Prism";
+// import Prism from "@/components/Prism";
+import LightRays from "../LightRays";
+
+const handleAnimationComplete = () => {
+  console.log("Animation completed!");
+};
+
 
 export function Hero() {
-  const handleAnimationComplete = () => {
-    console.log("Animation completed!");
-  };
+
 
   return (
     <section className="relative h-screen flex items-center justify-center">
       <div className="absolute inset-0 z-0">
         {/* <div className="h-full w-full bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.1)_0,_rgba(0,0,0,0)_70%)]"></div> */}
         <div style={{ width: "100%", height: "100%", position: "relative" }}>
-          <Prism
-            animationType="rotate"
-            timeScale={0.5}
-            height={3.0}
-            baseWidth={3.5}
-            scale={3.6}
-            hueShift={0}
-            colorFrequency={1}
-            noise={0}
-            glow={1}
+          <LightRays
+            raysOrigin="bottom-center"
+            raysColor="#ffffff"
+            raysSpeed={1.5}
+            lightSpread={1}
+            rayLength={3}
+            followMouse={true}
+            saturation={1.5}
+            mouseInfluence={0.1}
+            noiseAmount={0.1}
+            distortion={0.05}
+            className="custom-rays"
           />
         </div>
       </div>
       <div className="container relative z-10 flex flex-col items-center text-center">
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 font-zalando">
           <span className="block">Hello, I'm</span>
 
           <span className="block mt-2">
             <BlurText
               text="Nweke Manuchimso"
-              delay={150}
+              delay={100}
               animateBy="words"
               direction="top"
               onAnimationComplete={handleAnimationComplete}
@@ -44,14 +50,14 @@ export function Hero() {
             />
           </span>
         </h1>
-        <p className="text-xl md:text-2xl text-gray-300 max-w-2xl mb-8">
+        <p className="text-xl md:text-2xl text-gray-300 max-w-2xl mb-8 font-zalando">
           Front-End Developer | Technical Writer | Web3 Developer
         </p>
         <div className="flex flex-wrap gap-4 justify-center">
-          <Button asChild className="bg-white text-black hover:bg-gray-200">
+          <Button asChild className="bg-white text-black hover:bg-gray-200 font-zalando">
             <Link href="/contact">Get in Touch</Link>
           </Button>
-          <Button asChild variant="secondary">
+          <Button asChild variant="secondary" className="font-zalando">
             <Link href="/project">View My Work</Link>
           </Button>
         </div>
@@ -70,7 +76,7 @@ export function Hero() {
             className="text-gray-400 hover:text-white transition-colors"
           >
             <Twitter className="h-6 w-6" />
-            <span className="sr-only">Twitter</span>
+            <span className="sr-only">X.com</span>
           </Link>
           <Link
             href="https://www.linkedin.com/in/nweke-emmanuel-435a3923b/"

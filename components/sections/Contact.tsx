@@ -7,23 +7,35 @@ import { Mail, Twitter, Linkedin } from "lucide-react"
 import { useState } from "react"
 import emailjs from "@emailjs/browser"
 import toast from "react-hot-toast"
+import { Formik, Form, Field, ErrorMessage } from "formik"
+import * as Yup from "yup"
+
+// Validation schema
+const validationSchema = Yup.object({
+  name: Yup.string()
+    .min(2, "Name must be at least 2 characters")
+    .max(50, "Name must be less than 50 characters")
+    .matches(/^[a-zA-Z\s]+$/, "Name should only contain letters and spaces")
+    .required("Name is required"),
+  email: Yup.string()
+    .email("Please enter a valid email address")
+    .required("Email is required"),
+  message: Yup.string()
+    .min(10, "Message must be at least 10 characters")
+    .max(1000, "Message must be less than 1000 characters")
+    .required("Message is required")
+})
 
 export function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    // subject: "",
-    message: "",
-  })
   const [isLoading, setIsLoading] = useState(false)
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData(prev => ({ ...prev, [name]: value }))
+  const initialValues = {
+    name: "",
+    email: "",
+    message: "",
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+  const handleSubmit = async (values: typeof initialValues, { resetForm }: any) => {
     setIsLoading(true)
 
     try {
@@ -31,17 +43,16 @@ export function Contact() {
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
         process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
         {
-          from_name: formData.name,
-          from_email: formData.email,
-          // subject: formData.subject,
-          message: formData.message,
+          from_name: values.name,
+          from_email: values.email,
+          message: values.message,
         },
         process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
       )
 
       if (response.status === 200) {
         toast.success("Message sent successfully!")
-        setFormData({ name: "", email: "",  message: "" })
+        resetForm()
       } else {
         throw new Error("Failed to send message")
       }
@@ -98,72 +109,89 @@ export function Contact() {
           </div>
 
           <div className="bg-white/5 p-8 rounded-lg backdrop-blur-sm border border-white/10">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                <div className="space-y-2">
-                  <label htmlFor="name" className="text-sm font-medium">
-                    Name
-                  </label>
-                  <input
-                    id="name"
-                    name="name"
-                    type="text"
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-md focus:outline-none focus:ring-2 focus:ring-white/50"
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-medium">
-                    Email
-                  </label>
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-md focus:outline-none focus:ring-2 focus:ring-white/50"
-                    required
-                  />
-                </div>
-              </div>
-              {/* <div className="space-y-2">
-                <label htmlFor="subject" className="text-sm font-medium">
-                  Subject
-                </label>
-                <input
-                  id="subject"
-                  name="subject"
-                  type="text"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-md focus:outline-none focus:ring-2 focus:ring-white/50"
-                  required
-                />
-              </div> */}
-              <div className="space-y-2">
-                <label htmlFor="message" className="text-sm font-medium">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  rows={4}
-                  className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-md focus:outline-none focus:ring-2 focus:ring-white/50"
-                  required
-                ></textarea>
-              </div>
-              <Button type="submit" className="w-full" disabled={isLoading}>
-                {isLoading ? "Sending..." : "Send Message"}
-              </Button>
-            </form>
+            <Formik
+              initialValues={initialValues}
+              validationSchema={validationSchema}
+              onSubmit={handleSubmit}
+            >
+              {({ errors, touched, isValid, dirty }) => (
+                <Form className="space-y-6">
+                  <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                    <div className="space-y-2">
+                      <label htmlFor="name" className="text-sm font-medium">
+                        Name
+                      </label>
+                      <Field
+                        id="name"
+                        name="name"
+                        type="text"
+                        className={`w-full px-3 py-2 bg-white/10 border rounded-md focus:outline-none focus:ring-2 transition-colors ${
+                          errors.name && touched.name
+                            ? "border-red-500 focus:ring-red-500/50"
+                            : "border-white/20 focus:ring-white/50"
+                        }`}
+                      />
+                      <ErrorMessage 
+                        name="name" 
+                        component="div" 
+                        className="text-red-400 text-sm mt-1" 
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label htmlFor="email" className="text-sm font-medium">
+                        Email
+                      </label>
+                      <Field
+                        id="email"
+                        name="email"
+                        type="email"
+                        className={`w-full px-3 py-2 bg-white/10 border rounded-md focus:outline-none focus:ring-2 transition-colors ${
+                          errors.email && touched.email
+                            ? "border-red-500 focus:ring-red-500/50"
+                            : "border-white/20 focus:ring-white/50"
+                        }`}
+                      />
+                      <ErrorMessage 
+                        name="email" 
+                        component="div" 
+                        className="text-red-400 text-sm mt-1" 
+                      />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <label htmlFor="message" className="text-sm font-medium">
+                      Message
+                    </label>
+                    <Field
+                      as="textarea"
+                      id="message"
+                      name="message"
+                      rows={4}
+                      className={`w-full px-3 py-2 bg-white/10 border rounded-md focus:outline-none focus:ring-2 transition-colors resize-vertical ${
+                        errors.message && touched.message
+                          ? "border-red-500 focus:ring-red-500/50"
+                          : "border-white/20 focus:ring-white/50"
+                      }`}
+                    />
+                    <ErrorMessage 
+                      name="message" 
+                      component="div" 
+                      className="text-red-400 text-sm mt-1" 
+                    />
+                  </div>
+                  <Button 
+                    type="submit" 
+                    className="w-full" 
+                    disabled={isLoading || !isValid || !dirty}
+                  >
+                    {isLoading ? "Sending..." : "Send Message"}
+                  </Button>
+                </Form>
+              )}
+            </Formik>
           </div>
         </div>
       </div>
     </section>
   )
-} 
+}

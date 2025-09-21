@@ -64,7 +64,7 @@ export default function ProjectPage() {
       github: "#",
       demo: "#"
     }
-  ]
+  ];
 
   const filteredProjects = projects.filter((project) => {
     const searchLower = searchQuery.toLowerCase();
@@ -114,10 +114,10 @@ export default function ProjectPage() {
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
                   whileHover={{ scale: 1.02 }}
-                  className="w-full"
+                  className="h-full"
                 >
                   <Card 
-                    className="bg-white/5 border-white/10 text-white overflow-hidden group hover:border-white/20 transition-colors"
+                    className="bg-white/5 border-white/10 text-white overflow-hidden group hover:border-white/20 transition-colors h-full flex flex-col"
                   >
                     <div className="relative h-48">
                       <Image 
@@ -127,11 +127,11 @@ export default function ProjectPage() {
                         className="object-cover transition-transform duration-300 group-hover:scale-105"
                       />
                     </div>
-                    <CardContent className="p-6">
-                      <h2 className="text-xl font-bold mb-4 group-hover:text-white/90 transition-colors">
+                    <CardContent className="p-6 flex-1 flex flex-col">
+                      <h2 className="text-xl font-bold mb-4 group-hover:text-white/90 transition-colors min-h-[3.5rem] flex items-center">
                         {project.title}
                       </h2>
-                      <p className="text-gray-400 mb-4 line-clamp-2">
+                      <p className="text-gray-400 mb-4 line-clamp-3 flex-grow">
                         {project.description}
                       </p>
                       <div className="flex flex-wrap gap-2 mb-4">
@@ -145,7 +145,7 @@ export default function ProjectPage() {
                           </Badge>
                         ))}
                       </div>
-                      <div className="flex space-x-4">
+                      <div className="flex space-x-4 mt-auto">
                         <Button 
                           asChild 
                           size="sm" 
@@ -197,5 +197,5 @@ export default function ProjectPage() {
       </main>
       <Footer />
     </div>
-  )
+  );
 }
