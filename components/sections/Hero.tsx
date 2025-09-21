@@ -11,10 +11,7 @@ const handleAnimationComplete = () => {
   console.log("Animation completed!");
 };
 
-
 export function Hero() {
-
-
   return (
     <section className="relative h-screen flex items-center justify-center">
       <div className="absolute inset-0 z-0">
@@ -23,14 +20,15 @@ export function Hero() {
           <LightRays
             raysOrigin="bottom-center"
             raysColor="#ffffff"
-            raysSpeed={1.5}
-            lightSpread={1}
+            raysSpeed={3}
+            lightSpread={1.9}
             rayLength={3}
+            fadeDistance={1}
             followMouse={true}
-            saturation={1.5}
+            saturation={0}
             mouseInfluence={0.1}
-            noiseAmount={0.1}
-            distortion={0.05}
+            noiseAmount={0}
+            distortion={0}
             className="custom-rays"
           />
         </div>
@@ -54,7 +52,10 @@ export function Hero() {
           Front-End Developer | Technical Writer | Web3 Developer
         </p>
         <div className="flex flex-wrap gap-4 justify-center">
-          <Button asChild className="bg-white text-black hover:bg-gray-200 font-zalando">
+          <Button
+            asChild
+            className="bg-white text-black hover:bg-gray-200 font-zalando"
+          >
             <Link href="/contact">Get in Touch</Link>
           </Button>
           <Button asChild variant="secondary" className="font-zalando">
