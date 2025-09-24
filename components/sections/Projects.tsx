@@ -87,35 +87,34 @@ export function Projects() {
             </Card>
           </div>
 
-          {/* Project 3 */}
+          {/* Project 3 - Shax_x Photography Portfolio */}
           <div className="h-full">
             <Card className="bg-white border-gray-200 overflow-hidden h-full flex flex-col">
               <div className="relative h-48">
-                <Image src="/placeholder.svg?height=200&width=400" alt="Project 3" fill className="object-cover" />
+                <Image src="/shax.png?height=200&width=400" alt="Shax_x Photography Portfolio" fill className="object-cover" />
               </div>
               <CardContent className="p-6 flex-1 flex flex-col">
                 <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-xl font-bold min-h-[3.5rem] flex items-center">NFT Marketplace</h3>
-                  {/* <Badge>Web3</Badge> */}
+                  <h3 className="text-xl font-bold min-h-[3.5rem] flex items-center">Shax_x Photography Portfolio</h3>
+                  {/* <Badge>Photography</Badge> */}
                 </div>
                 <p className="text-gray-600 mb-4 flex-grow">
-                  A decentralized marketplace for creating, buying, and selling NFTs with wallet integration and
-                  transaction history.
+                  A modern, professional photography portfolio website featuring stunning animations, responsive design, and showcasing Nigerian photography excellence.
                 </p>
                 <div className="flex flex-wrap gap-2 mb-4">
-                  <Badge variant="outline">Solidity</Badge>
-                  <Badge variant="outline">Ethers.js</Badge>
-                  <Badge variant="outline">IPFS</Badge>
+                  <Badge variant="outline">Next.js 15</Badge>
+                  <Badge variant="outline">Tailwind CSS</Badge>
+                  <Badge variant="outline">Framer Motion</Badge>
                 </div>
                 <div className="flex space-x-4 mt-auto">
                   <Button asChild variant="outline" size="sm">
-                    <Link href="#" className="flex items-center">
+                    <Link href="https://github.com/Manuel-co/shax_x" className="flex items-center">
                       <Github className="h-4 w-4 mr-2" />
                       Code
                     </Link>
                   </Button>
                   <Button asChild size="sm">
-                    <Link href="#" className="flex items-center">
+                    <Link href="https://shax-x.vercel.app/" className="flex items-center">
                       <ExternalLink className="h-4 w-4 mr-2" />
                       Demo
                     </Link>
