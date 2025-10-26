@@ -1,12 +1,13 @@
 import Link from "next/link"
 import { Github, Linkedin, Mail, Twitter } from "lucide-react"
 import Image from "next/image"
+import { SpotifyNowPlaying } from "../SpotifyNowPlaying"
 
 export function Footer() {
   return (
     <footer className="py-8 bg-black text-white border-t border-white/10">
       <div className="container">
-        <div className="flex flex-col md:flex-row justify-between items-center">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="mb-4 md:mb-0">
             <Link href="/" className="text-xl font-bold">
               <Image src="/logo.png" alt="Manuel.code" width={100} height={100} />
@@ -14,6 +15,9 @@ export function Footer() {
             <p className="text-sm text-gray-400 mt-2">
               &copy; {new Date().getFullYear()} Manuel. All rights reserved.
             </p>
+          </div>
+          <div className="mb-4 md:mb-0">
+            <SpotifyNowPlaying />
           </div>
           <div className="flex space-x-6">
             <Link

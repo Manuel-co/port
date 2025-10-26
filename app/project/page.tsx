@@ -17,6 +17,14 @@ export default function ProjectPage() {
 
   const projects = [
     {
+      title: "Shax_x Photography Portfolio",
+      description: "A modern, professional photography portfolio website built with Next.js 15, featuring stunning animations, responsive design, and a focus on showcasing Nigerian photography excellence.",
+      image: "/placeholder.svg?height=200&width=400",
+      technologies: ["Next.js 15", "Tailwind CSS", "Framer Motion", "TypeScript"],
+      github: "https://github.com/Manuel-co/shax_x",
+      demo: "https://shax-x.vercel.app/"
+    },
+    {
       title: "E-Commerce Dashboard",
       description: "A responsive dashboard for e-commerce businesses with real-time analytics, inventory management, and order processing.",
       image: "/placeholder.svg?height=200&width=400",
