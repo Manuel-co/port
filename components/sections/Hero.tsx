@@ -5,7 +5,7 @@ import { Github, Twitter, Linkedin } from "lucide-react";
 import BlurText from "@/components/BlurText";
 // import LightRays from "../LightRays";
 // import Prism from "@/components/Prism";
-import LightRays from "../LightRays";
+import FloatingLines from "../FloatingLines";
 
 const handleAnimationComplete = () => {
   console.log("Animation completed!");
@@ -17,19 +17,19 @@ export function Hero() {
       <div className="absolute inset-0 z-0">
         {/* <div className="h-full w-full bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.1)_0,_rgba(0,0,0,0)_70%)]"></div> */}
         <div style={{ width: "100%", height: "100%", position: "relative" }}>
-          <LightRays
-            raysOrigin="bottom-center"
-            raysColor="#ffffff"
-            raysSpeed={3}
-            lightSpread={1.9}
-            rayLength={3}
-            fadeDistance={1}
-            followMouse={true}
-            saturation={0}
-            mouseInfluence={0.1}
-            noiseAmount={0}
-            distortion={0}
-            className="custom-rays"
+          <FloatingLines
+            enabledWaves={["top", "middle", "bottom"]}
+            // Array - specify line count per wave; Number - same count for all waves
+            lineCount={[5, 5, 5]}
+            // Array - specify line distance per wave; Number - same distance for all waves
+            lineDistance={[5, 5, 5]}
+            bendRadius={5.0}
+            bendStrength={-0.5}
+            interactive={true}
+            parallax={true}
+            linesGradient={undefined}
+            topWavePosition={undefined}
+            middleWavePosition={undefined}
           />
         </div>
       </div>
@@ -54,11 +54,11 @@ export function Hero() {
         <div className="flex flex-wrap gap-4 justify-center">
           <Button
             asChild
-            className="bg-white text-black hover:bg-gray-200 font-zalando"
+            className="bg-white text-black hover:bg-gray-200 font-zalando rounded-full px-8"
           >
             <Link href="/contact">Get in Touch</Link>
           </Button>
-          <Button asChild variant="secondary" className="font-zalando">
+          <Button asChild variant="secondary" className="font-zalando bg-gray-900/30 border-2 border-gray-400 text-gray-400 hover:bg-gray-900/30 hover:border-gray-400 hover:text-gray-400 rounded-full px-8">
             <Link href="/project">View My Work</Link>
           </Button>
         </div>
