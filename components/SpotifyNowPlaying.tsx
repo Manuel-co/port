@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Music } from 'lucide-react';
+import {  Spotify } from 'iconsax-reactjs';
 import type { SpotifyNowPlayingData } from '@/lib/spotify';
 
 export function SpotifyNowPlaying() {
@@ -42,7 +43,8 @@ export function SpotifyNowPlaying() {
   if (!nowPlaying?.isPlaying) {
     return (
       <div className="flex items-center gap-2 text-gray-400">
-        <Music className="h-4 w-4" />
+        {/* <Music className="h-4 w-4" /> */}
+        <Spotify size="32" />
         <span className="text-sm">Not playing</span>
       </div>
     );
@@ -67,7 +69,8 @@ export function SpotifyNowPlaying() {
       )}
       <div className="flex flex-col min-w-0 flex-1">
         <div className="flex items-center gap-2">
-          <Music className="h-3 w-3 text-green-500 flex-shrink-0 animate-pulse" />
+          {/* <Music className="h-3 w-3 text-green-500 flex-shrink-0 animate-pulse" /> */}
+          <Spotify size="32" />
           <span className="text-xs text-green-500">Now Playing</span>
         </div>
         <p className="text-sm font-medium text-white truncate">
