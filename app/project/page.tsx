@@ -24,46 +24,46 @@ export default function ProjectPage() {
       github: "https://github.com/Manuel-co/shax_x",
       demo: "https://shax-x.vercel.app/"
     },
-    {
-      title: "E-Commerce Dashboard",
-      description: "A responsive dashboard for e-commerce businesses with real-time analytics, inventory management, and order processing.",
-      image: "/placeholder.svg?height=200&width=400",
-      technologies: ["React", "Next.js", "Tailwind CSS"],
-      github: "#",
-      demo: "#"
-    },
-    {
-      title: "Technical Documentation Portal",
-      description: "A comprehensive documentation portal for a SaaS product, featuring interactive tutorials and API references.",
-      image: "/placeholder.svg?height=200&width=400",
-      technologies: ["Docusaurus", "Markdown", "Content Strategy"],
-      github: "#",
-      demo: "#"
-    },
-    {
-      title: "NFT Marketplace",
-      description: "A decentralized marketplace for creating, buying, and selling NFTs with wallet integration and transaction history.",
-      image: "/placeholder.svg?height=200&width=400",
-      technologies: ["Solidity", "Ethers.js", "IPFS"],
-      github: "#",
-      demo: "#"
-    },
-    {
-      title: "Decentralized Finance Dashboard",
-      description: "A comprehensive DeFi dashboard that allows users to track their investments, stake tokens, and participate in liquidity pools across multiple blockchain networks.",
-      image: "/placeholder.svg?height=300&width=600",
-      technologies: ["Ethereum", "Solidity", "React", "Web3.js", "MetaMask Integration"],
-      github: "#",
-      demo: "#"
-    },
-    {
-      title: "NFT Collection",
-      description: "A generative art NFT collection with on-chain metadata and rarity attributes.",
-      image: "/placeholder.svg?height=200&width=400",
-      technologies: ["ERC-721", "IPFS", "OpenSea"],
-      github: "#",
-      demo: "#"
-    },
+    // {
+    //   title: "E-Commerce Dashboard",
+    //   description: "A responsive dashboard for e-commerce businesses with real-time analytics, inventory management, and order processing.",
+    //   image: "/placeholder.svg?height=200&width=400",
+    //   technologies: ["React", "Next.js", "Tailwind CSS"],
+    //   github: "#",
+    //   demo: "#"
+    // },
+    // {
+    //   title: "Technical Documentation Portal",
+    //   description: "A comprehensive documentation portal for a SaaS product, featuring interactive tutorials and API references.",
+    //   image: "/placeholder.svg?height=200&width=400",
+    //   technologies: ["Docusaurus", "Markdown", "Content Strategy"],
+    //   github: "#",
+    //   demo: "#"
+    // },
+    // {
+    //   title: "NFT Marketplace",
+    //   description: "A decentralized marketplace for creating, buying, and selling NFTs with wallet integration and transaction history.",
+    //   image: "/placeholder.svg?height=200&width=400",
+    //   technologies: ["Solidity", "Ethers.js", "IPFS"],
+    //   github: "#",
+    //   demo: "#"
+    // },
+    // {
+    //   title: "Decentralized Finance Dashboard",
+    //   description: "A comprehensive DeFi dashboard that allows users to track their investments, stake tokens, and participate in liquidity pools across multiple blockchain networks.",
+    //   image: "/placeholder.svg?height=300&width=600",
+    //   technologies: ["Ethereum", "Solidity", "React", "Web3.js", "MetaMask Integration"],
+    //   github: "#",
+    //   demo: "#"
+    // },
+    // {
+    //   title: "NFT Collection",
+    //   description: "A generative art NFT collection with on-chain metadata and rarity attributes.",
+    //   image: "/placeholder.svg?height=200&width=400",
+    //   technologies: ["ERC-721", "IPFS", "OpenSea"],
+    //   github: "#",
+    //   demo: "#"
+    // },
     {
       title: "DAO Governance Portal",
       description: "A governance portal for DAOs with proposal creation, voting, and execution.",
