@@ -19,10 +19,18 @@ export default function ProjectPage() {
     {
       title: "Shax_x Photography Portfolio",
       description: "A modern, professional photography portfolio website built with Next.js 15, featuring stunning animations, responsive design, and a focus on showcasing Nigerian photography excellence.",
-      image: "/placeholder.svg?height=200&width=400",
+      image: "/shax.png?height=200&width=400",
       technologies: ["Next.js 15", "Tailwind CSS", "Framer Motion", "TypeScript"],
       github: "https://github.com/Manuel-co/shax_x",
       demo: "https://shax-x.vercel.app/"
+    },
+    {
+      title: "File Sharing App",
+      description: "A file sharing app that allows users to share files with each other",
+      image: "/share.png?height=200&width=400",
+      technologies: [ "Next.js", "Tailwind CSS"],
+      github: "#",
+      demo: "#"
     },
     // {
     //   title: "E-Commerce Dashboard",
@@ -64,14 +72,14 @@ export default function ProjectPage() {
     //   github: "#",
     //   demo: "#"
     // },
-    {
-      title: "DAO Governance Portal",
-      description: "A governance portal for DAOs with proposal creation, voting, and execution.",
-      image: "/placeholder.svg?height=200&width=400",
-      technologies: ["Governance", "Voting", "Snapshot"],
-      github: "#",
-      demo: "#"
-    }
+    // {
+    //   title: "DAO Governance Portal",
+    //   description: "A governance portal for DAOs with proposal creation, voting, and execution.",
+    //   image: "/placeholder.svg?height=200&width=400",
+    //   technologies: ["Governance", "Voting", "Snapshot"],
+    //   github: "#",
+    //   demo: "#"
+    // }
   ];
 
   const filteredProjects = projects.filter((project) => {
