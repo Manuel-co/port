@@ -14,7 +14,7 @@ export function SpotifyNowPlaying() {
   useEffect(() => {
     const fetchNowPlaying = async () => {
       try {
-        const response = await fetch('/api/spotify');
+        const response = await fetch('/api/now-playing');
         const data = await response.json();
         setNowPlaying(data);
       } catch (error) {
