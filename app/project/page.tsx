@@ -29,8 +29,8 @@ export default function ProjectPage() {
       description: "A file sharing app that allows users to share files with each other",
       image: "/share.png?height=200&width=400",
       technologies: [ "Next.js", "Tailwind CSS"],
-      github: "#",
-      demo: "#"
+      github: "https://github.com/Manuel-co/fileshare",
+      demo: "https://file-share-nine-pi.vercel.app/"
     },
     // {
     //   title: "E-Commerce Dashboard",
