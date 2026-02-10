@@ -4,7 +4,7 @@ import "./globals.css"
 import { Toaster } from "react-hot-toast"
 
 export const metadata: Metadata = {
-  title: "Dev Portfolio | Front-End Developer | Technical Writer | Web3 Developer",
+  title: "Dev Portfolio | Front-End Developer | Technical Writer",
   description:
     "Professional portfolio showcasing my work as a front-end developer, technical writer, and web3 developer.",
 }

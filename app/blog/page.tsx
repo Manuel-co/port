@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink, Search } from "lucide-react";
+import { ExternalLink, Search, BookOpen, Filter } from "lucide-react";
 import { Header } from "../../components/layout/Header";
 import { Footer } from "../../components/layout/Footer";
 import { useState } from "react";
@@ -13,8 +13,16 @@ import { AnimatedPage, AnimatedSection, AnimatedGrid } from "@/components/ui/ani
 
 export default function BlogPage() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<string>("All");
 
   const articles = [
+    {
+      title: "Building a Next-Generation File Sharing App with Next.js and Permit.io",
+      description:
+        "It’s a step-by-step guide to building a secure file-sharing web application using Next.js and Permit.io. The app lets users upload, share, edit, and manage files with role-based access control (Admin, Editor, Viewer). It covers setting up the tech stack (Next.js frontend, AWS S3 for storage, Google Firestore for database), configuring user authentication, integrating Permit.io to enforce permissions, and implementing file upload, sharing, and role management features.",
+      category: "Tutorial",
+      link: "https://medium.com/@manuchimsoemmanuel2k/building-a-next-generation-file-sharing-app-with-next-js-and-permit-io-00b8fb7e66bf",
+    },
     {
       title: "Translate Subtitles using the LibreTranslate API",
       description:
@@ -92,22 +100,20 @@ export default function BlogPage() {
       category: "Technical Blog",
       link: "https://blog.openreplay.com/all-about-css-animations/",
     },
-    {
-      title: "Building a Next Generation File Sharing App with Next.js and Permit.io",
-      description:
-        "In this tutorial, you will learn how to build a next generation file sharing app with Next.js and Permit.io. You will learn how to use Next.js and Permit.io to build a file sharing app that allows you to share files with your friends and family.",
-      category: "Tutorial",
-      link: "https://medium.com/@manuchimsoemmanuel2k/building-a-next-generation-file-sharing-app-with-next-js-and-permit-io-00b8fb7e66bf",
-    },
   ];
+
+  const categories = ["All", ...Array.from(new Set(articles.map(a => a.category)))];
 
   const filteredArticles = articles.filter((article) => {
     const searchLower = searchQuery.toLowerCase();
-    return (
+    const matchesSearch = 
       article.title.toLowerCase().includes(searchLower) ||
       article.description.toLowerCase().includes(searchLower) ||
-      article.category.toLowerCase().includes(searchLower)
-    );
+      article.category.toLowerCase().includes(searchLower);
+    
+    const matchesCategory = selectedCategory === "All" || article.category === selectedCategory;
+    
+    return matchesSearch && matchesCategory;
   });
 
   return (
@@ -115,41 +121,84 @@ export default function BlogPage() {
       <Header />
       <main className="py-24">
         <div className="container">
-          <AnimatedPage className="max-w-3xl mx-auto">
-            <h1 className="text-4xl font-bold mb-4">Blog Posts</h1>
-            <p className="text-gray-400 mb-8">
-              Technical articles, tutorials, and insights about web development,
-              React, and more.
-            </p>
-
-            {/* Search Input */}
-            <div className="relative mb-12">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-              <input
-                type="text"
-                placeholder="Search articles..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/50 text-white placeholder-gray-400"
-              />
+          <AnimatedPage className="max-w-6xl mx-auto">
+            {/* Hero Section */}
+            <div className="text-center mb-16">
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white/5 border border-white/10 rounded-full"
+              >
+                <BookOpen className="h-4 w-4 text-white/70" />
+                <span className="text-sm text-white/70">Technical Writing</span>
+              </motion.div>
+              
+              <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-white/90 to-white/70 bg-clip-text text-transparent">
+                Blog Posts
+              </h1>
+              <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+                Technical articles, tutorials, and insights about web development,
+                React, and more.
+              </p>
             </div>
 
-            {/* Search Results Count */}
-            <p className="text-gray-400 mb-8">
-              {filteredArticles.length} article{filteredArticles.length !== 1 ? "s" : ""} found
-            </p>
+            {/* Search and Filter Section */}
+            <div className="mb-12 space-y-6">
+              {/* Search Bar */}
+              <div className="relative max-w-2xl mx-auto">
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Search articles by title, description, or category..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full pl-12 pr-4 py-4 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-white/20 text-white placeholder-gray-500 transition-all"
+                />
+              </div>
+
+              {/* Category Filter */}
+              <div className="flex items-center justify-center gap-3 flex-wrap">
+                <Filter className="h-4 w-4 text-gray-400" />
+                {categories.map((category) => (
+                  <Button
+                    key={category}
+                    variant={selectedCategory === category ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => setSelectedCategory(category)}
+                    className={`rounded-full transition-all ${
+                      selectedCategory === category
+                        ? "bg-white text-black hover:bg-white/90"
+                        : "bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20"
+                    }`}
+                  >
+                    {category}
+                  </Button>
+                ))}
+              </div>
+
+              {/* Results Count */}
+              <motion.p
+                key={filteredArticles.length}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="text-center text-gray-400"
+              >
+                {filteredArticles.length} article{filteredArticles.length !== 1 ? "s" : ""} found
+              </motion.p>
+            </div>
           </AnimatedPage>
 
-          <AnimatedGrid className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            <AnimatePresence>
+          {/* Articles Grid */}
+          <AnimatedGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+            <AnimatePresence mode="popLayout">
               {filteredArticles.map((article, index) => (
                 <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
-                  whileHover={{ scale: 1.02 }}
+                  key={`${article.title}-${index}`}
+                  layout
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
                   className="h-full"
                 >
                   <Card className="bg-white/5 border-white/10 text-white overflow-hidden group hover:border-white/20 transition-colors h-full">
@@ -189,27 +238,64 @@ export default function BlogPage() {
             )}
           </AnimatePresence>
 
-          <AnimatedSection className="max-w-3xl mx-auto text-center" delay={0.2}>
-            <p className="text-gray-400 mb-8">
-              Want to read more? Check out my latest articles on various
-              platforms.
-            </p>
-            <div className="flex gap-4 justify-center">
-              <Button asChild >
-                <Link href="https://hashnode.com/" target="_blank">
-                Hashnode
-                </Link>
-              </Button>
-              <Button asChild >
-                <Link href="https://dev.to/" target="_blank">
-                  Dev.to
-                </Link>
-              </Button>
-              <Button asChild >
-                <Link href="https://medium.com/" target="_blank">
-                  Medium
-                </Link>
-              </Button>
+          <AnimatedSection className="max-w-5xl mx-auto mt-24" delay={0.2}>
+            <div className="relative overflow-hidden bg-gradient-to-br from-white/10 via-white/5 to-transparent border border-white/20 rounded-3xl p-12 md:p-16">
+              {/* Decorative Elements */}
+              <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+              <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+              
+              <div className="relative z-10">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                  className="text-center mb-10"
+                >
+                  <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">
+                    Want to read more?
+                  </h2>
+                  <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto">
+                    Explore my latest articles and tutorials across multiple platforms
+                  </p>
+                </motion.div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {[
+                    { name: "Hashnode", url: "https://hashnode.com/", description: "In-depth tutorials", primary: true },
+                    { name: "Dev.to", url: "https://dev.to/", description: "Quick tips & tricks" },
+                    { name: "Medium", url: "https://medium.com/", description: "Technical insights" }
+                  ].map((platform, index) => (
+                    <motion.div
+                      key={platform.name}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      whileHover={{ y: -5 }}
+                      className="h-full"
+                    >
+                      <Link href={platform.url} target="_blank" className="block h-full">
+                        <div className={`h-full p-6 rounded-xl border transition-all duration-300 ${
+                          platform.primary 
+                            ? "bg-white text-black border-white hover:bg-white/90 hover:shadow-lg hover:shadow-white/20" 
+                            : "bg-white/5 border-white/20 hover:bg-white/10 hover:border-white/30"
+                        }`}>
+                          <div className="flex items-center justify-between mb-3">
+                            <h3 className={`text-xl font-bold ${platform.primary ? "text-black" : "text-white"}`}>
+                              {platform.name}
+                            </h3>
+                            <ExternalLink className={`h-5 w-5 ${platform.primary ? "text-black/70" : "text-white/70"}`} />
+                          </div>
+                          <p className={`text-sm ${platform.primary ? "text-black/70" : "text-gray-400"}`}>
+                            {platform.description}
+                          </p>
+                        </div>
+                      </Link>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
             </div>
           </AnimatedSection>
         </div>
