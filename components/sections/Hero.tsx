@@ -13,8 +13,8 @@ const handleAnimationComplete = () => {
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
-      <div className="absolute inset-0 z-0">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <div className="absolute inset-0 z-0 opacity-60 md:opacity-100">
         {/* <div className="h-full w-full bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.1)_0,_rgba(0,0,0,0)_70%)]"></div> */}
         <div style={{ width: "100%", height: "100%", position: "relative" }}>
           <FloatingLines
@@ -33,42 +33,46 @@ export function Hero() {
           />
         </div>
       </div>
-      <div className="container relative z-10 flex flex-col items-center text-center max-w-5xl w-full">
-        <h1 className="text-[1.5rem] min-[400px]:text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 font-zalando px-3 sm:px-4 leading-tight w-full">
-          <span className="block text-lg min-[400px]:text-xl sm:text-3xl md:text-4xl lg:text-5xl">Hello, I'm</span>
+      <div className="container relative z-10 flex flex-col items-center text-center px-4 py-20 md:py-0">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 md:mb-8 font-zalando leading-tight w-full">
+          <span className="block mb-2">Hello, I'm</span>
 
-          <span className="block mt-2 break-words hyphens-auto max-w-full overflow-hidden" lang="en">
+          <span className="block relative z-20 w-full">
             <BlurText
               text="Nweke Manuchimso"
               delay={100}
               animateBy="words"
               direction="top"
               onAnimationComplete={handleAnimationComplete}
-              className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500 font-zalando break-words leading-tight max-w-full"
+              className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-gray-400 font-zalando"
             />
           </span>
         </h1>
-        <p className="text-sm min-[400px]:text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 max-w-2xl mb-6 sm:mb-8 font-zalando px-3 sm:px-4 w-full">
+        <p className="text-lg sm:text-xl md:text-2xl text-gray-300 max-w-2xl mb-8 md:mb-10 font-zalando px-4">
           Front-End Developer | Technical Writer 
         </p>
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center w-full sm:w-auto px-3 sm:px-4 max-w-md sm:max-w-none">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center w-full max-w-md sm:max-w-none mb-10 md:mb-12">
           <Button
             asChild
-            className="bg-white text-black hover:bg-gray-200 font-zalando rounded-full px-6 sm:px-8 py-5 sm:py-6 text-sm sm:text-base w-full sm:w-auto"
+            className="bg-white text-black hover:bg-gray-200 font-zalando rounded-full px-8 py-6 text-base w-full sm:w-auto"
           >
             <Link href="/contact">Get in Touch</Link>
           </Button>
-          <Button asChild variant="secondary" className="font-zalando bg-gray-900/30 border-2 border-gray-400 text-gray-400 hover:bg-gray-900/30 hover:border-gray-400 hover:text-gray-400 rounded-full px-6 sm:px-8 py-5 sm:py-6 text-sm sm:text-base w-full sm:w-auto">
+          <Button 
+            asChild 
+            variant="secondary" 
+            className="font-zalando bg-gray-900/30 border-2 border-gray-400 text-gray-400 hover:bg-gray-900/50 hover:border-gray-300 hover:text-gray-300 rounded-full px-8 py-6 text-base w-full sm:w-auto"
+          >
             <Link href="/project">View My Work</Link>
           </Button>
         </div>
-        <div className="flex space-x-6 sm:space-x-4 mt-8 sm:mt-12">
+        <div className="flex space-x-8 md:space-x-6">
           <Link
             href="https://github.com/Manuel-co"
             target="_blank"
             className="text-gray-400 hover:text-white transition-colors"
           >
-            <Github className="h-5 w-5 sm:h-6 sm:w-6" />
+            <Github className="h-6 w-6 md:h-7 md:w-7" />
             <span className="sr-only">GitHub</span>
           </Link>
           <Link
@@ -76,7 +80,7 @@ export function Hero() {
             target="_blank"
             className="text-gray-400 hover:text-white transition-colors"
           >
-            <Twitter className="h-5 w-5 sm:h-6 sm:w-6" />
+            <Twitter className="h-6 w-6 md:h-7 md:w-7" />
             <span className="sr-only">X.com</span>
           </Link>
           <Link
@@ -84,12 +88,12 @@ export function Hero() {
             target="_blank"
             className="text-gray-400 hover:text-white transition-colors"
           >
-            <Linkedin className="h-5 w-5 sm:h-6 sm:w-6" />
+            <Linkedin className="h-6 w-6 md:h-7 md:w-7" />
             <span className="sr-only">LinkedIn</span>
           </Link>
         </div>
       </div>
-      
+     
     </section>
   );
 }

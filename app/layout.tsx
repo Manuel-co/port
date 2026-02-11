@@ -6,7 +6,7 @@ import { Toaster } from "react-hot-toast"
 export const metadata: Metadata = {
   title: "Dev Portfolio | Front-End Developer | Technical Writer",
   description:
-    "Professional portfolio showcasing my work as a front-end developer, technical writer, and web3 developer.",
+    "Professional portfolio showcasing my work as a front-end developer, technical writer.",
 }
 
 export default function RootLayout({

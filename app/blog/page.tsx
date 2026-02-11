@@ -100,6 +100,7 @@ export default function BlogPage() {
       category: "Technical Blog",
       link: "https://blog.openreplay.com/all-about-css-animations/",
     },
+    
   ];
 
   const categories = ["All", ...Array.from(new Set(articles.map(a => a.category)))];
