@@ -5,7 +5,7 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Github, ExternalLink, Search } from "lucide-react"
+import { Github, ExternalLink, Search, FolderGit2 } from "lucide-react"
 import { Header } from "../../components/layout/Header"
 import { Footer } from "../../components/layout/Footer"
 import { useState } from "react"
@@ -96,28 +96,51 @@ export default function ProjectPage() {
       <Header />
       <main className="py-24">
         <div className="container">
-          <AnimatedPage className="max-w-3xl mx-auto">
-            <h1 className="text-4xl font-bold mb-4">Projects</h1>
-            <p className="text-gray-400 mb-8">
-              A collection of my work in web development, technical writing, and Web3 development.
-            </p>
-
-            {/* Search Input */}
-            <div className="relative mb-12">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-              <input
-                type="text"
-                placeholder="Search projects..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/50 text-white placeholder-gray-400"
-              />
+          <AnimatedPage className="max-w-6xl mx-auto">
+            {/* Hero Section */}
+            <div className="text-center mb-16">
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white/5 border border-white/10 rounded-full"
+              >
+                <FolderGit2 className="h-4 w-4 text-white/70" />
+                <span className="text-sm text-white/70">Portfolio</span>
+              </motion.div>
+              
+              <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-white/90 to-white/70 bg-clip-text text-transparent">
+                Projects
+              </h1>
+              <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+                A collection of my work in web development, technical writing.
+              </p>
             </div>
 
-            {/* Search Results Count */}
-            <p className="text-gray-400 mb-8">
-              {filteredProjects.length} project{filteredProjects.length !== 1 ? "s" : ""} found
-            </p>
+            {/* Search and Filter Section */}
+            <div className="mb-12 space-y-6">
+              {/* Search Bar */}
+              <div className="relative max-w-2xl mx-auto">
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Search projects by title, description, or technology..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full pl-12 pr-4 py-4 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-white/20 text-white placeholder-gray-500 transition-all"
+                />
+              </div>
+
+              {/* Results Count */}
+              <motion.p
+                key={filteredProjects.length}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="text-center text-gray-400"
+              >
+                {filteredProjects.length} project{filteredProjects.length !== 1 ? "s" : ""} found
+              </motion.p>
+            </div>
           </AnimatedPage>
 
           <AnimatedGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">

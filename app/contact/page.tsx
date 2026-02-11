@@ -8,6 +8,7 @@ import { Header } from "../../components/layout/Header"
 import { Footer } from "../../components/layout/Footer"
 import { AnimatedPage, AnimatedSection } from "@/components/ui/animated-page"
 import { useState } from "react"
+import { motion } from "framer-motion"
 import emailjs from "@emailjs/browser"
 import toast from "react-hot-toast"
 import { Formik, Form, Field, ErrorMessage } from "formik"
@@ -72,11 +73,26 @@ export default function ContactPage() {
       <Header />
       <main className="py-24">
         <div className="container">
-          <AnimatedPage className="max-w-3xl mx-auto">
-            <h1 className="text-4xl font-bold mb-4">Get in Touch</h1>
-            <p className="text-gray-400 mb-8">
-              I'm currently available for freelance work, collaborations, and interesting projects. Let's work together!
-            </p>
+          <AnimatedPage className="max-w-6xl mx-auto">
+            {/* Hero Section */}
+            <div className="text-center mb-16">
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white/5 border border-white/10 rounded-full"
+              >
+                <Mail className="h-4 w-4 text-white/70" />
+                <span className="text-sm text-white/70">Let's Connect</span>
+              </motion.div>
+              
+              <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-white/90 to-white/70 bg-clip-text text-transparent">
+                Get in Touch
+              </h1>
+              <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+                I'm currently available for freelance work, collaborations, and interesting projects. Let's work together!
+              </p>
+            </div>
           </AnimatedPage>
 
           <div className="grid md:grid-cols-2 gap-12 items-start">
