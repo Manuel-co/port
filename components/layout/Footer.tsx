@@ -21,7 +21,7 @@ export function Footer() {
           </div>
           <div className="flex space-x-6">
             <Link
-              href="https://github.com/Manuel-code"
+              href="https://github.com/Manuel-co"
               target="_blank"
               className="text-gray-400 hover:text-white transition-colors"
             >
