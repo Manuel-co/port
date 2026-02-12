@@ -3,9 +3,8 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Github, Twitter, Linkedin } from "lucide-react";
 import BlurText from "@/components/BlurText";
-// import LightRays from "../LightRays";
-// import Prism from "@/components/Prism";
 import FloatingLines from "../FloatingLines";
+import { SpotifyNowPlaying } from "@/components/SpotifyNowPlaying";
 
 const handleAnimationComplete = () => {
   console.log("Animation completed!");
@@ -91,6 +90,11 @@ export function Hero() {
             <Linkedin className="h-6 w-6 md:h-7 md:w-7" />
             <span className="sr-only">LinkedIn</span>
           </Link>
+        </div>
+
+        {/* Spotify Now Playing */}
+        <div className="mt-10 md:mt-12">
+          <SpotifyNowPlaying />
         </div>
       </div>
      
