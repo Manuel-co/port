@@ -28,9 +28,17 @@ export default function ProjectPage() {
       title: "File Sharing App",
       description: "A file sharing app that allows users to share files with each other",
       image: "/share.png?height=200&width=400",
-      technologies: [ "Next.js", "Tailwind CSS"],
-      github: "https://github.com/Manuel-co/fileshare",
+      technologies: [ "Next.js", "Tailwind CSS", "AWS" , "Permit.io", "FireBase"],
+      github: "https://github.com/Manuel-co/files-share-permit.io",
       demo: "https://file-share-nine-pi.vercel.app/"
+    },
+    {
+      title: "Subtitle Translator",
+      description: "A Simple Subtitle Translator",
+      image: "/placeholder.svg?height=200&width=400",
+      technologies: [ "React.js", "Libral Translate API"],
+      github: "https://github.com/Manuel-co/subtitle-translator",
+      demo: "#"
     },
     // {
     //   title: "E-Commerce Dashboard",
