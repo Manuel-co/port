@@ -4,9 +4,72 @@ import "./globals.css"
 import { Toaster } from "react-hot-toast"
 
 export const metadata: Metadata = {
-  title: "Dev Portfolio | Front-End Developer | Technical Writer",
+  metadataBase: new URL('https://manuchim.site'),
+  title: {
+    default: "Nweke Manuchimso | Front-End Developer & Technical Writer",
+    template: "%s | Nweke Manuchimso"
+  },
   description:
-    "Professional portfolio showcasing my work as a front-end developer, technical writer.",
+    "Professional portfolio of Nweke Manuchimso - Front-End Developer and Technical Writer specializing in React, Next.js, and modern web development. Explore my projects, blog posts, and technical articles.",
+  keywords: [
+    "Front-End Developer",
+    "Technical Writer",
+    "React Developer",
+    "Next.js",
+    "Web Development",
+    "JavaScript",
+    "TypeScript",
+    "Portfolio",
+    "Nweke Manuchimso",
+    "Software Engineer"
+  ],
+  authors: [{ name: "Nweke Manuchimso", url: "https://manuchim.site" }],
+  creator: "Nweke Manuchimso",
+  publisher: "Nweke Manuchimso",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://manuchim.site",
+    title: "Nweke Manuchimso | Front-End Developer & Technical Writer",
+    description: "Professional portfolio showcasing web development projects, technical articles, and expertise in React, Next.js, and modern web technologies.",
+    siteName: "Nweke Manuchimso Portfolio",
+    images: [
+      {
+        url: "/og-image.png", // Create this image (1200x630px recommended)
+        width: 1200,
+        height: 630,
+        alt: "Nweke Manuchimso - Front-End Developer & Technical Writer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Nweke Manuchimso | Front-End Developer & Technical Writer",
+    description: "Professional portfolio showcasing web development projects and technical articles.",
+    creator: "@NwekeManuchimso",
+    images: ["/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    google: "your-google-verification-code", // Add your Google Search Console verification code
+    // yandex: "your-yandex-verification-code",
+    // bing: "your-bing-verification-code",
+  },
 }
 
 export default function RootLayout({
