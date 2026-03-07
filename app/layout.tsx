@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     template: "%s | Nweke Manuchimso"
   },
   description:
-    "Professional portfolio of Nweke Manuchimso - Front-End Developer and Technical Writer specializing in React, Next.js, and modern web development. Explore my projects, blog posts, and technical articles.",
+    "Front-End Developer & Technical Writer specializing in React, Next.js, and modern web development. Explore my projects and technical articles.",
   keywords: [
     "Front-End Developer",
     "Technical Writer",
@@ -65,6 +65,9 @@ export const metadata: Metadata = {
         alt: "Nweke Manuchimso - Front-End Developer & Technical Writer",
       },
     ],
+  },
+  alternates: {
+    canonical: "https://manuchim.site",
   },
   twitter: {
     card: "summary_large_image",

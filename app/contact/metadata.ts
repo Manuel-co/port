@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Get in Touch",
-  description: "Contact Nweke Manuchimso Emmanuel (Nweke Emmanuel Manuchimso) for freelance work, collaborations, and interesting projects. Available for front-end development and technical writing opportunities.",
+  description: "Contact Nweke Manuchimso for freelance work, collaborations, and projects. Available for front-end development and technical writing.",
   keywords: [
     "Contact Developer",
     "Hire Frontend Developer",
@@ -19,6 +19,9 @@ export const metadata: Metadata = {
     description: "Contact me for freelance work, collaborations, and interesting projects.",
     type: "website",
     url: "https://manuchim.site/contact",
+  },
+  alternates: {
+    canonical: "https://manuchim.site/contact",
   },
   twitter: {
     card: "summary",
