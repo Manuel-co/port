@@ -133,6 +133,7 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Zalando+Sans+Expanded&display=swap"
           rel="stylesheet"
         />
+        <link rel="manifest" href="/site.webmanifest" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
