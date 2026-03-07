@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Blog Posts",
-  description: "Technical articles, tutorials, and insights about web development, React, Next.js, and modern JavaScript frameworks. Learn from practical examples and in-depth guides.",
+  description: "Technical articles, tutorials, and insights about web development, React, Next.js, and modern JavaScript frameworks by Nweke Manuchimso Emmanuel. Learn from practical examples and in-depth guides.",
   keywords: [
     "Web Development Blog",
     "React Tutorials",
@@ -11,7 +11,9 @@ export const metadata: Metadata = {
     "Technical Writing",
     "Programming Tutorials",
     "Frontend Development",
-    "Web Development Tips"
+    "Web Development Tips",
+    "Nweke Manuchimso",
+    "Nweke Emmanuel"
   ],
   openGraph: {
     title: "Blog Posts | Nweke Manuchimso",

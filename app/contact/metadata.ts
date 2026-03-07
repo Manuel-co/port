@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Get in Touch",
-  description: "Contact Nweke Manuchimso for freelance work, collaborations, and interesting projects. Available for front-end development and technical writing opportunities.",
+  description: "Contact Nweke Manuchimso Emmanuel (Nweke Emmanuel Manuchimso) for freelance work, collaborations, and interesting projects. Available for front-end development and technical writing opportunities.",
   keywords: [
     "Contact Developer",
     "Hire Frontend Developer",
@@ -10,7 +10,9 @@ export const metadata: Metadata = {
     "Technical Writer for Hire",
     "Web Development Services",
     "React Developer Contact",
-    "Collaboration Opportunities"
+    "Collaboration Opportunities",
+    "Nweke Manuchimso Contact",
+    "Nweke Emmanuel"
   ],
   openGraph: {
     title: "Get in Touch | Nweke Manuchimso",

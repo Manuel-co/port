@@ -21,11 +21,20 @@ export const metadata: Metadata = {
     "TypeScript",
     "Portfolio",
     "Nweke Manuchimso",
-    "Software Engineer"
+    "Nweke Manuchimso Emmanuel",
+    "Nweke Emmanuel Manuchimso",
+    "Manuchimso Nweke",
+    "Emmanuel Nweke",
+    "Software Engineer",
+    "Web Developer Nigeria",
+    "Frontend Engineer"
   ],
-  authors: [{ name: "Nweke Manuchimso", url: "https://manuchim.site" }],
-  creator: "Nweke Manuchimso",
-  publisher: "Nweke Manuchimso",
+  authors: [{ 
+    name: "Nweke Manuchimso Emmanuel", 
+    url: "https://manuchim.site" 
+  }],
+  creator: "Nweke Manuchimso Emmanuel",
+  publisher: "Nweke Manuchimso Emmanuel",
   formatDetection: {
     email: false,
     address: false,
@@ -87,12 +96,46 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Nweke Manuchimso Emmanuel",
+    "alternateName": [
+      "Nweke Manuchimso",
+      "Nweke Emmanuel Manuchimso",
+      "Manuchimso Nweke",
+      "Emmanuel Nweke"
+    ],
+    "url": "https://manuchim.site",
+    "jobTitle": "Front-End Developer & Technical Writer",
+    "description": "Professional Front-End Developer and Technical Writer specializing in React, Next.js, and modern web development",
+    "sameAs": [
+      "https://github.com/Manuel-co",
+      "https://twitter.com/NwekeManuchimso",
+      "https://www.linkedin.com/in/nweke-emmanuel-435a3923b/",
+      "https://medium.com/@manuchimsoemmanuel2k"
+    ],
+    "knowsAbout": [
+      "React",
+      "Next.js",
+      "JavaScript",
+      "TypeScript",
+      "Web Development",
+      "Technical Writing",
+      "Frontend Development"
+    ]
+  };
+
   return (
     <html lang="en" className="scroll-smooth">
       <head>
         <link
           href="https://fonts.googleapis.com/css2?family=Zalando+Sans+Expanded&display=swap"
           rel="stylesheet"
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
       <body className="font-zalando">
