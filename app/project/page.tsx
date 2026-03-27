@@ -51,10 +51,10 @@ export default function ProjectPage() {
     {
       title: "Subtitle Translator",
       description: "A Simple Subtitle Translator",
-      image: "/placeholder.svg?height=200&width=400",
+      image: "/trans.png?height=200&width=400",
       technologies: [ "React.js", "Libral Translate API"],
       github: "https://github.com/Manuel-co/subtitle-translator",
-      demo: "#"
+      demo: "https://subtitle-translator.vercel.app/"
     },
    
     // {
