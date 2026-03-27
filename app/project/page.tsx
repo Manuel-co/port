@@ -32,6 +32,22 @@ export default function ProjectPage() {
       github: "https://github.com/Manuel-co/files-share-permit.io",
       demo: "https://file-share-nine-pi.vercel.app/"
     },
+     {
+      title: "AniNews",
+      description: "A Next.js anime discovery site powered by the Anime News Network encyclopedia API.",
+      image: "/aninews.png?height=200&width=400",
+      technologies: ["Next.js", "Tailwind CSS","TypeScript", "fast-xml-parser", "Zustand","API", "shadcn"],
+      github: "https://github.com/Manuel-co/aninews",
+      demo: "https://aninews-blond.vercel.app/"
+    },
+     {
+      title: "Anime News",
+      description: "A landing page that helps developers discover and use the Anime News Network Encyclopedia API — free, no auth, no API keys required.",
+      image: "/news.png?height=200&width=400",
+      technologies: ["Next.js", "Tailwind CSS","TypeScript", "shadcn"],
+      github: "https://github.com/Manuel-co/news-anime",
+      demo: "https://news-anime.vercel.app/"
+    },
     {
       title: "Subtitle Translator",
       description: "A Simple Subtitle Translator",
@@ -40,14 +56,7 @@ export default function ProjectPage() {
       github: "https://github.com/Manuel-co/subtitle-translator",
       demo: "#"
     },
-    // {
-    //   title: "E-Commerce Dashboard",
-    //   description: "A responsive dashboard for e-commerce businesses with real-time analytics, inventory management, and order processing.",
-    //   image: "/placeholder.svg?height=200&width=400",
-    //   technologies: ["React", "Next.js", "Tailwind CSS"],
-    //   github: "#",
-    //   demo: "#"
-    // },
+   
     // {
     //   title: "Technical Documentation Portal",
     //   description: "A comprehensive documentation portal for a SaaS product, featuring interactive tutorials and API references.",
