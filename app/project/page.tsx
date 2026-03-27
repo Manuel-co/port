@@ -56,6 +56,14 @@ export default function ProjectPage() {
       github: "https://github.com/Manuel-co/subtitle-translator",
       demo: "https://subtitle-translator.vercel.app/"
     },
+     {
+      title: "PH ESTATE",
+      description: "A Real Estate Listing Site.",
+      image: "/phlist.png?height=200&width=400",
+      technologies: ["Next.js", "Tailwind CSS","TypeScript", "shadcn"],
+      github: "https://github.com/Manuel-co/phestate",
+      demo: "https://phestate.vercel.app/"
+    },
    
     // {
     //   title: "Technical Documentation Portal",
