@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Search, BookOpen, Filter } from "lucide-react";
 import { Header } from "../../components/layout/Header";
@@ -10,6 +9,7 @@ import { Footer } from "../../components/layout/Footer";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { AnimatedPage, AnimatedSection, AnimatedGrid } from "@/components/ui/animated-page";
+import BorderGlow from '../../components/BorderGlow';
 
 export default function BlogPage() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -19,7 +19,7 @@ export default function BlogPage() {
     {
       title: "Building a Next-Generation File Sharing App with Next.js and Permit.io",
       description:
-        "It’s a step-by-step guide to building a secure file-sharing web application using Next.js and Permit.io. The app lets users upload, share, edit, and manage files with role-based access control (Admin, Editor, Viewer). It covers setting up the tech stack (Next.js frontend, AWS S3 for storage, Google Firestore for database), configuring user authentication, integrating Permit.io to enforce permissions, and implementing file upload, sharing, and role management features.",
+        "It's a step-by-step guide to building a secure file-sharing web application using Next.js and Permit.io. The app lets users upload, share, edit, and manage files with role-based access control (Admin, Editor, Viewer). It covers setting up the tech stack (Next.js frontend, AWS S3 for storage, Google Firestore for database), configuring user authentication, integrating Permit.io to enforce permissions, and implementing file upload, sharing, and role management features.",
       category: "Tutorial",
       link: "https://medium.com/@manuchimsoemmanuel2k/building-a-next-generation-file-sharing-app-with-next-js-and-permit-io-00b8fb7e66bf",
     },
@@ -68,7 +68,7 @@ export default function BlogPage() {
     {
       title: "Five Headless CMS to try in 2023",
       description:
-        "A CMS, or content management system, enables users to control and arrange digital information on a website or other online platform, including text, photos, and videos. The user-friendly interface of these systems often enables users to create, modify, and publish material without being familiar with HTML or other computer languages. Tools for managing users, permissions, and different website or digital platform facets are also frequently included. This article will introduce five important packages that you should consider in 2023.",
+        "A CMS, or content management system, enables users to control and arrange digital information on a website or other online platform, including text, photos, and videos. The user-friendly interface of these systems often enables users to create, modify, and publish material without being familiar with HTML or other computer languages.",
       category: "Technical Blog",
       link: "https://blog.openreplay.com/five-headless-cms-to-try-in-2023/",
     },
@@ -89,31 +89,29 @@ export default function BlogPage() {
     {
       title: "Five JavaScript Animation Libraries to Try Out",
       description:
-        "Animation is a powerful tool for creating engaging and interactive web experiences. It can be used to make static content more dynamic, to add visual interest to a website, or to create a more seamless user experience. This article will introduce five important packages that you should consider in 2023.",
+        "Animation is a powerful tool for creating engaging and interactive web experiences. It can be used to make static content more dynamic, to add visual interest to a website, or to create a more seamless user experience.",
       category: "Technical Blog",
       link: "https://blog.openreplay.com/five-javascript-animation-libraries-to-try-out/",
     },
     {
       title: "All About CSS Animations",
       description:
-        "CSS animations are a powerful way to add visual interest to a website. They can be used to create a more engaging and interactive user experience, or to add visual interest to a website. This article will introduce five important packages that you should consider in 2023.",
+        "CSS animations are a powerful way to add visual interest to a website. They can be used to create a more engaging and interactive user experience, or to add visual interest to a website.",
       category: "Technical Blog",
       link: "https://blog.openreplay.com/all-about-css-animations/",
     },
-    
   ];
 
-  const categories = ["All", ...Array.from(new Set(articles.map(a => a.category)))];
+  const categories = ["All", ...Array.from(new Set(articles.map((a) => a.category)))];
 
   const filteredArticles = articles.filter((article) => {
     const searchLower = searchQuery.toLowerCase();
-    const matchesSearch = 
+    const matchesSearch =
       article.title.toLowerCase().includes(searchLower) ||
       article.description.toLowerCase().includes(searchLower) ||
       article.category.toLowerCase().includes(searchLower);
-    
-    const matchesCategory = selectedCategory === "All" || article.category === selectedCategory;
-    
+    const matchesCategory =
+      selectedCategory === "All" || article.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
 
@@ -134,7 +132,7 @@ export default function BlogPage() {
                 <BookOpen className="h-4 w-4 text-white/70" />
                 <span className="text-sm text-white/70">Technical Writing</span>
               </motion.div>
-              
+
               <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-white/90 to-white/70 bg-clip-text text-transparent">
                 Blog Posts
               </h1>
@@ -146,7 +144,6 @@ export default function BlogPage() {
 
             {/* Search and Filter Section */}
             <div className="mb-12 space-y-6">
-              {/* Search Bar */}
               <div className="relative max-w-2xl mx-auto">
                 <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                 <input
@@ -158,7 +155,6 @@ export default function BlogPage() {
                 />
               </div>
 
-              {/* Category Filter */}
               <div className="flex items-center justify-center gap-3 flex-wrap">
                 <Filter className="h-4 w-4 text-gray-400" />
                 {categories.map((category) => (
@@ -178,20 +174,20 @@ export default function BlogPage() {
                 ))}
               </div>
 
-              {/* Results Count */}
               <motion.p
                 key={filteredArticles.length}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 className="text-center text-gray-400"
               >
-                {filteredArticles.length} article{filteredArticles.length !== 1 ? "s" : ""} found
+                {filteredArticles.length} article
+                {filteredArticles.length !== 1 ? "s" : ""} found
               </motion.p>
             </div>
           </AnimatedPage>
 
           {/* Articles Grid */}
-          <AnimatedGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+          <AnimatedGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16 items-stretch">
             <AnimatePresence mode="popLayout">
               {filteredArticles.map((article, index) => (
                 <motion.div
@@ -202,27 +198,59 @@ export default function BlogPage() {
                   exit={{ opacity: 0, scale: 0.9 }}
                   className="h-full"
                 >
-                  <Card className="bg-white/5 border-white/10 text-white overflow-hidden group hover:border-white/20 transition-colors h-full">
-                    <CardContent className="p-6 h-full flex flex-col">
-                      <Badge className="mb-4 w-fit">{article.category}</Badge>
-                      <h2 className="text-xl font-bold mb-2 group-hover:text-white/90 transition-colors">
+                  <BorderGlow
+                    edgeSensitivity={30}
+                    glowColor="40 80 80"
+                    backgroundColor="#120F17"
+                    borderRadius={28}
+                    glowRadius={40}
+                    glowIntensity={1}
+                    coneSpread={25}
+                    animated={true}
+                    colors={["#c084fc", "#f472b6", "#38bdf8"]}
+                    className="h-full"
+                  >
+                    <div className="h-full flex flex-col p-6 rounded-[28px]">
+                      {/* Badge */}
+                      <div className="mb-4">
+                        <Badge
+                          className={`text-xs font-medium px-3 py-1 rounded-full border-0 ${
+                            article.category === "Tutorial"
+                              ? "bg-purple-500/20 text-purple-300"
+                              : "bg-sky-500/20 text-sky-300"
+                          }`}
+                        >
+                          {article.category}
+                        </Badge>
+                      </div>
+
+                      {/* Title */}
+                      <h2 className="text-base font-semibold text-white mb-3 leading-snug line-clamp-2">
                         {article.title}
                       </h2>
-                      <p className="text-gray-400 mb-4 flex-grow line-clamp-3">
+
+                      {/* Description — grows to fill available space */}
+                      <p className="text-gray-400 text-sm leading-relaxed line-clamp-4 flex-1 mb-6">
                         {article.description}
                       </p>
-                      <Button asChild className="group-hover:bg-white/20 transition-colors mt-auto">
+
+                      {/* Button — always at bottom */}
+                      <div className="mt-auto">
                         <Link
                           href={article.link}
-                          className="flex items-center"
                           target="_blank"
+                          className={`inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors w-full justify-center ${
+                            article.link === "#"
+                              ? "bg-white/5 text-white/40 cursor-not-allowed pointer-events-none"
+                              : "bg-white/10 hover:bg-white/20 text-white"
+                          }`}
                         >
-                          <ExternalLink className="h-4 w-4 mr-2" />
+                          <ExternalLink className="h-4 w-4 shrink-0" />
                           Read Article
                         </Link>
-                      </Button>
-                    </CardContent>
-                  </Card>
+                      </div>
+                    </div>
+                  </BorderGlow>
                 </motion.div>
               ))}
             </AnimatePresence>
@@ -231,7 +259,9 @@ export default function BlogPage() {
           <AnimatePresence>
             {filteredArticles.length === 0 && (
               <AnimatedSection className="text-center py-12">
-                <p className="text-gray-400 mb-4">No articles found matching your search.</p>
+                <p className="text-gray-400 mb-4">
+                  No articles found matching your search.
+                </p>
                 <Button variant="outline" onClick={() => setSearchQuery("")}>
                   Clear Search
                 </Button>
@@ -239,12 +269,12 @@ export default function BlogPage() {
             )}
           </AnimatePresence>
 
+          {/* CTA Section */}
           <AnimatedSection className="max-w-5xl mx-auto mt-24" delay={0.2}>
             <div className="relative overflow-hidden bg-gradient-to-br from-white/10 via-white/5 to-transparent border border-white/20 rounded-3xl p-12 md:p-16">
-              {/* Decorative Elements */}
               <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
               <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
-              
+
               <div className="relative z-10">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -263,9 +293,22 @@ export default function BlogPage() {
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   {[
-                    { name: "Hashnode", url: "https://hashnode.com/", description: "In-depth tutorials", primary: true },
-                    { name: "Dev.to", url: "https://dev.to/", description: "Quick tips & tricks" },
-                    { name: "Medium", url: "https://medium.com/", description: "Technical insights" }
+                    {
+                      name: "Hashnode",
+                      url: "https://hashnode.com/",
+                      description: "In-depth tutorials",
+                      primary: true,
+                    },
+                    {
+                      name: "Dev.to",
+                      url: "https://dev.to/",
+                      description: "Quick tips & tricks",
+                    },
+                    {
+                      name: "Medium",
+                      url: "https://medium.com/",
+                      description: "Technical insights",
+                    },
                   ].map((platform, index) => (
                     <motion.div
                       key={platform.name}
@@ -277,18 +320,32 @@ export default function BlogPage() {
                       className="h-full"
                     >
                       <Link href={platform.url} target="_blank" className="block h-full">
-                        <div className={`h-full p-6 rounded-xl border transition-all duration-300 ${
-                          platform.primary 
-                            ? "bg-white text-black border-white hover:bg-white/90 hover:shadow-lg hover:shadow-white/20" 
-                            : "bg-white/5 border-white/20 hover:bg-white/10 hover:border-white/30"
-                        }`}>
+                        <div
+                          className={`h-full p-6 rounded-xl border transition-all duration-300 ${
+                            platform.primary
+                              ? "bg-white text-black border-white hover:bg-white/90 hover:shadow-lg hover:shadow-white/20"
+                              : "bg-white/5 border-white/20 hover:bg-white/10 hover:border-white/30"
+                          }`}
+                        >
                           <div className="flex items-center justify-between mb-3">
-                            <h3 className={`text-xl font-bold ${platform.primary ? "text-black" : "text-white"}`}>
+                            <h3
+                              className={`text-xl font-bold ${
+                                platform.primary ? "text-black" : "text-white"
+                              }`}
+                            >
                               {platform.name}
                             </h3>
-                            <ExternalLink className={`h-5 w-5 ${platform.primary ? "text-black/70" : "text-white/70"}`} />
+                            <ExternalLink
+                              className={`h-5 w-5 ${
+                                platform.primary ? "text-black/70" : "text-white/70"
+                              }`}
+                            />
                           </div>
-                          <p className={`text-sm ${platform.primary ? "text-black/70" : "text-gray-400"}`}>
+                          <p
+                            className={`text-sm ${
+                              platform.primary ? "text-black/70" : "text-gray-400"
+                            }`}
+                          >
                             {platform.description}
                           </p>
                         </div>

@@ -3,8 +3,25 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Github, Twitter, Linkedin } from "lucide-react";
 import BlurText from "@/components/BlurText";
-import FloatingLines from "../FloatingLines";
-import { SpotifyNowPlaying } from "@/components/SpotifyNowPlaying";
+import DotFieldBase from "../DotField";
+import type React from "react";
+
+interface DotFieldProps {
+  dotRadius?: number;
+  dotSpacing?: number;
+  cursorRadius?: number;
+  cursorForce?: number;
+  bulgeOnly?: boolean;
+  bulgeStrength?: number;
+  glowRadius?: number;
+  sparkle?: boolean;
+  waveAmplitude?: number;
+  gradientFrom?: string;
+  gradientTo?: string;
+  glowColor?: string;
+}
+
+const DotField = DotFieldBase as React.FC<DotFieldProps>;
 
 const handleAnimationComplete = () => {
   console.log("Animation completed!");
@@ -15,20 +32,20 @@ export function Hero() {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 z-0 opacity-60 md:opacity-100">
         {/* <div className="h-full w-full bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.1)_0,_rgba(0,0,0,0)_70%)]"></div> */}
-        <div style={{ width: "100%", height: "100%", position: "relative" }}>
-          <FloatingLines
-            enabledWaves={["top", "middle", "bottom"]}
-            // Array - specify line count per wave; Number - same count for all waves
-            lineCount={[5, 5, 5]}
-            // Array - specify line distance per wave; Number - same distance for all waves
-            lineDistance={[5, 5, 5]}
-            bendRadius={5.0}
-            bendStrength={-0.5}
-            interactive={true}
-            parallax={true}
-            linesGradient={undefined}
-            topWavePosition={undefined}
-            middleWavePosition={undefined}
+        <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+          <DotField
+            dotRadius={1.5}
+            dotSpacing={14}
+            bulgeStrength={67}
+            glowRadius={160}
+            sparkle={false}
+            waveAmplitude={0}
+            cursorRadius={500}
+            cursorForce={0.1}
+            bulgeOnly
+            gradientFrom="#A855F7"
+            gradientTo="#B497CF"
+            glowColor="#120F17"
           />
         </div>
       </div>
@@ -48,7 +65,7 @@ export function Hero() {
           </span>
         </h1>
         <p className="text-lg sm:text-xl md:text-2xl text-gray-300 max-w-2xl mb-8 md:mb-10 font-zalando px-4">
-          Front-End Developer | Technical Writer 
+          Front-End Developer | Technical Writer
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center w-full max-w-md sm:max-w-none mb-10 md:mb-12">
           <Button
@@ -57,9 +74,9 @@ export function Hero() {
           >
             <Link href="/contact">Get in Touch</Link>
           </Button>
-          <Button 
-            asChild 
-            variant="secondary" 
+          <Button
+            asChild
+            variant="secondary"
             className="font-zalando bg-gray-900/30 border-2 border-gray-400 text-gray-400 hover:bg-gray-900/50 hover:border-gray-300 hover:text-gray-300 rounded-full px-8 py-6 text-base w-full sm:w-auto"
           >
             <Link href="/project">View My Work</Link>
@@ -92,12 +109,12 @@ export function Hero() {
           </Link>
         </div>
 
-        {/* Spotify Now Playing */}
+        {/* Spotify Now Playing
         <div className="mt-10 md:mt-12">
           <SpotifyNowPlaying />
-        </div>
+        </div> */}
       </div>
-     
+
     </section>
   );
 }

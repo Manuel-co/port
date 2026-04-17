@@ -1,16 +1,16 @@
 "use client";
 
-import Link from "next/link"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Github, ExternalLink, Search, FolderGit2 } from "lucide-react"
-import { Header } from "../../components/layout/Header"
-import { Footer } from "../../components/layout/Footer"
-import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { AnimatedPage, AnimatedSection, AnimatedGrid } from "@/components/ui/animated-page"
+import Link from "next/link";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Github, ExternalLink, Search, FolderGit2 } from "lucide-react";
+import { Header } from "../../components/layout/Header";
+import { Footer } from "../../components/layout/Footer";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { AnimatedPage, AnimatedSection, AnimatedGrid } from "@/components/ui/animated-page";
+import BorderGlow from "../../components/BorderGlow";
 
 export default function ProjectPage() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -18,93 +18,55 @@ export default function ProjectPage() {
   const projects = [
     {
       title: "Shax_x Photography Portfolio",
-      description: "A modern, professional photography portfolio website built with Next.js 15, featuring stunning animations, responsive design, and a focus on showcasing Nigerian photography excellence.",
+      description:
+        "A modern, professional photography portfolio website built with Next.js 15, featuring stunning animations, responsive design, and a focus on showcasing Nigerian photography excellence.",
       image: "/shax.png?height=200&width=400",
       technologies: ["Next.js 15", "Tailwind CSS", "Framer Motion", "TypeScript"],
       github: "https://github.com/Manuel-co/shax_x",
-      demo: "https://shax-x.vercel.app/"
+      demo: "https://shax-x.vercel.app/",
     },
     {
       title: "File Sharing App",
-      description: "A file sharing app that allows users to share files with each other",
+      description: "A file sharing app that allows users to share files with each other.",
       image: "/share.png?height=200&width=400",
-      technologies: [ "Next.js", "Tailwind CSS", "AWS" , "Permit.io", "FireBase"],
+      technologies: ["Next.js", "Tailwind CSS", "AWS", "Permit.io", "FireBase"],
       github: "https://github.com/Manuel-co/files-share-permit.io",
-      demo: "https://file-share-nine-pi.vercel.app/"
+      demo: "https://file-share-nine-pi.vercel.app/",
     },
-     {
+    {
       title: "AniNews",
-      description: "A Next.js anime discovery site powered by the Anime News Network encyclopedia API.",
+      description:
+        "A Next.js anime discovery site powered by the Anime News Network encyclopedia API.",
       image: "/aninews.png?height=200&width=400",
-      technologies: ["Next.js", "Tailwind CSS","TypeScript", "fast-xml-parser", "Zustand","API", "shadcn"],
+      technologies: ["Next.js", "Tailwind CSS", "TypeScript", "fast-xml-parser", "Zustand", "API", "shadcn"],
       github: "https://github.com/Manuel-co/aninews",
-      demo: "https://aninews-blond.vercel.app/"
+      demo: "https://aninews-blond.vercel.app/",
     },
-     {
+    {
       title: "Anime News",
-      description: "A landing page that helps developers discover and use the Anime News Network Encyclopedia API — free, no auth, no API keys required.",
+      description:
+        "A landing page that helps developers discover and use the Anime News Network Encyclopedia API — free, no auth, no API keys required.",
       image: "/news.png?height=200&width=400",
-      technologies: ["Next.js", "Tailwind CSS","TypeScript", "shadcn"],
+      technologies: ["Next.js", "Tailwind CSS", "TypeScript", "shadcn"],
       github: "https://github.com/Manuel-co/news-anime",
-      demo: "https://news-anime.vercel.app/"
+      demo: "https://news-anime.vercel.app/",
     },
     {
       title: "Subtitle Translator",
-      description: "A Simple Subtitle Translator",
+      description: "A Simple Subtitle Translator.",
       image: "/trans.png?height=200&width=400",
-      technologies: [ "React.js", "Libral Translate API"],
+      technologies: ["React.js", "Libral Translate API"],
       github: "https://github.com/Manuel-co/subtitle-translator",
-      demo: "https://subtitle-translator.vercel.app/"
+      demo: "https://subtitle-translator.vercel.app/",
     },
-     {
+    {
       title: "PH ESTATE",
       description: "A Real Estate Listing Site.",
       image: "/phlist.png?height=200&width=400",
-      technologies: ["Next.js", "Tailwind CSS","TypeScript", "shadcn"],
+      technologies: ["Next.js", "Tailwind CSS", "TypeScript", "shadcn"],
       github: "https://github.com/Manuel-co/phestate",
-      demo: "https://phestate.vercel.app/"
+      demo: "https://phestate.vercel.app/",
     },
-   
-    // {
-    //   title: "Technical Documentation Portal",
-    //   description: "A comprehensive documentation portal for a SaaS product, featuring interactive tutorials and API references.",
-    //   image: "/placeholder.svg?height=200&width=400",
-    //   technologies: ["Docusaurus", "Markdown", "Content Strategy"],
-    //   github: "#",
-    //   demo: "#"
-    // },
-    // {
-    //   title: "NFT Marketplace",
-    //   description: "A decentralized marketplace for creating, buying, and selling NFTs with wallet integration and transaction history.",
-    //   image: "/placeholder.svg?height=200&width=400",
-    //   technologies: ["Solidity", "Ethers.js", "IPFS"],
-    //   github: "#",
-    //   demo: "#"
-    // },
-    // {
-    //   title: "Decentralized Finance Dashboard",
-    //   description: "A comprehensive DeFi dashboard that allows users to track their investments, stake tokens, and participate in liquidity pools across multiple blockchain networks.",
-    //   image: "/placeholder.svg?height=300&width=600",
-    //   technologies: ["Ethereum", "Solidity", "React", "Web3.js", "MetaMask Integration"],
-    //   github: "#",
-    //   demo: "#"
-    // },
-    // {
-    //   title: "NFT Collection",
-    //   description: "A generative art NFT collection with on-chain metadata and rarity attributes.",
-    //   image: "/placeholder.svg?height=200&width=400",
-    //   technologies: ["ERC-721", "IPFS", "OpenSea"],
-    //   github: "#",
-    //   demo: "#"
-    // },
-    // {
-    //   title: "DAO Governance Portal",
-    //   description: "A governance portal for DAOs with proposal creation, voting, and execution.",
-    //   image: "/placeholder.svg?height=200&width=400",
-    //   technologies: ["Governance", "Voting", "Snapshot"],
-    //   github: "#",
-    //   demo: "#"
-    // }
   ];
 
   const filteredProjects = projects.filter((project) => {
@@ -112,7 +74,7 @@ export default function ProjectPage() {
     return (
       project.title.toLowerCase().includes(searchLower) ||
       project.description.toLowerCase().includes(searchLower) ||
-      project.technologies.some(tech => tech.toLowerCase().includes(searchLower))
+      project.technologies.some((tech) => tech.toLowerCase().includes(searchLower))
     );
   });
 
@@ -133,7 +95,7 @@ export default function ProjectPage() {
                 <FolderGit2 className="h-4 w-4 text-white/70" />
                 <span className="text-sm text-white/70">Portfolio</span>
               </motion.div>
-              
+
               <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-white/90 to-white/70 bg-clip-text text-transparent">
                 Projects
               </h1>
@@ -142,9 +104,8 @@ export default function ProjectPage() {
               </p>
             </div>
 
-            {/* Search and Filter Section */}
+            {/* Search Section */}
             <div className="mb-12 space-y-6">
-              {/* Search Bar */}
               <div className="relative max-w-2xl mx-auto">
                 <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                 <input
@@ -156,87 +117,104 @@ export default function ProjectPage() {
                 />
               </div>
 
-              {/* Results Count */}
               <motion.p
                 key={filteredProjects.length}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 className="text-center text-gray-400"
               >
-                {filteredProjects.length} project{filteredProjects.length !== 1 ? "s" : ""} found
+                {filteredProjects.length} project
+                {filteredProjects.length !== 1 ? "s" : ""} found
               </motion.p>
             </div>
           </AnimatedPage>
 
-          <AnimatedGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          {/* Projects Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 items-stretch">
             <AnimatePresence>
               {filteredProjects.map((project, index) => (
                 <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
+                  key={project.title}
+                  initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
-                  whileHover={{ scale: 1.02 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.25, delay: index * 0.04 }}
                   className="h-full"
                 >
-                  <Card 
-                    className="bg-white/5 border-white/10 text-white overflow-hidden group hover:border-white/20 transition-colors h-full flex flex-col"
+                  <BorderGlow
+                    edgeSensitivity={30}
+                    glowColor="40 80 80"
+                    backgroundColor="#120F17"
+                    borderRadius={28}
+                    glowRadius={40}
+                    glowIntensity={1}
+                    coneSpread={25}
+                    animated={true}
+                    colors={["#c084fc", "#f472b6", "#38bdf8"]}
+                    className="h-full"
                   >
-                    <div className="relative h-48">
-                      <Image 
-                        src={project.image} 
-                        alt={project.title} 
-                        fill 
-                        className="object-cover transition-transform duration-300 group-hover:scale-105"
-                      />
-                    </div>
-                    <CardContent className="p-6 flex-1 flex flex-col">
-                      <h2 className="text-xl font-bold mb-4 group-hover:text-white/90 transition-colors min-h-[3.5rem] flex items-center">
-                        {project.title}
-                      </h2>
-                      <p className="text-gray-400 mb-4 line-clamp-3 flex-grow">
-                        {project.description}
-                      </p>
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {project.technologies.map((tech, techIndex) => (
-                          <Badge 
-                            key={techIndex} 
-                            variant="outline" 
-                            className="border-white/10 text-gray-300 hover:bg-white/5 transition-colors"
-                          >
-                            {tech}
-                          </Badge>
-                        ))}
+                    <div className="h-full flex flex-col rounded-[28px] overflow-hidden">
+                      {/* Project Image */}
+                      <div className="relative h-48 w-full shrink-0 overflow-hidden">
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#120F17]/80 to-transparent" />
                       </div>
-                      <div className="flex space-x-4 mt-auto">
-                        <Button 
-                          asChild 
-                          size="sm" 
-                          className="border-white/10 hover:bg-white/5 transition-colors"
-                        >
-                          <Link href={project.github} className="flex items-center">
-                            <Github className="h-4 w-4 mr-2" />
+
+                      {/* Card Body */}
+                      <div className="flex flex-col flex-1 p-6">
+                        {/* Title */}
+                        <h2 className="text-base font-semibold text-white mb-2 leading-snug line-clamp-2 min-h-[2.75rem] flex items-start">
+                          {project.title}
+                        </h2>
+
+                        {/* Description */}
+                        <p className="text-gray-400 text-sm leading-relaxed line-clamp-3 mb-4 flex-1">
+                          {project.description}
+                        </p>
+
+                        {/* Tech Badges */}
+                        <div className="flex flex-wrap gap-1.5 mb-5">
+                          {project.technologies.map((tech, techIndex) => (
+                            <span
+                              key={techIndex}
+                              className="text-xs px-2.5 py-1 rounded-full bg-white/8 border border-white/10 text-gray-300"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+
+                        {/* Action Buttons — always at bottom */}
+                        <div className="mt-auto flex gap-3">
+                          <Link
+                            href={project.github}
+                            target="_blank"
+                            className="flex-1 inline-flex items-center justify-center gap-2 text-sm font-medium px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors"
+                          >
+                            <Github className="h-4 w-4 shrink-0" />
                             Code
                           </Link>
-                        </Button>
-                        <Button 
-                          asChild 
-                          size="sm" 
-                          className="hover:bg-white/20 transition-colors"
-                        >
-                          <Link href={project.demo} className="flex items-center">
-                            <ExternalLink className="h-4 w-4 mr-2" />
+                          <Link
+                            href={project.demo}
+                            target="_blank"
+                            className="flex-1 inline-flex items-center justify-center gap-2 text-sm font-medium px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors"
+                          >
+                            <ExternalLink className="h-4 w-4 shrink-0" />
                             Demo
                           </Link>
-                        </Button>
+                        </div>
                       </div>
-                    </CardContent>
-                  </Card>
+                    </div>
+                  </BorderGlow>
                 </motion.div>
               ))}
             </AnimatePresence>
-          </AnimatedGrid>
+          </div>
 
           <AnimatePresence>
             {filteredProjects.length === 0 && (

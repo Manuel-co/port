@@ -11,8 +11,8 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-black text-white">
       {/* <Header /> */}
-      <main className="h-screen w-screen">
-        <Hero  />
+      <main>
+        <Hero />
         {/* <About />
         <Skills />
         <Projects />
@@ -23,4 +23,3 @@ export default function Home() {
     </div>
   )
 }
-
