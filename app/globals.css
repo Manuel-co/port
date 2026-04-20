@@ -105,8 +105,17 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-zalando;
+    @apply bg-white text-black font-zalando;
   }
+}
+
+/* Marquee animation */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 30s linear infinite;
 }
 
 /* ─── Global ─────────────────────────────────────────────── */

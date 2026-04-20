@@ -10,16 +10,16 @@ import { Contact } from "../components/sections/Contact"
 export default function Home() {
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* <Header /> */}
+      <Header />
       <main>
         <Hero />
-        {/* <About />
+        <About />
         <Skills />
         <Projects />
         <Blog />
-        <Contact /> */}
+        <Contact />
       </main>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   )
 }

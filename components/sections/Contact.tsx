@@ -9,68 +9,20 @@ import { Formik, Form, Field, ErrorMessage } from "formik"
 import * as Yup from "yup"
 
 const validationSchema = Yup.object({
-  name: Yup.string()
-    .min(2, "Name must be at least 2 characters")
-    .max(50, "Name must be less than 50 characters")
-    .matches(/^[a-zA-Z\s]+$/, "Name should only contain letters and spaces")
-    .required("Name is required"),
-  email: Yup.string()
-    .email("Please enter a valid email address")
-    .required("Email is required"),
-  message: Yup.string()
-    .min(10, "Message must be at least 10 characters")
-    .max(1000, "Message must be less than 1000 characters")
-    .required("Message is required"),
+  name: Yup.string().min(2).max(50).matches(/^[a-zA-Z\s]+$/, "Letters only").required("Name is required"),
+  email: Yup.string().email("Valid email required").required("Email is required"),
+  message: Yup.string().min(10).max(1000).required("Message is required"),
 })
 
 const contactLinks = [
-  {
-    icon: Mail,
-    label: "Email",
-    value: "manuchimsoemmanuel2k@gmail.com",
-    href: "mailto:manuchimsoemmanuel2k@gmail.com",
-    external: false,
-  },
-  {
-    icon: Twitter,
-    label: "X / Twitter",
-    value: "@NwekeManuchimso",
-    href: "https://x.com/NwekeManuchimso",
-    external: true,
-  },
-  {
-    icon: Linkedin,
-    label: "LinkedIn",
-    value: "Nweke Emmanuel",
-    href: "https://www.linkedin.com/in/nweke-emmanuel-435a3923b/",
-    external: true,
-  },
-  {
-    icon: Github,
-    label: "GitHub",
-    value: "Manuel-co",
-    href: "https://github.com/Manuel-co",
-    external: true,
-  },
+  { icon: Mail, label: "Email", value: "manuchimsoemmanuel2k@gmail.com", href: "mailto:manuchimsoemmanuel2k@gmail.com", color: "bg-[#FF6B7A]" },
+  { icon: Twitter, label: "X / Twitter", value: "@NwekeManuchimso", href: "https://x.com/NwekeManuchimso", color: "bg-[#2F81F7]" },
+  { icon: Linkedin, label: "LinkedIn", value: "Nweke Emmanuel", href: "https://www.linkedin.com/in/nweke-emmanuel-435a3923b/", color: "bg-[#6366F1]" },
+  { icon: Github, label: "GitHub", value: "Manuel-co", href: "https://github.com/Manuel-co", color: "bg-black" },
 ]
-
-const inputStyle = (hasError: boolean) => ({
-  width: "100%",
-  padding: "11px 14px",
-  background: "rgba(255,255,255,0.04)",
-  border: `1px solid ${hasError ? "rgba(239,68,68,0.6)" : "rgba(255,255,255,0.1)"}`,
-  borderRadius: 10,
-  color: "#fff",
-  fontSize: 14,
-  outline: "none",
-  transition: "border-color 0.2s",
-  boxSizing: "border-box" as const,
-  fontFamily: "inherit",
-})
 
 export function Contact() {
   const [isLoading, setIsLoading] = useState(false)
-
   const initialValues = { name: "", email: "", message: "" }
 
   const handleSubmit = async (values: typeof initialValues, { resetForm }: any) => {
@@ -82,172 +34,83 @@ export function Contact() {
         { from_name: values.name, from_email: values.email, message: values.message },
         process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
       )
-      if (response.status === 200) {
-        toast.success("Message sent successfully!")
-        resetForm()
-      } else {
-        throw new Error("Failed")
-      }
-    } catch {
-      toast.error("Failed to send message. Please try again.")
-    } finally {
-      setIsLoading(false)
-    }
+      if (response.status === 200) { toast.success("Message sent!"); resetForm() }
+      else throw new Error()
+    } catch { toast.error("Failed to send. Please try again.") }
+    finally { setIsLoading(false) }
   }
 
   return (
-    <section
-      id="contact"
-      style={{ background: "rgb(5,5,5)", padding: "96px 0", fontFamily: "'DM Sans', sans-serif" }}
-    >
-      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 24px" }}>
+    <section id="contact" className="py-24 bg-white text-black">
+      <div className="container max-w-6xl mx-auto px-4">
 
         {/* Header */}
-        <div style={{ marginBottom: 64, maxWidth: 560 }}>
-          <span style={{
-            display: "inline-block", fontSize: 11, fontWeight: 600,
-            color: "rgba(255,255,255,0.35)", letterSpacing: "0.12em",
-            textTransform: "uppercase", marginBottom: 14,
-          }}>
-            Contact
-          </span>
-          <h2 style={{ fontSize: "clamp(2rem, 5vw, 3rem)", fontWeight: 700, color: "#fff", margin: "0 0 16px", letterSpacing: "-0.03em", lineHeight: 1.1 }}>
-            Let's work<br />
-            <span style={{ color: "rgba(255,255,255,0.35)" }}>together.</span>
+        <div className="mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold font-zalando text-black mb-4">
+            Let's work{" "}
+            <span className="bg-[#6366F1] text-white px-3 py-1 inline-block border-4 border-black rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+              together.
+            </span>
           </h2>
-          <p style={{ fontSize: 15, color: "rgba(255,255,255,0.45)", lineHeight: 1.7, margin: 0 }}>
+          <p className="text-gray-500 text-lg max-w-xl">
             Available for freelance work, collaborations, and interesting projects. Reach out and let's build something great.
           </p>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 40 }} className="lg:grid-cols-[1fr_1.4fr]">
+        <div className="grid lg:grid-cols-[1fr_1.4fr] gap-8">
 
-          {/* Left — contact links */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-            {contactLinks.map(({ icon: Icon, label, value, href, external }) => (
-              <Link
-                key={href}
-                href={href}
-                target={external ? "_blank" : undefined}
-                style={{
-                  display: "flex", alignItems: "center", gap: 14,
-                  padding: "16px 18px", borderRadius: 14,
-                  background: "rgba(255,255,255,0.03)",
-                  border: "1px solid rgba(255,255,255,0.07)",
-                  textDecoration: "none",
-                  transition: "background 0.2s, border-color 0.2s",
-                  group: "true",
-                }}
-                onMouseEnter={e => {
-                  (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.06)";
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.14)";
-                }}
-                onMouseLeave={e => {
-                  (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.03)";
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.07)";
-                }}
-              >
-                <span style={{
-                  width: 40, height: 40, borderRadius: 10, flexShrink: 0,
-                  background: "rgba(255,255,255,0.07)",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                }}>
-                  <Icon style={{ width: 17, height: 17, color: "rgba(255,255,255,0.7)" }} />
+          {/* Contact links */}
+          <div className="flex flex-col gap-4">
+            {contactLinks.map(({ icon: Icon, label, value, href, color }) => (
+              <Link key={href} href={href} target={href.startsWith("mailto") ? undefined : "_blank"}
+                className="flex items-center gap-4 p-4 bg-white border-4 border-black rounded-2xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:translate-x-0.5 hover:translate-y-0.5 transition-all no-underline">
+                <span className={`w-11 h-11 ${color} border-2 border-black rounded-xl flex items-center justify-center flex-shrink-0`}>
+                  <Icon className="w-5 h-5 text-white" />
                 </span>
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <p style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", margin: "0 0 2px", textTransform: "uppercase", letterSpacing: "0.08em", fontWeight: 600 }}>
-                    {label}
-                  </p>
-                  <p style={{ fontSize: 13.5, color: "rgba(255,255,255,0.75)", margin: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                    {value}
-                  </p>
+                <div className="flex-1 min-w-0">
+                  <p className="text-xs font-bold text-black/40 uppercase tracking-widest mb-0.5">{label}</p>
+                  <p className="text-sm font-bold text-black truncate">{value}</p>
                 </div>
-                <ArrowUpRight style={{ width: 14, height: 14, color: "rgba(255,255,255,0.2)", flexShrink: 0 }} />
+                <ArrowUpRight className="w-4 h-4 text-black/30 flex-shrink-0" />
               </Link>
             ))}
           </div>
 
-          {/* Right — form */}
-          <div style={{
-            background: "rgba(255,255,255,0.03)",
-            border: "1px solid rgba(255,255,255,0.08)",
-            borderRadius: 18,
-            padding: "32px",
-          }}>
-            <h3 style={{ fontSize: 17, fontWeight: 600, color: "#fff", margin: "0 0 24px", letterSpacing: "-0.02em" }}>
-              Send a message
-            </h3>
+          {/* Form */}
+          <div className="bg-[#F5F5F5] border-4 border-black rounded-3xl p-8 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+            <h3 className="text-xl font-bold text-black mb-6 font-zalando">Send a message</h3>
             <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
               {({ errors, touched, isValid, dirty }) => (
-                <Form style={{ display: "flex", flexDirection: "column", gap: 18 }}>
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }} className="sm:grid-cols-2 grid-cols-1">
+                <Form className="flex flex-col gap-5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label htmlFor="name" style={{ display: "block", fontSize: 12, fontWeight: 500, color: "rgba(255,255,255,0.45)", marginBottom: 7, letterSpacing: "0.02em" }}>
-                        Name
-                      </label>
-                      <Field
-                        id="name" name="name" type="text"
-                        style={inputStyle(!!(errors.name && touched.name))}
-                        onFocus={(e: React.FocusEvent<HTMLInputElement>) => {
-                          e.target.style.borderColor = "rgba(255,255,255,0.3)";
-                        }}
-                        onBlur={(e: React.FocusEvent<HTMLInputElement>) => {
-                          e.target.style.borderColor = errors.name && touched.name ? "rgba(239,68,68,0.6)" : "rgba(255,255,255,0.1)";
-                        }}
-                      />
-                      <ErrorMessage name="name" component="p" className="text-red-400 text-xs mt-1.5" />
+                      <label htmlFor="name" className="block text-xs font-bold text-black/50 uppercase tracking-widest mb-2">Name</label>
+                      <Field id="name" name="name" type="text"
+                        className={`w-full px-4 py-3 bg-white border-4 rounded-xl text-black text-sm font-medium outline-none transition-all ${errors.name && touched.name ? "border-red-500" : "border-black focus:border-[#6366F1]"}`} />
+                      <ErrorMessage name="name" component="p" className="text-red-500 text-xs mt-1 font-semibold" />
                     </div>
                     <div>
-                      <label htmlFor="email" style={{ display: "block", fontSize: 12, fontWeight: 500, color: "rgba(255,255,255,0.45)", marginBottom: 7, letterSpacing: "0.02em" }}>
-                        Email
-                      </label>
-                      <Field
-                        id="email" name="email" type="email"
-                        style={inputStyle(!!(errors.email && touched.email))}
-                        onFocus={(e: React.FocusEvent<HTMLInputElement>) => {
-                          e.target.style.borderColor = "rgba(255,255,255,0.3)";
-                        }}
-                        onBlur={(e: React.FocusEvent<HTMLInputElement>) => {
-                          e.target.style.borderColor = errors.email && touched.email ? "rgba(239,68,68,0.6)" : "rgba(255,255,255,0.1)";
-                        }}
-                      />
-                      <ErrorMessage name="email" component="p" className="text-red-400 text-xs mt-1.5" />
+                      <label htmlFor="email" className="block text-xs font-bold text-black/50 uppercase tracking-widest mb-2">Email</label>
+                      <Field id="email" name="email" type="email"
+                        className={`w-full px-4 py-3 bg-white border-4 rounded-xl text-black text-sm font-medium outline-none transition-all ${errors.email && touched.email ? "border-red-500" : "border-black focus:border-[#6366F1]"}`} />
+                      <ErrorMessage name="email" component="p" className="text-red-500 text-xs mt-1 font-semibold" />
                     </div>
                   </div>
 
                   <div>
-                    <label htmlFor="message" style={{ display: "block", fontSize: 12, fontWeight: 500, color: "rgba(255,255,255,0.45)", marginBottom: 7, letterSpacing: "0.02em" }}>
-                      Message
-                    </label>
-                    <Field
-                      as="textarea" id="message" name="message" rows={5}
-                      style={{ ...inputStyle(!!(errors.message && touched.message)), resize: "vertical" as const }}
-                      onFocus={(e: React.FocusEvent<HTMLTextAreaElement>) => {
-                        e.target.style.borderColor = "rgba(255,255,255,0.3)";
-                      }}
-                      onBlur={(e: React.FocusEvent<HTMLTextAreaElement>) => {
-                        e.target.style.borderColor = errors.message && touched.message ? "rgba(239,68,68,0.6)" : "rgba(255,255,255,0.1)";
-                      }}
-                    />
-                    <ErrorMessage name="message" component="p" className="text-red-400 text-xs mt-1.5" />
+                    <label htmlFor="message" className="block text-xs font-bold text-black/50 uppercase tracking-widest mb-2">Message</label>
+                    <Field as="textarea" id="message" name="message" rows={5}
+                      className={`w-full px-4 py-3 bg-white border-4 rounded-xl text-black text-sm font-medium outline-none transition-all resize-vertical ${errors.message && touched.message ? "border-red-500" : "border-black focus:border-[#6366F1]"}`} />
+                    <ErrorMessage name="message" component="p" className="text-red-500 text-xs mt-1 font-semibold" />
                   </div>
 
-                  <button
-                    type="submit"
-                    disabled={isLoading || !isValid || !dirty}
-                    style={{
-                      display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
-                      padding: "12px 24px", borderRadius: 100,
-                      background: isLoading || !isValid || !dirty ? "rgba(255,255,255,0.1)" : "#fff",
-                      color: isLoading || !isValid || !dirty ? "rgba(255,255,255,0.3)" : "#000",
-                      fontSize: 14, fontWeight: 600, border: "none",
-                      cursor: isLoading || !isValid || !dirty ? "not-allowed" : "pointer",
-                      transition: "background 0.2s, color 0.2s",
-                      fontFamily: "inherit",
-                      letterSpacing: "-0.01em",
-                    }}
-                  >
-                    <Send style={{ width: 14, height: 14 }} />
+                  <button type="submit" disabled={isLoading || !isValid || !dirty}
+                    className={`flex items-center justify-center gap-2 py-4 font-bold text-sm border-4 border-black rounded-xl transition-all font-zalando ${
+                      isLoading || !isValid || !dirty
+                        ? "bg-black/20 text-black/40 cursor-not-allowed shadow-none"
+                        : "bg-black text-white shadow-[4px_4px_0px_0px_rgba(99,102,241,1)] hover:shadow-[1px_1px_0px_0px_rgba(99,102,241,1)] hover:translate-x-0.5 hover:translate-y-0.5"
+                    }`}>
+                    <Send className="w-4 h-4" />
                     {isLoading ? "Sending…" : "Send Message"}
                   </button>
                 </Form>

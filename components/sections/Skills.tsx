@@ -1,83 +1,67 @@
-import { Badge } from "@/components/ui/badge"
 import { Code, FileText, Wallet } from "lucide-react"
+
+const skills = [
+  {
+    icon: Code,
+    title: "Front-End Development",
+    color: "bg-[#6366F1]",
+    shadow: "shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]",
+    tags: ["HTML5", "CSS3", "JavaScript", "TypeScript", "React", "Next.js", "Tailwind CSS", "Responsive Design", "UI/UX", "Accessibility"],
+    description: "Building modern, responsive web applications with a focus on performance, accessibility, and user experience.",
+  },
+  {
+    icon: FileText,
+    title: "Technical Writing",
+    color: "bg-[#FF6B7A]",
+    shadow: "shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]",
+    tags: ["Documentation", "Tutorials", "API Docs", "Technical Blogs", "User Guides", "Content Strategy", "Markdown", "Technical Editing"],
+    description: "Transforming complex technical concepts into clear, concise, and engaging content.",
+  },
+  {
+    icon: Wallet,
+    title: "Web3 Development",
+    color: "bg-[#FCD34D]",
+    shadow: "shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]",
+    tags: ["Ethereum", "Solidity", "Smart Contracts", "DApps", "Web3.js", "Ethers.js", "Hardhat", "IPFS", "NFTs"],
+    description: "Building decentralized applications and smart contracts that push the boundaries of the web.",
+  },
+]
 
 export function Skills() {
   return (
-    <section id="skills" className="py-20 bg-black text-white">
-      <div className="container">
-        <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center">My Skills</h2>
+    <section id="skills" className="py-24 bg-[#F5F5F5] text-black">
+      <div className="container max-w-6xl mx-auto px-4">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold font-zalando text-black">
+            My broad{" "}
+            <span className="bg-[#FF6B7A] text-white px-3 py-1 inline-block border-4 border-black rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+              set of skills
+            </span>
+          </h2>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Front-end Development */}
-          <div className="bg-white/5 p-8 rounded-lg backdrop-blur-sm border border-white/10">
-            <div className="flex items-center mb-6">
-              <Code className="h-8 w-8 mr-4" />
-              <h3 className="text-2xl font-bold">Front-end Development</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {skills.map(({ icon: Icon, title, color, shadow, tags, description }) => (
+            <div key={title}
+              className={`${color} border-4 border-black rounded-3xl p-8 flex flex-col gap-6 hover:-translate-y-1 transition-transform ${shadow}`}>
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 bg-black/20 border-2 border-black/30 rounded-xl flex items-center justify-center">
+                  <Icon className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-white font-zalando">{title}</h3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {tags.map((tag) => (
+                  <span key={tag} className="px-3 py-1 bg-black/20 border border-black/20 rounded-full text-xs font-bold text-white">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <p className="text-white/85 text-sm leading-relaxed mt-auto font-medium">{description}</p>
             </div>
-            <div className="flex flex-wrap gap-2 mb-6">
-              <Badge className="bg-white/10 hover:bg-white/20 text-white">HTML5</Badge>
-              <Badge className="bg-white/10 hover:bg-white/20 text-white">CSS3</Badge>
-              <Badge className="bg-white/10 hover:bg-white/20 text-white">JavaScript</Badge>
-              <Badge className="bg-white/10 hover:bg-white/20 text-white">TypeScript</Badge>
-              <Badge className="bg-white/10 hover:bg-white/20 text-white">React</Badge>
-              <Badge className="bg-white/10 hover:bg-white/20 text-white">Next.js</Badge>
-              <Badge className="bg-white/10 hover:bg-white/20 text-white">Tailwind CSS</Badge>
-              <Badge className="bg-white/10 hover:bg-white/20 text-white">Responsive Design</Badge>
-              <Badge className="bg-white/10 hover:bg-white/20 text-white">UI/UX</Badge>
-              <Badge className="bg-white/10 hover:bg-white/20 text-white">Accessibility</Badge>
-            </div>
-            <p className="text-gray-400">
-              I specialize in building modern, responsive web applications with a focus on performance,
-              accessibility, and user experience.
-            </p>
-          </div>
-
-          {/* Technical Writing */}
-          <div className="bg-white/5 p-8 rounded-lg backdrop-blur-sm border border-white/10">
-            <div className="flex items-center mb-6">
-              <FileText className="h-8 w-8 mr-4" />
-              <h3 className="text-2xl font-bold">Technical Writing</h3>
-            </div>
-            <div className="flex flex-wrap gap-2 mb-6">
-              <Badge className="bg-white/10 hover:bg-white/20 text-white">Documentation</Badge>
-              <Badge className="bg-white/10 hover:bg-white/20 text-white">Tutorials</Badge>
-              <Badge className="bg-white/10 hover:bg-white/20 text-white">API Docs</Badge>
-              <Badge className="bg-white/10 hover:bg-white/20 text-white">Technical Blogs</Badge>
-              <Badge className="bg-white/10 hover:bg-white/20 text-white">User Guides</Badge>
-              <Badge className="bg-white/10 hover:bg-white/20 text-white">Content Strategy</Badge>
-              <Badge className="bg-white/10 hover:bg-white/20 text-white">Markdown</Badge>
-              <Badge className="bg-white/10 hover:bg-white/20 text-white">Technical Editing</Badge>
-            </div>
-            <p className="text-gray-400">
-              I transform complex technical concepts into clear, concise, and engaging content that helps users
-              understand and implement technologies effectively.
-            </p>
-          </div>
-
-          {/* Web3 Development */}
-          <div className="bg-white/5 p-8 rounded-lg backdrop-blur-sm border border-white/10">
-            <div className="flex items-center mb-6">
-              <Wallet className="h-8 w-8 mr-4" />
-              <h3 className="text-2xl font-bold">Web3 Development</h3>
-            </div>
-            <div className="flex flex-wrap gap-2 mb-6">
-              <Badge className="bg-white/10 hover:bg-white/20 text-white">Ethereum</Badge>
-              <Badge className="bg-white/10 hover:bg-white/20 text-white">Solidity</Badge>
-              <Badge className="bg-white/10 hover:bg-white/20 text-white">Smart Contracts</Badge>
-              <Badge className="bg-white/10 hover:bg-white/20 text-white">DApps</Badge>
-              <Badge className="bg-white/10 hover:bg-white/20 text-white">Web3.js</Badge>
-              <Badge className="bg-white/10 hover:bg-white/20 text-white">Ethers.js</Badge>
-              <Badge className="bg-white/10 hover:bg-white/20 text-white">Hardhat</Badge>
-              <Badge className="bg-white/10 hover:bg-white/20 text-white">IPFS</Badge>
-              <Badge className="bg-white/10 hover:bg-white/20 text-white">NFTs</Badge>
-            </div>
-            <p className="text-gray-400">
-              I build decentralized applications and smart contracts, bridging the gap between traditional web
-              development and blockchain technologies.
-            </p>
-          </div>
+          ))}
         </div>
       </div>
     </section>
   )
-} 
+}
