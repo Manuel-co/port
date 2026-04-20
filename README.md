@@ -127,3 +127,4 @@ Contributions, issues, and feature requests are welcome! Feel free to check the 
 - GitHub: [@Manuel-co](https://github.com/Manuel-co)
 - LinkedIn: [Nweke Emmanuel](https://linkedin.com/in/nweke-emmanuel-435a3923b/)
 - Twitter: [@NwekeManuchimso](https://twitter.com/NwekeManuchimso) 
+...
