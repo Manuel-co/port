@@ -22,7 +22,7 @@ export function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 pt-4 px-4">
-      <div className="max-w-2xl mx-auto bg-white border-4 border-black rounded-2xl px-5 py-3 flex items-center justify-between shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+      <div className="max-w-5xl mx-auto bg-white border-4 border-black rounded-2xl px-6 py-3 flex items-center justify-between shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
 
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5 no-underline">

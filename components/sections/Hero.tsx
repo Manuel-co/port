@@ -1,28 +1,10 @@
 "use client";
 import Link from "next/link";
 import { Mail, FolderOpen, Github, Twitter, Linkedin } from "lucide-react";
-import DotFieldBase from "../DotField";
-import type React from "react";
-
-interface DotFieldProps {
-  dotRadius?: number; dotSpacing?: number; cursorRadius?: number; cursorForce?: number;
-  bulgeOnly?: boolean; bulgeStrength?: number; glowRadius?: number; sparkle?: boolean;
-  waveAmplitude?: number; gradientFrom?: string; gradientTo?: string; glowColor?: string;
-}
-const DotField = DotFieldBase as React.FC<DotFieldProps>;
 
 export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
-      {/* Subtle dot bg */}
-      <div className="absolute inset-0 z-0 opacity-20">
-        <div style={{ width: "100%", height: "100%", position: "relative" }}>
-          <DotField dotRadius={1.2} dotSpacing={18} bulgeStrength={50} glowRadius={120}
-            sparkle={false} waveAmplitude={0} cursorRadius={400} cursorForce={0.08}
-            bulgeOnly gradientFrom="#6366F1" gradientTo="#A855F7" glowColor="#f5f5f5" />
-        </div>
-      </div>
-
       <div className="container relative z-10 px-4 pt-36 pb-20">
         <div className="max-w-4xl mx-auto">
 
@@ -72,12 +54,12 @@ export function Hero() {
           {/* Socials */}
           <div className="flex justify-center gap-3">
             {[
-              { href: "https://github.com/Manuel-co", icon: Github, label: "GitHub", bg: "bg-black", text: "text-white" },
-              { href: "https://x.com/NwekeManuchimso", icon: Twitter, label: "X", bg: "bg-[#2F81F7]", text: "text-white" },
-              { href: "https://www.linkedin.com/in/nweke-emmanuel-435a3923b/", icon: Linkedin, label: "LinkedIn", bg: "bg-[#6366F1]", text: "text-white" },
-            ].map(({ href, icon: Icon, label, bg, text }) => (
+              { href: "https://github.com/Manuel-co", icon: Github, label: "GitHub", bg: "bg-black" },
+              { href: "https://x.com/NwekeManuchimso", icon: Twitter, label: "X", bg: "bg-[#2F81F7]" },
+              { href: "https://www.linkedin.com/in/nweke-emmanuel-435a3923b/", icon: Linkedin, label: "LinkedIn", bg: "bg-[#6366F1]" },
+            ].map(({ href, icon: Icon, label, bg }) => (
               <Link key={href} href={href} target="_blank" aria-label={label}
-                className={`w-11 h-11 flex items-center justify-center ${bg} ${text} border-4 border-black rounded-xl shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:translate-x-0.5 hover:translate-y-0.5 transition-all`}>
+                className={`w-11 h-11 flex items-center justify-center ${bg} text-white border-4 border-black rounded-xl shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:translate-x-0.5 hover:translate-y-0.5 transition-all`}>
                 <Icon className="w-5 h-5" />
               </Link>
             ))}
