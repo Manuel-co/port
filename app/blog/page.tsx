@@ -9,7 +9,6 @@ import { Footer } from "../../components/layout/Footer";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { AnimatedPage, AnimatedSection, AnimatedGrid } from "@/components/ui/animated-page";
-import BorderGlow from '../../components/BorderGlow';
 
 export default function BlogPage() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -123,15 +122,7 @@ export default function BlogPage() {
           <AnimatedPage className="max-w-6xl mx-auto">
             {/* Hero Section */}
             <div className="text-center mb-16">
-              <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white/5 border border-white/10 rounded-full"
-              >
-                <BookOpen className="h-4 w-4 text-white/70" />
-                <span className="text-sm text-white/70">Technical Writing</span>
-              </motion.div>
+              
 
               <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-white/90 to-white/70 bg-clip-text text-transparent">
                 Blog Posts
@@ -193,64 +184,52 @@ export default function BlogPage() {
                 <motion.div
                   key={`${article.title}-${index}`}
                   layout
-                  initial={{ opacity: 0, scale: 0.9 }}
+                  initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.2 }}
                   className="h-full"
                 >
-                  <BorderGlow
-                    edgeSensitivity={30}
-                    glowColor="40 80 80"
-                    backgroundColor="#120F17"
-                    borderRadius={28}
-                    glowRadius={40}
-                    glowIntensity={1}
-                    coneSpread={25}
-                    animated={true}
-                    colors={["#c084fc", "#f472b6", "#38bdf8"]}
-                    className="h-full"
-                  >
-                    <div className="h-full flex flex-col p-6 rounded-[28px]">
-                      {/* Badge */}
-                      <div className="mb-4">
-                        <Badge
-                          className={`text-xs font-medium px-3 py-1 rounded-full border-0 ${
-                            article.category === "Tutorial"
-                              ? "bg-purple-500/20 text-purple-300"
-                              : "bg-sky-500/20 text-sky-300"
-                          }`}
-                        >
-                          {article.category}
-                        </Badge>
-                      </div>
-
-                      {/* Title */}
-                      <h2 className="text-base font-semibold text-white mb-3 leading-snug line-clamp-2">
-                        {article.title}
-                      </h2>
-
-                      {/* Description — grows to fill available space */}
-                      <p className="text-gray-400 text-sm leading-relaxed line-clamp-4 flex-1 mb-6">
-                        {article.description}
-                      </p>
-
-                      {/* Button — always at bottom */}
-                      <div className="mt-auto">
-                        <Link
-                          href={article.link}
-                          target="_blank"
-                          className={`inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors w-full justify-center ${
-                            article.link === "#"
-                              ? "bg-white/5 text-white/40 cursor-not-allowed pointer-events-none"
-                              : "bg-white/10 hover:bg-white/20 text-white"
-                          }`}
-                        >
-                          <ExternalLink className="h-4 w-4 shrink-0" />
-                          Read Article
-                        </Link>
-                      </div>
+                  <div className="h-full flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-white/20 hover:bg-white/[0.06] transition-all duration-300">
+                    {/* Badge */}
+                    <div className="mb-4">
+                      <Badge
+                        className={`text-xs font-medium px-3 py-1 rounded-full border-0 ${
+                          article.category === "Tutorial"
+                            ? "bg-purple-500/20 text-purple-300"
+                            : "bg-sky-500/20 text-sky-300"
+                        }`}
+                      >
+                        {article.category}
+                      </Badge>
                     </div>
-                  </BorderGlow>
+
+                    {/* Title */}
+                    <h2 className="text-base font-semibold text-white mb-3 leading-snug line-clamp-2">
+                      {article.title}
+                    </h2>
+
+                    {/* Description */}
+                    <p className="text-gray-400 text-sm leading-relaxed line-clamp-4 flex-1 mb-6">
+                      {article.description}
+                    </p>
+
+                    {/* Button */}
+                    <div className="mt-auto">
+                      <Link
+                        href={article.link}
+                        target="_blank"
+                        className={`inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors w-full justify-center ${
+                          article.link === "#"
+                            ? "bg-white/5 text-white/30 cursor-not-allowed pointer-events-none"
+                            : "bg-white/10 hover:bg-white/20 text-white"
+                        }`}
+                      >
+                        <ExternalLink className="h-4 w-4 shrink-0" />
+                        Read Article
+                      </Link>
+                    </div>
+                  </div>
                 </motion.div>
               ))}
             </AnimatePresence>

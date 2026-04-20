@@ -76,15 +76,6 @@ export default function ContactPage() {
           <AnimatedPage className="max-w-6xl mx-auto">
             {/* Hero Section */}
             <div className="text-center mb-16">
-              <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white/5 border border-white/10 rounded-full"
-              >
-                <Mail className="h-4 w-4 text-white/70" />
-                <span className="text-sm text-white/70">Let's Connect</span>
-              </motion.div>
               
               <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-white/90 to-white/70 bg-clip-text text-transparent">
                 Get in Touch

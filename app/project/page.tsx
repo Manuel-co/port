@@ -3,14 +3,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Github, ExternalLink, Search, FolderGit2 } from "lucide-react";
+import { Github, ExternalLink, Search } from "lucide-react";
 import { Header } from "../../components/layout/Header";
 import { Footer } from "../../components/layout/Footer";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { AnimatedPage, AnimatedSection, AnimatedGrid } from "@/components/ui/animated-page";
-import BorderGlow from "../../components/BorderGlow";
+import { AnimatedPage, AnimatedSection } from "@/components/ui/animated-page";
 
 export default function ProjectPage() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -67,6 +65,14 @@ export default function ProjectPage() {
       github: "https://github.com/Manuel-co/phestate",
       demo: "https://phestate.vercel.app/",
     },
+    {
+      title: "Ziron Projects",
+      description: "A professional website for Ziron Projects Limited.",
+      image: "/ziron.png?height=200&width=400",
+      technologies: ["Next.js", "Tailwind CSS", "TypeScript",],
+      github: "#",
+      demo: "https://zironprojects.com/",
+    },
   ];
 
   const filteredProjects = projects.filter((project) => {
@@ -86,16 +92,6 @@ export default function ProjectPage() {
           <AnimatedPage className="max-w-6xl mx-auto">
             {/* Hero Section */}
             <div className="text-center mb-16">
-              <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white/5 border border-white/10 rounded-full"
-              >
-                <FolderGit2 className="h-4 w-4 text-white/70" />
-                <span className="text-sm text-white/70">Portfolio</span>
-              </motion.div>
-
               <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-white/90 to-white/70 bg-clip-text text-transparent">
                 Projects
               </h1>
@@ -141,76 +137,63 @@ export default function ProjectPage() {
                   transition={{ duration: 0.25, delay: index * 0.04 }}
                   className="h-full"
                 >
-                  <BorderGlow
-                    edgeSensitivity={30}
-                    glowColor="40 80 80"
-                    backgroundColor="#120F17"
-                    borderRadius={28}
-                    glowRadius={40}
-                    glowIntensity={1}
-                    coneSpread={25}
-                    animated={true}
-                    colors={["#c084fc", "#f472b6", "#38bdf8"]}
-                    className="h-full"
-                  >
-                    <div className="h-full flex flex-col rounded-[28px] overflow-hidden">
-                      {/* Project Image */}
-                      <div className="relative h-48 w-full shrink-0 overflow-hidden">
-                        <Image
-                          src={project.image}
-                          alt={project.title}
-                          fill
-                          className="object-cover transition-transform duration-300 group-hover:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#120F17]/80 to-transparent" />
+                  <div className="h-full flex flex-col rounded-2xl overflow-hidden bg-white/[0.03] border border-white/10 hover:border-white/20 hover:bg-white/[0.06] transition-all duration-300">
+                    {/* Project Image */}
+                    <div className="relative h-48 w-full shrink-0 overflow-hidden">
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    </div>
+
+                    {/* Card Body */}
+                    <div className="flex flex-col flex-1 p-6">
+                      {/* Title */}
+                      <h2 className="text-base font-semibold text-white mb-2 leading-snug line-clamp-2 min-h-[2.75rem] flex items-start">
+                        {project.title}
+                      </h2>
+
+                      {/* Description */}
+                      <p className="text-gray-400 text-sm leading-relaxed line-clamp-3 mb-4 flex-1">
+                        {project.description}
+                      </p>
+
+                      {/* Tech Badges */}
+                      <div className="flex flex-wrap gap-1.5 mb-5">
+                        {project.technologies.map((tech, techIndex) => (
+                          <span
+                            key={techIndex}
+                            className="text-xs px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-gray-300"
+                          >
+                            {tech}
+                          </span>
+                        ))}
                       </div>
 
-                      {/* Card Body */}
-                      <div className="flex flex-col flex-1 p-6">
-                        {/* Title */}
-                        <h2 className="text-base font-semibold text-white mb-2 leading-snug line-clamp-2 min-h-[2.75rem] flex items-start">
-                          {project.title}
-                        </h2>
-
-                        {/* Description */}
-                        <p className="text-gray-400 text-sm leading-relaxed line-clamp-3 mb-4 flex-1">
-                          {project.description}
-                        </p>
-
-                        {/* Tech Badges */}
-                        <div className="flex flex-wrap gap-1.5 mb-5">
-                          {project.technologies.map((tech, techIndex) => (
-                            <span
-                              key={techIndex}
-                              className="text-xs px-2.5 py-1 rounded-full bg-white/8 border border-white/10 text-gray-300"
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-
-                        {/* Action Buttons — always at bottom */}
-                        <div className="mt-auto flex gap-3">
-                          <Link
-                            href={project.github}
-                            target="_blank"
-                            className="flex-1 inline-flex items-center justify-center gap-2 text-sm font-medium px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors"
-                          >
-                            <Github className="h-4 w-4 shrink-0" />
-                            Code
-                          </Link>
-                          <Link
-                            href={project.demo}
-                            target="_blank"
-                            className="flex-1 inline-flex items-center justify-center gap-2 text-sm font-medium px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors"
-                          >
-                            <ExternalLink className="h-4 w-4 shrink-0" />
-                            Demo
-                          </Link>
-                        </div>
+                      {/* Action Buttons */}
+                      <div className="mt-auto flex gap-3">
+                        <Link
+                          href={project.github}
+                          target="_blank"
+                          className="flex-1 inline-flex items-center justify-center gap-2 text-sm font-medium px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors"
+                        >
+                          <Github className="h-4 w-4 shrink-0" />
+                          Code
+                        </Link>
+                        <Link
+                          href={project.demo}
+                          target="_blank"
+                          className="flex-1 inline-flex items-center justify-center gap-2 text-sm font-medium px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors"
+                        >
+                          <ExternalLink className="h-4 w-4 shrink-0" />
+                          Demo
+                        </Link>
                       </div>
                     </div>
-                  </BorderGlow>
+                  </div>
                 </motion.div>
               ))}
             </AnimatePresence>
