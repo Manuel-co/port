@@ -42,7 +42,7 @@ export default function BlogPage() {
       title: "Creating Stunning Particle Animations with React and TsParticles",
       description: "React TsParticles is a popular open-source library that enables you to integrate particle animations into your React applications easily.",
       category: "Tutorial",
-      link: "#",
+      link: "https://blog.openreplay.com/particle-animations-with-react-tsparticles/",
     },
     {
       title: "Routing in React with React Location",

@@ -1,0 +1,51 @@
+# Nweke Manuchimso Emmanuel — Portfolio
+
+> Front-End Developer & Technical Writer specializing in React, Next.js, and modern web development.
+
+## About
+
+Nweke Manuchimso Emmanuel (also known as Nweke Manuchimso, Nweke Emmanuel Manuchimso, Nweke Emmanuel Nweke Manuchimso) is a Front-End Developer and Technical Writer based in Nigeria. He builds modern, responsive web applications and writes technical articles that make complex concepts accessible.
+
+- Website: https://manuchim.site
+- GitHub: https://github.com/Manuel-co
+- Twitter/X: https://twitter.com/NwekeManuchimso
+- LinkedIn: https://www.linkedin.com/in/nweke-emmanuel-435a3923b/
+- Medium: https://medium.com/@manuchimsoemmanuel2k
+- Email: manuchimsoemmanuel2k@gmail.com
+
+## Skills
+
+- **Front-End Development**: React, Next.js, TypeScript, JavaScript, Tailwind CSS, HTML5, CSS3, Responsive Design, UI/UX, Accessibility
+- **Technical Writing**: Documentation, Tutorials, API Docs, Technical Blogs, User Guides, Content Strategy, Markdown
+- **Web3 Development**: Ethereum, Solidity, Smart Contracts, DApps, Web3.js, Ethers.js, Hardhat, IPFS
+
+## Projects
+
+- [Shax_x Photography Portfolio](https://shax-x.vercel.app/) — Modern photography portfolio built with Next.js 15, Tailwind CSS, and Framer Motion
+- [File Sharing App](https://file-share-nine-pi.vercel.app/) — Secure file sharing with role-based access control using Next.js, AWS, Firebase, and Permit.io
+- [AniNews](https://aninews-blond.vercel.app/) — Anime discovery site powered by the Anime News Network API, built with Next.js and Zustand
+- [Anime News Landing](https://news-anime.vercel.app/) — API documentation landing page for the Anime News Network Encyclopedia API
+- [Subtitle Translator](https://subtitle-translator.vercel.app/) — SRT subtitle translation app using the LibreTranslate API
+- [PH Estate](https://phestate.vercel.app/) — Real estate listing site for Port Harcourt, Nigeria
+- [Ziron Projects](https://zironprojects.com/) — Professional website for an engineering group in the Niger Delta
+
+## Articles
+
+- [Building a Next-Generation File Sharing App with Next.js and Permit.io](https://medium.com/@manuchimsoemmanuel2k/building-a-next-generation-file-sharing-app-with-next-js-and-permit-io-00b8fb7e66bf)
+- [Translate Subtitles using the LibreTranslate API](https://blog.openreplay.com/translate-subtitles-using-the-libre-translate-api/)
+- [Routing in React with React Location](https://blog.openreplay.com/routing-in-react-with-react-location/)
+- [HTMX vs. Vue and React — Pros and Cons](https://blog.openreplay.com/htmx-vs-vue-and-react--pros-and-cons/)
+- [Optimizing React's Performance](https://blog.openreplay.com/optimizing-reacts-performance/)
+- [Five Alternatives to GitHub Copilot](https://blog.openreplay.com/five-alternatives-to-github-copilot/)
+- [Five Headless CMS to try in 2023](https://blog.openreplay.com/five-headless-cms-to-try-in-2023/)
+- [Implementing CSS for Older Browsers](https://blog.openreplay.com/implementing-css-for-older-browsers/)
+- [Getting Started with Alpine.js](https://blog.openreplay.com/getting-started-with-alpine-js/)
+- [Five JavaScript Animation Libraries to Try Out](https://blog.openreplay.com/five-javascript-animation-libraries-to-try-out/)
+- [All About CSS Animations](https://blog.openreplay.com/all-about-css-animations/)
+
+## Pages
+
+- [Home](https://manuchim.site)
+- [Projects](https://manuchim.site/project)
+- [Blog](https://manuchim.site/blog)
+- [Contact](https://manuchim.site/contact)

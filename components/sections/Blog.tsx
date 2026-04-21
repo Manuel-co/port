@@ -1,14 +1,16 @@
 import Link from "next/link"
-import { ExternalLink, Pencil, ArrowRight } from "lucide-react"
+import Image from "next/image"
+import { Pencil, ArrowRight } from "lucide-react"
 
 const articles = [
   {
     tag: "Tutorial",
     tagColor: "bg-[#6366F1]",
-    title: "Translate Subtitles using the LibreTranslate API",
-    description: "Build a subtitle translator app that can translate SRT files to different languages using the LibreTranslate API.",
-    href: "https://blog.openreplay.com/translate-subtitles-using-the-libre-translate-api/",
+    title: "Building a Next-Generation File Sharing App with Next.js and Permit.io",
+    description: "A step-by-step guide to building a secure file-sharing web application using Next.js and Permit.io with role-based access control.",
+    href: "https://medium.com/@manuchimsoemmanuel2k/building-a-next-generation-file-sharing-app-with-next-js-and-permit-io-00b8fb7e66bf",
     featured: true,
+    image: "/filesahre.png",
   },
   {
     tag: "Tutorial",
@@ -17,6 +19,7 @@ const articles = [
     description: "Learn how to use React Location to handle routing in a React application by building a food recipe web app.",
     href: "https://blog.openreplay.com/routing-in-react-with-react-location/",
     featured: false,
+    image: null,
   },
   {
     tag: "Article",
@@ -25,6 +28,7 @@ const articles = [
     description: "A deep dive comparing HTMX with modern JavaScript frameworks — when to use each and why.",
     href: "https://blog.openreplay.com/",
     featured: false,
+    image: null,
   },
 ]
 
@@ -38,10 +42,7 @@ export function Blog() {
         {/* Header */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-12">
           <h2 className="text-4xl md:text-5xl font-bold font-zalando text-black">
-            Articles &amp;{" "}
-            <span className="bg-[#2F81F7] text-white px-3 py-1 inline-block border-4 border-black rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-              News
-            </span>
+            Articles
           </h2>
           <Link href="/blog"
             className="inline-flex items-center gap-2 px-5 py-3 bg-white text-black font-bold text-sm border-4 border-black rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:translate-x-0.5 hover:translate-y-0.5 transition-all font-zalando">
@@ -53,11 +54,18 @@ export function Blog() {
           {/* Featured large card */}
           <Link href={featured.href} target="_blank"
             className="group bg-white border-4 border-black rounded-3xl overflow-hidden hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 flex flex-col">
-            <div className={`${featured.tagColor} min-h-[220px] relative flex items-center justify-center`}>
-              <span className="absolute top-4 right-4 bg-black text-white text-xs font-bold px-3 py-1.5 rounded-lg border-2 border-black">
+            <div className={`${featured.tagColor} min-h-[220px] relative overflow-hidden`}>
+              <span className="absolute top-4 right-4 z-10 bg-black text-white text-xs font-bold px-3 py-1.5 rounded-lg border-2 border-black">
                 {featured.tag}
               </span>
-              <ExternalLink className="w-14 h-14 text-white/40" />
+              {featured.image ? (
+                <Image
+                  src={featured.image}
+                  alt={featured.title}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              ) : null}
             </div>
             <div className="p-8 flex-1 flex flex-col">
               <h3 className="text-xl md:text-2xl font-bold mb-4 text-black font-zalando leading-snug group-hover:text-[#6366F1] transition-colors">

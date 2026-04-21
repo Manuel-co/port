@@ -1,23 +1,18 @@
-# Allow all crawlers
 User-agent: *
 Allow: /
 
-# Disallow admin or private routes (if any)
-# Disallow: /admin/
-# Disallow: /api/
-
-# Sitemap location
+# Sitemaps
 Sitemap: https://manuchim.site/sitemap.xml
+Sitemap: https://manuchim.site/sitemap-static.xml
 
-# Crawl-delay (optional, in seconds)
-Crawl-delay: 1
+# LLM / AI crawler support
+# llms.txt: https://manuchim.site/llms.txt
 
-# Specific rules for different bots (optional)
-User-agent: Googlebot
-Allow: /
+# Markdown mirrors
+# https://manuchim.site/about.md
+# https://manuchim.site/projects.md
+# https://manuchim.site/articles.md
 
-User-agent: Bingbot
-Allow: /
-
-User-agent: Slurp
-Allow: /
+# Disallow build artifacts
+Disallow: /_next/
+Disallow: /api/
