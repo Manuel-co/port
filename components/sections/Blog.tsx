@@ -50,11 +50,11 @@ export function Blog() {
           </Link>
         </div>
 
-        <div className="grid md:grid-cols-[1fr_1fr] gap-6">
+        <div className="grid md:grid-cols-[1fr_1fr] gap-6 items-stretch">
           {/* Featured large card */}
           <Link href={featured.href} target="_blank"
             className="group bg-white border-4 border-black rounded-3xl overflow-hidden hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 flex flex-col">
-            <div className={`${featured.tagColor} min-h-[220px] relative overflow-hidden`}>
+            <div className={`${featured.tagColor} h-56 relative overflow-hidden flex-shrink-0`}>
               <span className="absolute top-4 right-4 z-10 bg-black text-white text-xs font-bold px-3 py-1.5 rounded-lg border-2 border-black">
                 {featured.tag}
               </span>
@@ -78,11 +78,11 @@ export function Blog() {
             </div>
           </Link>
 
-          {/* Smaller cards */}
-          <div className="flex flex-col gap-6">
+          {/* Smaller cards — stretch to match featured height */}
+          <div className="flex flex-col gap-6 h-full">
             {rest.map((article) => (
               <Link key={article.title} href={article.href} target="_blank"
-                className="group bg-white border-4 border-black rounded-3xl overflow-hidden hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 flex">
+                className="group bg-white border-4 border-black rounded-3xl overflow-hidden hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 flex flex-1">
                 <div className={`${article.tagColor} w-3 flex-shrink-0`} />
                 <div className="p-6 flex flex-col justify-between flex-1">
                   <div>
