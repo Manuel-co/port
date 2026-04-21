@@ -2,7 +2,6 @@ import type React from "react"
 import type { Metadata } from "next"
 import "./globals.css"
 import { Toaster } from "react-hot-toast"
-import { DotFieldBackground } from "@/components/DotFieldBackground"
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://manuchim.site"),
@@ -172,11 +171,8 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
-      <body className="font-zalando">
-        <DotFieldBackground />
-        <div style={{ position: "relative", zIndex: 1 }}>
-          {children}
-        </div>
+      <body className="font-zalando bg-white text-black">
+        {children}
         <Toaster position="top-center" />
       </body>
     </html>

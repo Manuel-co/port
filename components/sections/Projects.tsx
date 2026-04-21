@@ -1,134 +1,97 @@
 import Link from "next/link"
 import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Github, ExternalLink } from "lucide-react"
+import { Github, ExternalLink, ArrowRight } from "lucide-react"
+
+const projects = [
+  {
+    title: "Shax_x Photography Portfolio",
+    description: "A modern photography portfolio with stunning animations, responsive design, and showcasing Nigerian photography excellence.",
+    image: "/shax.png",
+    tags: ["Next.js 15", "Tailwind CSS", "Framer Motion"],
+    github: "https://github.com/Manuel-co/shax_x",
+    demo: "https://shax-x.vercel.app/",
+    accent: "bg-[#6366F1]",
+  },
+  {
+    title: "File Sharing App",
+    description: "A file sharing app that allows users to securely share files with each other using cloud storage.",
+    image: "/share.png",
+    tags: ["Next.js", "Tailwind CSS", "AWS", "Firebase"],
+    github: "https://github.com/Manuel-co/fileshare",
+    demo: "https://file-share-nine-pi.vercel.app/",
+    accent: "bg-[#2F81F7]",
+  },
+  {
+    title: "AniNews",
+    description: "An anime discovery site powered by the Anime News Network encyclopedia API with search and filtering.",
+    image: "/placeholder.svg",
+    tags: ["Next.js", "TypeScript", "Zustand", "shadcn"],
+    github: "https://github.com/Manuel-co/aninews",
+    demo: "https://aninews-blond.vercel.app/",
+    accent: "bg-[#FF6B7A]",
+  },
+]
 
 export function Projects() {
   return (
-    <section id="projects" className="py-20 bg-white text-black">
-      <div className="container">
-        <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center">Featured Projects</h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* Project 1 */}
-          <div className="h-full">
-            <Card className="bg-white border-gray-200 overflow-hidden h-full flex flex-col">
-              <div className="relative h-48">
-                <Image src="/share.png?height=200&width=400" alt="Project 1" fill className="object-cover" />
-              </div>
-              <CardContent className="p-6 flex-1 flex flex-col">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-xl font-bold min-h-[3.5rem] flex items-center">File Sharing App</h3>
-                  {/* <Badge>Front-end</Badge> */}
-                </div>
-                <p className="text-gray-600 mb-4 flex-grow">
-                  A file sharing app that allows users to share files with each other.
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {/* <Badge variant="outline">React</Badge> */}
-                  <Badge variant="outline">Next.js</Badge>
-                  <Badge variant="outline">Tailwind CSS</Badge>
-                </div>
-                <div className="flex space-x-4 mt-auto">
-                  <Button asChild variant="outline" size="sm">
-                    <Link href="https://github.com/Manuel-co/fileshare" className="flex items-center">
-                      <Github className="h-4 w-4 mr-2" />
-                      Code
-                    </Link>
-                  </Button>
-                  <Button asChild size="sm">
-                    <Link href="https://file-share-nine-pi.vercel.app/" className="flex items-center">
-                      <ExternalLink className="h-4 w-4 mr-2" />
-                      Demo
-                    </Link>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Project 2 */}
-          <div className="h-full">
-            <Card className="bg-white border-gray-200 overflow-hidden h-full flex flex-col">
-              <div className="relative h-48">
-                <Image src="/placeholder.svg?height=200&width=400" alt="Project 2" fill className="object-cover" />
-              </div>
-              <CardContent className="p-6 flex-1 flex flex-col">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-xl font-bold min-h-[3.5rem] flex items-center">Technical Documentation Portal</h3>
-                  {/* <Badge>Technical Writing</Badge> */}
-                </div>
-                <p className="text-gray-600 mb-4 flex-grow">
-                  A comprehensive documentation portal for a SaaS product, featuring interactive tutorials and API
-                  references.
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <Badge variant="outline">Docusaurus</Badge>
-                  <Badge variant="outline">Markdown</Badge>
-                  <Badge variant="outline">Content Strategy</Badge>
-                </div>
-                <div className="flex space-x-4 mt-auto">
-                  <Button asChild variant="outline" size="sm">
-                    <Link href="#" className="flex items-center">
-                      <Github className="h-4 w-4 mr-2" />
-                      Code
-                    </Link>
-                  </Button>
-                  <Button asChild size="sm">
-                    <Link href="#" className="flex items-center">
-                      <ExternalLink className="h-4 w-4 mr-2" />
-                      Demo
-                    </Link>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Project 3 - Shax_x Photography Portfolio */}
-          <div className="h-full">
-            <Card className="bg-white border-gray-200 overflow-hidden h-full flex flex-col">
-              <div className="relative h-48">
-                <Image src="/shax.png?height=200&width=400" alt="Shax_x Photography Portfolio" fill className="object-cover" />
-              </div>
-              <CardContent className="p-6 flex-1 flex flex-col">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-xl font-bold min-h-[3.5rem] flex items-center">Shax_x Photography Portfolio</h3>
-                  {/* <Badge>Photography</Badge> */}
-                </div>
-                <p className="text-gray-600 mb-4 flex-grow">
-                  A modern, professional photography portfolio website featuring stunning animations, responsive design, and showcasing Nigerian photography excellence.
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <Badge variant="outline">Next.js 15</Badge>
-                  <Badge variant="outline">Tailwind CSS</Badge>
-                  <Badge variant="outline">Framer Motion</Badge>
-                </div>
-                <div className="flex space-x-4 mt-auto">
-                  <Button asChild variant="outline" size="sm">
-                    <Link href="https://github.com/Manuel-co/shax_x" className="flex items-center">
-                      <Github className="h-4 w-4 mr-2" />
-                      Code
-                    </Link>
-                  </Button>
-                  <Button asChild size="sm">
-                    <Link href="https://shax-x.vercel.app/" className="flex items-center">
-                      <ExternalLink className="h-4 w-4 mr-2" />
-                      Demo
-                    </Link>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+    <section id="projects" className="py-24 bg-white text-black">
+      <div className="container max-w-6xl mx-auto px-4">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold font-zalando text-black">
+            Take a look at my{" "}
+            <span className="bg-[#FCD34D] text-black px-3 py-1 inline-block border-4 border-black rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+              design portfolio
+            </span>
+          </h2>
         </div>
 
-        <div className="mt-12 text-center">
-          <Button asChild variant="outline" className="border-white/10 hover:bg-white/5">
-            <Link href="/project">View All Projects</Link>
-          </Button>
+        <div className="space-y-6 mb-12">
+          {projects.map((project, i) => (
+            <div key={project.title}
+              className="group grid md:grid-cols-2 bg-white border-4 border-black rounded-3xl overflow-hidden hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-300">
+              {/* Content */}
+              <div className={`p-8 md:p-12 flex flex-col justify-center ${i % 2 === 1 ? "md:order-2" : ""}`}>
+                <span className={`inline-block ${project.accent} text-white text-xs font-bold px-4 py-1.5 rounded-full border-2 border-black mb-6 w-fit shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]`}>
+                  Featured Project
+                </span>
+                <h3 className="text-2xl md:text-3xl font-bold mb-4 text-black font-zalando leading-tight">
+                  {project.title}
+                </h3>
+                <p className="text-gray-600 text-base leading-relaxed mb-6">{project.description}</p>
+                <div className="flex flex-wrap gap-2 mb-8">
+                  {project.tags.map((tag) => (
+                    <span key={tag} className="px-3 py-1 bg-black/8 border-2 border-black/20 rounded-full text-xs font-bold text-black/70">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <div className="flex gap-3">
+                  <Link href={project.github} target="_blank"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 bg-black text-white font-bold text-sm border-4 border-black rounded-xl shadow-[4px_4px_0px_0px_rgba(99,102,241,1)] hover:shadow-[1px_1px_0px_0px_rgba(99,102,241,1)] hover:translate-x-0.5 hover:translate-y-0.5 transition-all">
+                    <Github className="w-4 h-4" /> Code
+                  </Link>
+                  <Link href={project.demo} target="_blank"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-black font-bold text-sm border-4 border-black rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,0.15)] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,0.15)] hover:translate-x-0.5 hover:translate-y-0.5 transition-all">
+                    <ExternalLink className="w-4 h-4" /> Demo
+                  </Link>
+                </div>
+              </div>
+
+              {/* Image */}
+              <div className={`relative min-h-[240px] md:min-h-[360px] ${project.accent} ${i % 2 === 1 ? "md:order-1" : ""} border-l-4 border-black`}>
+                <Image src={project.image} alt={project.title} fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="flex justify-center">
+          <Link href="/project"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-black text-white font-bold text-base border-4 border-black rounded-xl shadow-[6px_6px_0px_0px_rgba(99,102,241,1)] hover:shadow-[2px_2px_0px_0px_rgba(99,102,241,1)] hover:translate-x-1 hover:translate-y-1 transition-all font-zalando">
+            Browse all projects <ArrowRight className="w-5 h-5" />
+          </Link>
         </div>
       </div>
     </section>

@@ -1,59 +1,100 @@
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { ExternalLink } from "lucide-react"
+import { ExternalLink, Pencil, ArrowRight } from "lucide-react"
+
+const articles = [
+  {
+    tag: "Tutorial",
+    tagColor: "bg-[#6366F1]",
+    title: "Translate Subtitles using the LibreTranslate API",
+    description: "Build a subtitle translator app that can translate SRT files to different languages using the LibreTranslate API.",
+    href: "https://blog.openreplay.com/translate-subtitles-using-the-libre-translate-api/",
+    featured: true,
+  },
+  {
+    tag: "Tutorial",
+    tagColor: "bg-[#2F81F7]",
+    title: "Routing in React with React Location",
+    description: "Learn how to use React Location to handle routing in a React application by building a food recipe web app.",
+    href: "https://blog.openreplay.com/routing-in-react-with-react-location/",
+    featured: false,
+  },
+  {
+    tag: "Article",
+    tagColor: "bg-[#FF6B7A]",
+    title: "HTMX vs. Vue and React",
+    description: "A deep dive comparing HTMX with modern JavaScript frameworks — when to use each and why.",
+    href: "https://blog.openreplay.com/",
+    featured: false,
+  },
+]
 
 export function Blog() {
+  const [featured, ...rest] = articles
+
   return (
-    <section id="writing" className="py-20 bg-black text-white">
-      <div className="container">
-        <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center">Latest Articles</h2>
+    <section id="writing" className="py-24 bg-[#F5F5F5] text-black">
+      <div className="container max-w-6xl mx-auto px-4">
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Writing Sample 1 */}
-          <Card className="bg-white/5 border-white/10 text-white overflow-hidden">
-            <CardContent className="p-6">
-              <Badge className="mb-4">Tutorial</Badge>
-              <h3 className="text-xl font-bold mb-2">
-                Translate Subtitles using the LibreTranslate API
-              </h3>
-              <p className="text-gray-400 mb-4 line-clamp-2">
-                In this article, we will focus on building a subtitle translator, an app that can translate subtitle files, with the SRT extension, to a different language.
-              </p>
-              <Button asChild>
-                <Link href="https://blog.openreplay.com/translate-subtitles-using-the-libre-translate-api/" className="flex items-center">
-                  <ExternalLink className="h-4 w-4 mr-2" />
-                  Read Article
-                </Link>
-              </Button>
-            </CardContent>
-          </Card>
-
-          {/* Writing Sample 2 */}
-          <Card className="bg-white/5 border-white/10 text-white overflow-hidden">
-            <CardContent className="p-6">
-              <Badge className="mb-4">Tutorial</Badge>
-              <h3 className="text-xl font-bold mb-2">Routing in React with React Location</h3>
-              <p className="text-gray-400 mb-4 line-clamp-2">
-                In this tutorial, you will learn how to use React Location to handle routing in a React application. You should be familiar with React and have Node installed in your system. We will start by introducing React Location, what it is, and its benefits, then we will learn how to use React Location in a real-world case by building a food recipe web application.
-              </p>
-              <Button asChild>
-                <Link href="https://blog.openreplay.com/routing-in-react-with-react-location/" className="flex items-center">
-                  <ExternalLink className="h-4 w-4 mr-2" />
-                  Read Article
-                </Link>
-              </Button>
-            </CardContent>
-          </Card>
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-12">
+          <h2 className="text-4xl md:text-5xl font-bold font-zalando text-black">
+            Articles &amp;{" "}
+            <span className="bg-[#2F81F7] text-white px-3 py-1 inline-block border-4 border-black rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+              News
+            </span>
+          </h2>
+          <Link href="/blog"
+            className="inline-flex items-center gap-2 px-5 py-3 bg-white text-black font-bold text-sm border-4 border-black rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:translate-x-0.5 hover:translate-y-0.5 transition-all font-zalando">
+            <Pencil className="w-4 h-4" /> Browse all articles
+          </Link>
         </div>
 
-        <div className="mt-12 text-center">
-          <Button asChild className="hover:bg-white/20">
-            <Link href="/blog">View All Blog Posts</Link>
-          </Button>
+        <div className="grid md:grid-cols-[1fr_1fr] gap-6">
+          {/* Featured large card */}
+          <Link href={featured.href} target="_blank"
+            className="group bg-white border-4 border-black rounded-3xl overflow-hidden hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 flex flex-col">
+            <div className={`${featured.tagColor} min-h-[220px] relative flex items-center justify-center`}>
+              <span className="absolute top-4 right-4 bg-black text-white text-xs font-bold px-3 py-1.5 rounded-lg border-2 border-black">
+                {featured.tag}
+              </span>
+              <ExternalLink className="w-14 h-14 text-white/40" />
+            </div>
+            <div className="p-8 flex-1 flex flex-col">
+              <h3 className="text-xl md:text-2xl font-bold mb-4 text-black font-zalando leading-snug group-hover:text-[#6366F1] transition-colors">
+                {featured.title}
+              </h3>
+              <p className="text-gray-500 text-sm leading-relaxed flex-1">{featured.description}</p>
+              <div className="flex items-center gap-2 mt-6 text-[#6366F1] font-bold text-sm">
+                Read article <ArrowRight className="w-4 h-4" />
+              </div>
+            </div>
+          </Link>
+
+          {/* Smaller cards */}
+          <div className="flex flex-col gap-6">
+            {rest.map((article) => (
+              <Link key={article.title} href={article.href} target="_blank"
+                className="group bg-white border-4 border-black rounded-3xl overflow-hidden hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 flex">
+                <div className={`${article.tagColor} w-3 flex-shrink-0`} />
+                <div className="p-6 flex flex-col justify-between flex-1">
+                  <div>
+                    <span className={`inline-block ${article.tagColor} text-white text-xs font-bold px-3 py-1 rounded-full border-2 border-black mb-3`}>
+                      {article.tag}
+                    </span>
+                    <h3 className="text-base md:text-lg font-bold text-black font-zalando leading-snug mb-2 group-hover:text-[#2F81F7] transition-colors">
+                      {article.title}
+                    </h3>
+                    <p className="text-gray-500 text-sm leading-relaxed line-clamp-2">{article.description}</p>
+                  </div>
+                  <div className="flex items-center gap-1 mt-4 text-gray-400 text-xs font-bold group-hover:text-black transition-colors">
+                    Read article <ArrowRight className="w-3 h-3" />
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </section>
   )
-} 
+}

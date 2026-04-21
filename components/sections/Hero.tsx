@@ -1,120 +1,71 @@
 "use client";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Github, Twitter, Linkedin } from "lucide-react";
-import BlurText from "@/components/BlurText";
-import DotFieldBase from "../DotField";
-import type React from "react";
-
-interface DotFieldProps {
-  dotRadius?: number;
-  dotSpacing?: number;
-  cursorRadius?: number;
-  cursorForce?: number;
-  bulgeOnly?: boolean;
-  bulgeStrength?: number;
-  glowRadius?: number;
-  sparkle?: boolean;
-  waveAmplitude?: number;
-  gradientFrom?: string;
-  gradientTo?: string;
-  glowColor?: string;
-}
-
-const DotField = DotFieldBase as React.FC<DotFieldProps>;
-
-const handleAnimationComplete = () => {
-  console.log("Animation completed!");
-};
+import { Mail, FolderOpen, Github, Twitter, Linkedin } from "lucide-react";
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 z-0 opacity-60 md:opacity-100">
-        {/* <div className="h-full w-full bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.1)_0,_rgba(0,0,0,0)_70%)]"></div> */}
-        <div style={{ width: '100%', height: '100%', position: 'relative' }}>
-          <DotField
-            dotRadius={1.5}
-            dotSpacing={14}
-            bulgeStrength={67}
-            glowRadius={160}
-            sparkle={false}
-            waveAmplitude={0}
-            cursorRadius={500}
-            cursorForce={0.1}
-            bulgeOnly
-            gradientFrom="#A855F7"
-            gradientTo="#B497CF"
-            glowColor="#120F17"
-          />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
+      <div className="container relative z-10 px-4 pt-36 pb-20">
+        <div className="max-w-4xl mx-auto">
+
+          {/* Available badge */}
+          <div className="flex justify-center mb-8">
+            <span className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#FCD34D] text-black font-bold text-sm border-4 border-black rounded-full shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+              <span className="w-2 h-2 rounded-full bg-green-600 animate-pulse" />
+              Available for work
+            </span>
+          </div>
+
+          {/* Heading */}
+          <h1 className="text-[clamp(2.2rem,6vw,4.5rem)] font-bold leading-[1.2] text-center mb-6 font-zalando text-black">
+            <span className="block mb-3">I'm{" "}
+              <span className="bg-[#FF6B7A] text-white px-3 py-1 inline-block border-4 border-black rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                Nweke Manuchimso
+              </span>
+            </span>
+            <span className="block mb-3">a{" "}
+              <span className="bg-[#2F81F7] text-white px-3 py-1 inline-block border-4 border-black rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                Front-End Developer
+              </span>
+            </span>
+            <span className="block">&amp;{" "}
+              <span className="bg-[#6366F1] text-white px-3 py-1 inline-block border-4 border-black rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                Technical Writer
+              </span>
+            </span>
+          </h1>
+
+          <p className="text-center text-gray-600 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-zalando">
+            Building modern web experiences and turning complex tech into clear, readable content.
+          </p>
+
+          {/* CTAs */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <Link href="/contact"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-black text-white font-bold text-base border-4 border-black rounded-xl shadow-[6px_6px_0px_0px_rgba(99,102,241,1)] hover:shadow-[2px_2px_0px_0px_rgba(99,102,241,1)] hover:translate-x-1 hover:translate-y-1 transition-all font-zalando">
+              <Mail className="w-5 h-5" /> Get in Touch
+            </Link>
+            <Link href="/project"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-black font-bold text-base border-4 border-black rounded-xl shadow-[6px_6px_0px_0px_rgba(0,0,0,0.15)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,0.15)] hover:translate-x-1 hover:translate-y-1 transition-all font-zalando">
+              <FolderOpen className="w-5 h-5" /> View My Work
+            </Link>
+          </div>
+
+          {/* Socials */}
+          <div className="flex justify-center gap-3">
+            {[
+              { href: "https://github.com/Manuel-co", icon: Github, label: "GitHub", bg: "bg-black" },
+              { href: "https://x.com/NwekeManuchimso", icon: Twitter, label: "X", bg: "bg-[#2F81F7]" },
+              { href: "https://www.linkedin.com/in/nweke-emmanuel-435a3923b/", icon: Linkedin, label: "LinkedIn", bg: "bg-[#6366F1]" },
+            ].map(({ href, icon: Icon, label, bg }) => (
+              <Link key={href} href={href} target="_blank" aria-label={label}
+                className={`w-11 h-11 flex items-center justify-center ${bg} text-white border-4 border-black rounded-xl shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:translate-x-0.5 hover:translate-y-0.5 transition-all`}>
+                <Icon className="w-5 h-5" />
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
-      <div className="container relative z-10 flex flex-col items-center text-center px-4 py-20 md:py-0">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 md:mb-8 font-zalando leading-tight w-full">
-          <span className="block mb-2">Hello, I'm</span>
-
-          <span className="block relative z-20 w-full">
-            <BlurText
-              text="Nweke Manuchimso"
-              delay={100}
-              animateBy="words"
-              direction="top"
-              onAnimationComplete={handleAnimationComplete}
-              className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-gray-400 font-zalando"
-            />
-          </span>
-        </h1>
-        <p className="text-lg sm:text-xl md:text-2xl text-gray-300 max-w-2xl mb-8 md:mb-10 font-zalando px-4">
-          Front-End Developer | Technical Writer
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center w-full max-w-md sm:max-w-none mb-10 md:mb-12">
-          <Button
-            asChild
-            className="bg-white text-black hover:bg-gray-200 font-zalando rounded-full px-8 py-6 text-base w-full sm:w-auto"
-          >
-            <Link href="/contact">Get in Touch</Link>
-          </Button>
-          <Button
-            asChild
-            variant="secondary"
-            className="font-zalando bg-gray-900/30 border-2 border-gray-400 text-gray-400 hover:bg-gray-900/50 hover:border-gray-300 hover:text-gray-300 rounded-full px-8 py-6 text-base w-full sm:w-auto"
-          >
-            <Link href="/project">View My Work</Link>
-          </Button>
-        </div>
-        <div className="flex space-x-8 md:space-x-6">
-          <Link
-            href="https://github.com/Manuel-co"
-            target="_blank"
-            className="text-gray-400 hover:text-white transition-colors"
-          >
-            <Github className="h-6 w-6 md:h-7 md:w-7" />
-            <span className="sr-only">GitHub</span>
-          </Link>
-          <Link
-            href="https://x.com/NwekeManuchimso"
-            target="_blank"
-            className="text-gray-400 hover:text-white transition-colors"
-          >
-            <Twitter className="h-6 w-6 md:h-7 md:w-7" />
-            <span className="sr-only">X.com</span>
-          </Link>
-          <Link
-            href="https://www.linkedin.com/in/nweke-emmanuel-435a3923b/"
-            target="_blank"
-            className="text-gray-400 hover:text-white transition-colors"
-          >
-            <Linkedin className="h-6 w-6 md:h-7 md:w-7" />
-            <span className="sr-only">LinkedIn</span>
-          </Link>
-        </div>
-
-        {/* Spotify Now Playing
-        <div className="mt-10 md:mt-12">
-          <SpotifyNowPlaying />
-        </div> */}
-      </div>
-
     </section>
   );
 }
