@@ -36,7 +36,7 @@ export function Hero() {
           </h1>
 
           <p className="text-center text-gray-600 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-zalando">
-            Building modern web experiences and turning complex tech into clear, readable content.
+            Next.js &amp; React Developer based in Nigeria, Building performant, responsive web experiences and writing technical content that developers actually use.
           </p>
 
           {/* CTAs */}

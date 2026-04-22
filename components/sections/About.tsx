@@ -35,8 +35,7 @@ export function About() {
             </h2>
 
             <p className="text-gray-600 text-base md:text-lg leading-relaxed mb-8">
-              I'm a passionate front-end developer and technical writer with a keen eye for design and a love for
-              creating seamless user experiences. I bridge the gap between complex technology and clear, readable content.
+              I'm a Next.js and React Developer based in Nigeria with a focus on responsive web design, web performance optimization, and technical writing. I build fast, accessible web applications and write content that helps developers ship better products.
             </p>
 
             {/* Stats */}

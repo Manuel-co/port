@@ -6,30 +6,47 @@ import { Toaster } from "react-hot-toast"
 export const metadata: Metadata = {
   metadataBase: new URL("https://manuchim.site"),
   title: {
-    default: "Nweke Manuchimso | Front-End Developer & Technical Writer",
+    default: "Nweke Manuchimso | Next.js Developer & Frontend Developer Nigeria",
     template: "%s | Nweke Manuchimso",
   },
   description:
-    "Front-End Developer & Technical Writer specializing in React, Next.js, and modern web development. Explore my projects and technical articles.",
+    "Next.js Developer and Frontend Developer in Nigeria specializing in React, responsive web design, and web performance optimization. Available for hire — freelance and full-time.",
   keywords: [
-    "Front-End Developer",
-    "Technical Writer",
+    // Core
+    "Next.js Developer",
+    "Frontend Developer",
     "React Developer",
-    "Next.js",
-    "Web Development",
-    "JavaScript",
-    "TypeScript",
-    "Portfolio",
+    "JavaScript Developer",
+    "UI Engineer",
+    "Web Performance Optimization",
+    "Responsive Web Design",
+    // Money keywords
+    "Hire Frontend Developer",
+    "Freelance Web Developer",
+    "Next.js Developer for hire",
+    "Frontend Developer Nigeria",
+    "Web Developer Nigeria",
+    "Custom Website Developer",
+    "Build responsive website",
+    // Low competition
+    "Frontend Developer Portfolio",
+    "Next.js Portfolio Website",
+    "React Developer Portfolio",
+    "Junior Frontend Developer Nigeria",
+    "Fullstack Developer Portfolio Next.js",
+    // Advanced
+    "Component Architecture React",
+    "Accessibility a11y frontend",
+    "Server-side rendering Next.js",
+    "Progressive Web Apps PWA",
+    "Core Web Vitals optimization",
+    // Name variations
     "Nweke Manuchimso",
     "Nweke Manuchimso Emmanuel",
     "Nweke Emmanuel Manuchimso",
     "Nweke Emmanuel Nweke Manuchimso",
     "Manuchimso Nweke",
-    "Emmanuel Nweke",
-    "Nweke Emmanuel",
-    "Software Engineer",
-    "Web Developer Nigeria",
-    "Frontend Engineer",
+    "Technical Writer",
   ],
   authors: [{ name: "Nweke Manuchimso Emmanuel", url: "https://manuchim.site" }],
   creator: "Nweke Manuchimso Emmanuel",
@@ -49,9 +66,9 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://manuchim.site",
-    title: "Nweke Manuchimso | Front-End Developer & Technical Writer",
+    title: "Nweke Manuchimso | Next.js Developer & Frontend Developer Nigeria",
     description:
-      "Front-End Developer & Technical Writer specializing in React, Next.js, and modern web development. Explore my projects and technical articles.",
+      "Next.js Developer and Frontend Developer in Nigeria specializing in React, responsive web design, and web performance optimization. Available for hire.",
     siteName: "Nweke Manuchimso",
     images: [
       {
@@ -65,9 +82,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nweke Manuchimso | Front-End Developer & Technical Writer",
+    title: "Nweke Manuchimso | Next.js Developer & Frontend Developer Nigeria",
     description:
-      "Front-End Developer & Technical Writer specializing in React, Next.js, and modern web development.",
+      "Next.js Developer and Frontend Developer in Nigeria. React, responsive web design, web performance optimization. Available for hire.",
     creator: "@NwekeManuchimso",
     site: "@NwekeManuchimso",
     images: [{ url: "/og-image.png", alt: "Nweke Manuchimso – Front-End Developer & Technical Writer" }],
@@ -106,9 +123,9 @@ export default function RootLayout({
     ],
     url: "https://manuchim.site",
     image: "https://manuchim.site/logo.png",
-    jobTitle: "Front-End Developer & Technical Writer",
+    jobTitle: "Next.js Developer & Frontend Developer",
     description:
-      "Professional Front-End Developer and Technical Writer specializing in React, Next.js, and modern web development.",
+      "Next.js Developer and Frontend Developer in Nigeria specializing in React, responsive web design, web performance optimization, and technical writing. Available for hire — freelance and full-time.",
     email: "manuchimsoemmanuel2k@gmail.com",
     sameAs: [
       "https://github.com/Manuel-co",
@@ -117,13 +134,20 @@ export default function RootLayout({
       "https://medium.com/@manuchimsoemmanuel2k",
     ],
     knowsAbout: [
-      "React",
       "Next.js",
+      "React",
       "JavaScript",
       "TypeScript",
-      "Web Development",
-      "Technical Writing",
       "Frontend Development",
+      "Web Performance Optimization",
+      "Responsive Web Design",
+      "Core Web Vitals",
+      "Server-side Rendering",
+      "Progressive Web Apps",
+      "Component Architecture",
+      "Accessibility",
+      "Technical Writing",
+      "UI Engineering",
     ],
   }
 
