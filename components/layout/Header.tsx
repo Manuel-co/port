@@ -26,10 +26,10 @@ export function Header() {
 
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5 no-underline">
-          {/* <div className="relative w-9 h-9 rounded-xl border-2 border-black overflow-hidden bg-black flex-shrink-0">
+          <div className="relative w-9 h-9 rounded-xl border-2 border-black overflow-hidden bg-black flex-shrink-0">
             <Image src="/logo.png" alt="Nweke Manuchimso" fill className="object-cover" />
-          </div> */}
-          <span className="hidden sm:block font-bold text-black text-sm font-zalando tracking-tight">
+          </div>
+          <span className="font-bold text-black text-sm font-zalando tracking-tight">
             Manuchimso
           </span>
         </Link>
@@ -65,7 +65,7 @@ export function Header() {
             </button>
           </SheetTrigger>
 
-          <SheetContent side="right" className="w-72 bg-white border-l-4 border-black p-0 flex flex-col font-zalando">
+          <SheetContent side="right" className="w-72 bg-white border-l-4 border-black p-0 flex flex-col font-zalando [&>button]:hidden">
             {/* Header */}
             <div className="flex items-center justify-between p-5 border-b-4 border-black">
               <div className="flex items-center gap-3">

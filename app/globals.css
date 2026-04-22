@@ -124,5 +124,36 @@ html {
   scroll-behavior: smooth;
 }
 
-/* ─── Navbar fonts (DM Sans + DM Mono used in Header.tsx) ── */
-/* Imported above via @import url(...) */
+/* ─── Custom Scrollbar ───────────────────────────────────── */
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #0b0b0b #e5e5e5;
+}
+
+/* Chrome / Safari / Edge */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-left: 2px solid #0b0b0b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0b0b0b;
+  border-radius: 0;
+  border: 2px solid #0b0b0b;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6366F1;
+  border-color: #6366F1;
+}
+
+::-webkit-scrollbar-corner {
+  background: #f0f0f0;
+}
