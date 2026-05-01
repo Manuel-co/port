@@ -89,6 +89,12 @@ export function Experience() {
                     </div>
                   </div>
                   <span className="text-sm font-bold text-black/50 text-right">{exp.period}</span>
+                  {exp.url && (
+                    <Link href={exp.url} target="_blank"
+                      className="w-8 h-8 flex items-center justify-center bg-black text-white border-2 border-black rounded-lg shadow-[2px_2px_0px_0px_rgba(99,102,241,1)] hover:shadow-none hover:translate-x-0.5 hover:translate-y-0.5 transition-all flex-shrink-0">
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </Link>
+                  )}
                 </div>
 
                 {/* Body */}
