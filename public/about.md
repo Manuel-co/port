@@ -39,3 +39,16 @@ Ethereum, Solidity, Smart Contracts, DApps, Web3.js, Ethers.js, Hardhat, IPFS, N
 - 3+ years of front-end development experience
 - 10+ projects shipped
 - 15+ technical articles published on OpenReplay, Medium, and other platforms
+
+## Work History
+
+### Frontend Developer — 100Pay (Aug 2024 – Dec 2025)
+Africa's largest digital currency infrastructure. Built dashboard and developer portal interfaces using Next.js and Tailwind CSS. Implemented payment flows and SDK documentation pages for 100K+ users.
+https://100pay.co
+
+### Frontend Developer — Texa Devs (2022 – 2024)
+Built client-facing web applications using React and Next.js. Delivered responsive, accessible UIs from Figma designs.
+
+### Technical Writer — OpenReplay (Jul 2022 – Apr 2024)
+Published 10+ technical articles on React, JavaScript, CSS, and modern frontend development.
+https://blog.openreplay.com/authors/nweke-emmanuel-manuchimso/

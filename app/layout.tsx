@@ -47,6 +47,8 @@ export const metadata: Metadata = {
     "Nweke Emmanuel Nweke Manuchimso",
     "Manuchimso Nweke",
     "Technical Writer",
+    "OpenReplay author",
+    "100Pay frontend developer",
   ],
   authors: [{ name: "Nweke Manuchimso Emmanuel", url: "https://manuchim.site" }],
   creator: "Nweke Manuchimso Emmanuel",
@@ -132,6 +134,7 @@ export default function RootLayout({
       "https://twitter.com/NwekeManuchimso",
       "https://www.linkedin.com/in/nweke-emmanuel-435a3923b/",
       "https://medium.com/@manuchimsoemmanuel2k",
+      "https://blog.openreplay.com/authors/nweke-emmanuel-manuchimso/",
     ],
     knowsAbout: [
       "Next.js",
@@ -148,6 +151,25 @@ export default function RootLayout({
       "Accessibility",
       "Technical Writing",
       "UI Engineering",
+    ],
+    worksFor: [
+      {
+        "@type": "Organization",
+        name: "100Pay",
+        url: "https://100pay.co",
+        description: "Africa's largest digital currency infrastructure",
+      },
+    ],
+    alumniOf: [
+      {
+        "@type": "Organization",
+        name: "Texa Devs",
+      },
+      {
+        "@type": "Organization",
+        name: "OpenReplay",
+        url: "https://blog.openreplay.com",
+      },
     ],
   }
 

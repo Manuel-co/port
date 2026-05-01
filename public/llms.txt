@@ -19,6 +19,22 @@ Nweke Manuchimso Emmanuel (also known as Nweke Manuchimso, Nweke Emmanuel Manuch
 - **Technical Writing**: Documentation, Tutorials, API Docs, Technical Blogs, User Guides, Content Strategy, Markdown
 - **Web3 Development**: Ethereum, Solidity, Smart Contracts, DApps, Web3.js, Ethers.js, Hardhat, IPFS
 
+## Work Experience
+
+### Frontend Developer — 100Pay
+**Aug 2024 – Dec 2025 | Full-time**
+Africa's largest digital currency infrastructure (100K+ developers & businesses). Built and maintained responsive web interfaces for the 100Pay dashboard and developer portal using Next.js and Tailwind CSS. Implemented payment flows, SDK documentation pages, and user-facing finance tools.
+https://100pay.co
+
+### Frontend Developer — Texa Devs
+**2022 – 2024 | Full-time**
+Built client-facing web applications using React and Next.js. Translated Figma designs into pixel-perfect components. Maintained and improved existing codebases.
+
+### Technical Writer — OpenReplay
+**Jul 2022 – Apr 2024 | Freelance**
+Published 10+ technical articles on React, JavaScript, CSS, and modern frontend development. Topics include React performance optimization, CSS animations, Alpine.js, HTMX vs Vue/React, and JavaScript animation libraries.
+https://blog.openreplay.com/authors/nweke-emmanuel-manuchimso/
+
 ## Projects
 
 - [Shax_x Photography Portfolio](https://shax-x.vercel.app/) — Modern photography portfolio built with Next.js 15, Tailwind CSS, and Framer Motion
