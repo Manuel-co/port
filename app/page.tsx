@@ -8,6 +8,7 @@ import { Skills } from "../components/sections/Skills"
 import { Projects } from "../components/sections/Projects"
 import { Blog } from "../components/sections/Blog"
 import { Contact } from "../components/sections/Contact"
+import { Experience } from "../components/sections/Experience"
 import DotFieldBase from "../components/DotField"
 import type React from "react"
 
@@ -55,6 +56,7 @@ export default function Home() {
           <About />
           <Skills />
           <Projects />
+          <Experience />
           <Blog />
           <Contact />
         </main>
