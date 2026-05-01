@@ -135,3 +135,6 @@ export const projects: Project[] = [
 export function getProjectBySlug(slug: string): Project | undefined {
   return projects.find((p) => p.slug === slug);
 }
+
+// Newest first (reverse of declaration order)
+export const projectsSorted = [...projects].reverse();
