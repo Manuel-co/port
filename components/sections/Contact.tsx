@@ -44,7 +44,6 @@ export function Contact() {
     <section id="contact" className="py-24 bg-white text-black">
       <div className="container max-w-6xl mx-auto px-4">
 
-        {/* Header */}
         <div className="mb-16">
           <h2 className="text-4xl md:text-5xl font-bold font-zalando text-black mb-4">
             Let's work{" "}
@@ -96,19 +95,17 @@ export function Contact() {
                       <ErrorMessage name="email" component="p" className="text-red-500 text-xs mt-1 font-semibold" />
                     </div>
                   </div>
-
                   <div>
                     <label htmlFor="message" className="block text-xs font-bold text-black/50 uppercase tracking-widest mb-2">Message</label>
                     <Field as="textarea" id="message" name="message" rows={5}
                       className={`w-full px-4 py-3 bg-white border-4 rounded-xl text-black text-sm font-medium outline-none transition-all resize-vertical ${errors.message && touched.message ? "border-red-500" : "border-black focus:border-[#6366F1]"}`} />
                     <ErrorMessage name="message" component="p" className="text-red-500 text-xs mt-1 font-semibold" />
                   </div>
-
                   <button type="submit" disabled={isLoading || !isValid || !dirty}
-                    className={`flex items-center justify-center gap-2 py-4 font-bold text-sm border-4 border-black rounded-xl transition-all font-zalando ${
+                    className={`flex items-center justify-center gap-2 py-4 font-bold text-sm border-4 rounded-xl transition-all font-zalando ${
                       isLoading || !isValid || !dirty
-                        ? "bg-black/20 text-black/40 cursor-not-allowed shadow-none"
-                        : "bg-black text-white shadow-[4px_4px_0px_0px_rgba(99,102,241,1)] hover:shadow-[1px_1px_0px_0px_rgba(99,102,241,1)] hover:translate-x-0.5 hover:translate-y-0.5"
+                        ? "bg-black/10 text-black/30 border-black/20 cursor-not-allowed"
+                        : "bg-black text-white border-black shadow-[4px_4px_0px_0px_rgba(99,102,241,1)] hover:shadow-[1px_1px_0px_0px_rgba(99,102,241,1)] hover:translate-x-0.5 hover:translate-y-0.5"
                     }`}>
                     <Send className="w-4 h-4" />
                     {isLoading ? "Sending…" : "Send Message"}

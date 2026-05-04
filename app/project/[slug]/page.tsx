@@ -58,8 +58,8 @@ export default function ProjectSlugPage({ params }: { params: { slug: string } }
               </Link>
             </div>
             {/* Screenshot */}
-            <div className="relative w-full aspect-video bg-[#6366F1]">
-              <Image src={project.image} alt={project.title} fill className="object-cover" />
+            <div className="relative w-full aspect-video bg-white">
+              <Image src={project.image} alt={project.title} fill className="object-contain" />
             </div>
           </div>
 

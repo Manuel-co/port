@@ -9,8 +9,7 @@ const experiences = [
     type: "Full-time",
     color: "bg-[#6366F1]",
     url: "https://100pay.co",
-    description:
-      "Worked on the frontend of Africa's largest digital currency infrastructure, building interfaces for payments, developer tools, and the 100Pay ecosystem used by 100K+ developers and businesses globally.",
+    description: "Worked on the frontend of Africa's largest digital currency infrastructure, building interfaces for payments, developer tools, and the 100Pay ecosystem used by 100K+ developers and businesses globally.",
     bullets: [
       "Built and maintained responsive web interfaces for the 100Pay dashboard and developer portal using Next.js and Tailwind CSS.",
       "Collaborated with the design and backend teams to implement payment flows, SDK documentation pages, and user-facing finance tools.",
@@ -24,8 +23,7 @@ const experiences = [
     type: "Full-time",
     color: "bg-[#FF6B7A]",
     url: null,
-    description:
-      "Developed and shipped web applications for clients across various industries, focusing on responsive design, performance, and clean UI implementation.",
+    description: "Developed and shipped web applications for clients across various industries, focusing on responsive design, performance, and clean UI implementation.",
     bullets: [
       "Built client-facing web applications using React and Next.js with a focus on accessibility and responsive design.",
       "Translated Figma designs into pixel-perfect, production-ready components.",
@@ -39,8 +37,7 @@ const experiences = [
     type: "Freelance",
     color: "bg-[#2F81F7]",
     url: "https://blog.openreplay.com/authors/nweke-emmanuel-manuchimso/",
-    description:
-      "Wrote in-depth technical articles and tutorials for OpenReplay's engineering blog, covering React, JavaScript, CSS, and modern frontend development topics.",
+    description: "Wrote in-depth technical articles and tutorials for OpenReplay's engineering blog, covering React, JavaScript, CSS, and modern frontend development topics.",
     bullets: [
       "Published 10+ technical articles including tutorials on React performance, CSS animations, Alpine.js, HTMX, and JavaScript animation libraries.",
       "Wrote beginner-to-intermediate guides that helped developers understand and implement complex frontend concepts.",
@@ -53,9 +50,9 @@ export function Experience() {
   return (
     <section id="experience" className="py-24 bg-white text-black">
       <div className="container max-w-6xl mx-auto px-4">
-
-        {/* Header */}
         <div className="grid md:grid-cols-2 gap-12 items-start">
+
+          {/* Left sticky */}
           <div className="md:sticky md:top-28">
             <h2 className="text-4xl md:text-5xl font-bold font-zalando text-black mb-6 leading-tight">
               Take a look at my{" "}
@@ -72,9 +69,9 @@ export function Experience() {
             </div>
           </div>
 
-          {/* Timeline */}
+          {/* Cards */}
           <div className="flex flex-col gap-6">
-            {experiences.map((exp, i) => (
+            {experiences.map((exp) => (
               <div key={exp.company}
                 className="bg-white border-4 border-black rounded-3xl overflow-hidden shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
                 {/* Top bar */}
@@ -88,22 +85,22 @@ export function Experience() {
                       <p className="text-xs text-black/40 font-semibold uppercase tracking-widest">{exp.type}</p>
                     </div>
                   </div>
-                  <span className="text-sm font-bold text-black/50 text-right">{exp.period}</span>
-                  {exp.url && (
-                    <Link href={exp.url} target="_blank"
-                      className="w-8 h-8 flex items-center justify-center bg-black text-white border-2 border-black rounded-lg shadow-[2px_2px_0px_0px_rgba(99,102,241,1)] hover:shadow-none hover:translate-x-0.5 hover:translate-y-0.5 transition-all flex-shrink-0">
-                      <ExternalLink className="w-3.5 h-3.5" />
-                    </Link>
-                  )}
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm font-bold text-black/50">{exp.period}</span>
+                    {exp.url && (
+                      <Link href={exp.url} target="_blank"
+                        className="w-8 h-8 flex items-center justify-center bg-black text-white border-2 border-black rounded-lg shadow-[2px_2px_0px_0px_rgba(99,102,241,1)] hover:shadow-none hover:translate-x-0.5 hover:translate-y-0.5 transition-all flex-shrink-0">
+                        <ExternalLink className="w-3.5 h-3.5" />
+                      </Link>
+                    )}
+                  </div>
                 </div>
 
                 {/* Body */}
                 <div className="px-6 py-6">
-                  <div className="flex items-center gap-2 mb-4">
-                    <span className={`${exp.color} text-white text-xs font-bold px-3 py-1 rounded-full border-2 border-black`}>
-                      {exp.role}
-                    </span>
-                  </div>
+                  <span className={`${exp.color} text-white text-xs font-bold px-3 py-1 rounded-full border-2 border-black inline-block mb-4`}>
+                    {exp.role}
+                  </span>
                   <p className="text-gray-600 text-sm leading-relaxed mb-5">{exp.description}</p>
                   <ul className="space-y-2">
                     {exp.bullets.map((b, j) => (

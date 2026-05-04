@@ -13,21 +13,21 @@ const projects = [
     accent: "bg-[#6366F1]",
   },
   {
-   title: "Subtitle Translator",
-      description: "A simple subtitle translator app that converts SRT files to different languages using the LibreTranslate API.",
-      image: "/trans.png",
+    title: "Subtitle Translator",
+    description: "A simple subtitle translator app that converts SRT files to different languages using the LibreTranslate API.",
+    image: "/trans.png",
     tags: ["Next.js", "Open Ai API"],
-   github: "https://github.com/Manuel-co/subtitle-translator",
-      demo: "https://subtitle-translator.vercel.app/",
+    github: "https://github.com/Manuel-co/subtitle-translator",
+    demo: "https://subtitle-translator.vercel.app/",
     accent: "bg-[#2F81F7]",
-  },  
+  },
   {
     title: "AniNews",
     description: "An anime discovery site powered by the Anime News Network encyclopedia API with search and filtering.",
     image: "/aninews.png",
     tags: ["Next.js", "TypeScript", "Zustand", "shadcn"],
     github: "https://github.com/Manuel-co/aninews",
-    demo: "https://aninews-blond.vercel.app/ ",
+    demo: "https://aninews-blond.vercel.app/",
     accent: "bg-[#FF6B7A]",
   },
 ]
@@ -60,7 +60,7 @@ export function Projects() {
                 <p className="text-gray-600 text-base leading-relaxed mb-6">{project.description}</p>
                 <div className="flex flex-wrap gap-2 mb-8">
                   {project.tags.map((tag) => (
-                    <span key={tag} className="px-3 py-1 bg-black/8 border-2 border-black/20 rounded-full text-xs font-bold text-black/70">
+                    <span key={tag} className="px-3 py-1 bg-black/5 border-2 border-black/20 rounded-full text-xs font-bold text-black/70">
                       {tag}
                     </span>
                   ))}

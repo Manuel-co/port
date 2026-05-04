@@ -105,7 +105,7 @@ export const projects: Project[] = [
     title: "Fusion",
     description: "A freelance job board app for discovering and posting web design, UI/UX, and development opportunities.",
     longDescription: "Fusion is a freelance job board application that aggregates web design, UI/UX, and development job listings. Users can browse fixed-price and hourly projects, filter by skill level and budget, and view detailed job descriptions including client ratings, total spend, and proposal counts. Built to help freelancers quickly find relevant opportunities in the design and development space.",
-    image: "/fusion.png",
+    image: "/texa.png",
     technologies: ["Next.js", "Tailwind CSS", "TypeScript"],
     github: "#",
     demo: "https://fusion-app-drab.vercel.app/",

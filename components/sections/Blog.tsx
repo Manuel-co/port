@@ -10,7 +10,7 @@ const articles = [
     description: "A step-by-step guide to building a secure file-sharing web application using Next.js and Permit.io with role-based access control.",
     href: "https://medium.com/@manuchimsoemmanuel2k/building-a-next-generation-file-sharing-app-with-next-js-and-permit-io-00b8fb7e66bf",
     featured: true,
-    image: "/filesahre.png",
+    image: "/share.png",
   },
   {
     tag: "Tutorial",
@@ -59,12 +59,8 @@ export function Blog() {
                 {featured.tag}
               </span>
               {featured.image ? (
-                <Image
-                  src={featured.image}
-                  alt={featured.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
+                <Image src={featured.image} alt={featured.title} fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105" />
               ) : null}
             </div>
             <div className="p-8 flex-1 flex flex-col">
@@ -78,7 +74,7 @@ export function Blog() {
             </div>
           </Link>
 
-          {/* Smaller cards — stretch to match featured height */}
+          {/* Smaller cards */}
           <div className="flex flex-col gap-6 h-full">
             {rest.map((article) => (
               <Link key={article.title} href={article.href} target="_blank"

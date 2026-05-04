@@ -37,13 +37,18 @@ https://blog.openreplay.com/authors/nweke-emmanuel-manuchimso/
 
 ## Projects
 
-- [Shax_x Photography Portfolio](https://shax-x.vercel.app/) — Modern photography portfolio built with Next.js 15, Tailwind CSS, and Framer Motion
-- [File Sharing App](https://file-share-nine-pi.vercel.app/) — Secure file sharing with role-based access control using Next.js, AWS, Firebase, and Permit.io
-- [AniNews](https://aninews-blond.vercel.app/) — Anime discovery site powered by the Anime News Network API, built with Next.js and Zustand
-- [Anime News Landing](https://news-anime.vercel.app/) — API documentation landing page for the Anime News Network Encyclopedia API
+- [Avulex Technology](https://avulextech.site/) — Technology company website built with Next.js, Tailwind CSS, TypeScript, and GSAP
+- [Manuchim.dev — Personal Blog](https://blog-drab-rho-95.vercel.app/) — Personal blog on web development, technical writing, and cybersecurity
+- [Fusion](https://fusion-app-drab.vercel.app/) — Freelance job board app for web design, UI/UX, and development opportunities
+- [Assemblies of God Church](https://ag2choba.org/) — Church website for AG Choba 2, Port Harcourt — 1,200+ members across 40+ nations
+- [wamzé](https://www.xn--wamz-epa.com/) — Luxury fragrance e-commerce experience with immersive UI
+- [Ziron Projects](https://zironprojects.com/) — Corporate website for an engineering group in the Niger Delta (EPC, civil engineering, procurement)
+- [PH Estate](https://phestate.vercel.app/) — Real estate listing site for properties in Port Harcourt, Nigeria
 - [Subtitle Translator](https://subtitle-translator.vercel.app/) — SRT subtitle translation app using the LibreTranslate API
-- [PH Estate](https://phestate.vercel.app/) — Real estate listing site for Port Harcourt, Nigeria
-- [Ziron Projects](https://zironprojects.com/) — Professional website for an engineering group in the Niger Delta
+- [Anime News Landing](https://news-anime.vercel.app/) — Developer landing page for the Anime News Network Encyclopedia API
+- [AniNews](https://aninews-blond.vercel.app/) — Anime discovery site powered by the Anime News Network API
+- [File Sharing App](https://file-share-nine-pi.vercel.app/) — Secure file sharing with role-based access control (Next.js, AWS, Firebase, Permit.io)
+- [Shax_x Photography Portfolio](https://shax-x.vercel.app/) — Photography portfolio built with Next.js 15, Tailwind CSS, and Framer Motion
 
 ## Articles
 

@@ -1,58 +1,62 @@
 # Projects — Nweke Manuchimso Emmanuel
 
-A collection of web development projects by Nweke Manuchimso Emmanuel.
+A collection of web development projects by Nweke Manuchimso Emmanuel — Next.js Developer, Frontend Developer Nigeria.
 
 Full portfolio: https://manuchim.site/project
 
 ---
 
-## Shax_x Photography Portfolio
+## Avulex Technology
 
-**Live:** https://shax-x.vercel.app/
-**Code:** https://github.com/Manuel-co/shax_x
-**Stack:** Next.js 15, Tailwind CSS, Framer Motion, TypeScript
+**Live:** https://avulextech.site/
+**Stack:** Next.js, Tailwind CSS, TypeScript, GSAP
 
-A modern, professional photography portfolio website featuring stunning animations, responsive design, and showcasing Nigerian photography excellence.
-
----
-
-## File Sharing App
-
-**Live:** https://file-share-nine-pi.vercel.app/
-**Code:** https://github.com/Manuel-co/files-share-permit.io
-**Stack:** Next.js, Tailwind CSS, AWS S3, Firebase, Permit.io
-
-A secure file sharing application with role-based access control (Admin, Editor, Viewer). Users can upload, share, edit, and manage files with fine-grained permissions.
+A forward-thinking technology company website delivering innovative digital solutions. Features custom web development showcases, interactive web experiences, and scalable digital infrastructure services.
 
 ---
 
-## AniNews
+## Manuchim.dev — Personal Blog
 
-**Live:** https://aninews-blond.vercel.app/
-**Code:** https://github.com/Manuel-co/aninews
-**Stack:** Next.js, Tailwind CSS, TypeScript, Zustand, shadcn/ui
+**Live:** https://blog-drab-rho-95.vercel.app/
+**Stack:** Next.js, Tailwind CSS, TypeScript
 
-An anime discovery site powered by the Anime News Network encyclopedia API with search and filtering capabilities.
-
----
-
-## Anime News Landing
-
-**Live:** https://news-anime.vercel.app/
-**Code:** https://github.com/Manuel-co/news-anime
-**Stack:** Next.js, Tailwind CSS, TypeScript, shadcn/ui
-
-A landing page that helps developers discover and use the Anime News Network Encyclopedia API — free, no auth, no API keys required.
+A personal blog documenting the intersection of web development, technical writing, and cybersecurity — design, philosophy, and code.
 
 ---
 
-## Subtitle Translator
+## Fusion
 
-**Live:** https://subtitle-translator.vercel.app/
-**Code:** https://github.com/Manuel-co/subtitle-translator
-**Stack:** React.js, LibreTranslate API
+**Live:** https://fusion-app-drab.vercel.app/
+**Stack:** Next.js, Tailwind CSS, TypeScript
 
-A simple subtitle translator app that converts SRT files to different languages using the LibreTranslate API.
+A freelance job board app for discovering web design, UI/UX, and development opportunities. Browse fixed-price and hourly projects with client ratings and proposal counts.
+
+---
+
+## Assemblies of God Church
+
+**Live:** https://ag2choba.org/
+**Stack:** Next.js, Tailwind CSS, TypeScript
+
+A modern church website for Assemblies of God Choba 2, Port Harcourt — a Spirit-filled community serving 1,200+ members across 40+ nations for over 18 years.
+
+---
+
+## wamzé
+
+**Live:** https://www.xn--wamz-epa.com/
+**Stack:** Next.js, Tailwind CSS, TypeScript
+
+A luxury fragrance e-commerce experience — discover and shop a curated collection of premium scents with a sleek, immersive UI.
+
+---
+
+## Ziron Projects
+
+**Live:** https://zironprojects.com/
+**Stack:** Next.js, Tailwind CSS, TypeScript
+
+A corporate website for Ziron Projects Limited — an engineering group in the Niger Delta specialising in EPC services, civil engineering, fabrication, procurement, and environmental solutions across Nigeria since 2010.
 
 ---
 
@@ -66,9 +70,50 @@ A real estate listing site for properties in Port Harcourt, Nigeria.
 
 ---
 
-## Ziron Projects
+## Subtitle Translator
 
-**Live:** https://zironprojects.com/
-**Stack:** Next.js, Tailwind CSS, TypeScript
+**Live:** https://subtitle-translator.vercel.app/
+**Code:** https://github.com/Manuel-co/subtitle-translator
+**Stack:** React.js, LibreTranslate API
 
-A professional website for Ziron Projects Limited — an engineering group in the Niger Delta specialising in EPC services, civil engineering, fabrication, procurement, and environmental solutions across Nigeria since 2010.
+A web app that converts SRT subtitle files to different languages using the LibreTranslate API.
+
+---
+
+## Anime News Landing
+
+**Live:** https://news-anime.vercel.app/
+**Code:** https://github.com/Manuel-co/news-anime
+**Stack:** Next.js, Tailwind CSS, TypeScript, shadcn/ui
+
+A developer landing page for the Anime News Network Encyclopedia API — free, no auth, no API keys required.
+
+---
+
+## AniNews
+
+**Live:** https://aninews-blond.vercel.app/
+**Code:** https://github.com/Manuel-co/aninews
+**Stack:** Next.js, Tailwind CSS, TypeScript, Zustand, shadcn/ui
+
+An anime discovery site powered by the Anime News Network encyclopedia API with search and filtering.
+
+---
+
+## File Sharing App
+
+**Live:** https://file-share-nine-pi.vercel.app/
+**Code:** https://github.com/Manuel-co/files-share-permit.io
+**Stack:** Next.js, Tailwind CSS, AWS S3, Firebase, Permit.io
+
+A secure file sharing application with role-based access control (Admin, Editor, Viewer).
+
+---
+
+## Shax_x Photography Portfolio
+
+**Live:** https://shax-x.vercel.app/
+**Code:** https://github.com/Manuel-co/shax_x
+**Stack:** Next.js 15, Tailwind CSS, Framer Motion, TypeScript
+
+A modern photography portfolio featuring stunning animations and responsive design, showcasing Nigerian photography excellence.
