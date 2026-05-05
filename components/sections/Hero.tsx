@@ -10,10 +10,10 @@ export function Hero() {
 
           {/* Available badge */}
           <div className="flex justify-center mb-8">
-            <span className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#FCD34D] text-black font-bold text-sm border-4 border-black rounded-full shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+            {/* <span className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#FCD34D] text-black font-bold text-sm border-4 border-black rounded-full shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
               <span className="w-2 h-2 rounded-full bg-green-600 animate-pulse" />
               Available for work
-            </span>
+            </span> */}
           </div>
 
           {/* Heading */}

@@ -45,9 +45,9 @@ export default function ProjectPage() {
 
           {/* Page header */}
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#FCD34D] text-black font-bold text-sm border-4 border-black rounded-full shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mb-6">
+            {/* <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#FCD34D] text-black font-bold text-sm border-4 border-black rounded-full shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mb-6">
               <FolderGit2 className="w-4 h-4" /> Portfolio
-            </div>
+            </div> */}
             <h1 className="text-5xl md:text-6xl font-bold mb-4 font-zalando text-black">
               My{" "}
               <span className="bg-[#6366F1] text-white px-3 py-1 inline-block border-4 border-black rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
