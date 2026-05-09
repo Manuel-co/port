@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ExternalLink, Search, Filter, BookOpen } from "lucide-react";
+import { ExternalLink, Search, Filter, BookOpen, ChevronLeft, ChevronRight } from "lucide-react";
 import { Header } from "../../components/layout/Header";
 import { Footer } from "../../components/layout/Footer";
 import { useState } from "react";
@@ -21,9 +21,12 @@ const cardAccents = [
   "border-l-[#F97316]",
 ];
 
+const PER_PAGE = 6;
+
 export default function BlogPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [page, setPage] = useState(1);
 
   const articles = [
     {
@@ -109,6 +112,12 @@ export default function BlogPage() {
     return matchSearch && matchCat;
   });
 
+  const totalPages = Math.ceil(filtered.length / PER_PAGE);
+  const paginated = filtered.slice((page - 1) * PER_PAGE, page * PER_PAGE);
+
+  const handleSearch = (q: string) => { setSearchQuery(q); setPage(1); };
+  const handleCategory = (cat: string) => { setSelectedCategory(cat); setPage(1); };
+
   return (
     <div className="min-h-screen bg-white text-black">
       <Header />
@@ -139,7 +148,7 @@ export default function BlogPage() {
                 type="text"
                 placeholder="Search articles..."
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(e) => handleSearch(e.target.value)}
                 className="w-full pl-12 pr-4 py-4 bg-white border-4 border-black rounded-2xl text-black placeholder-black/30 font-medium focus:outline-none shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] focus:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] focus:translate-x-0.5 focus:translate-y-0.5 transition-all"
               />
             </div>
@@ -147,7 +156,7 @@ export default function BlogPage() {
             <div className="flex items-center justify-center gap-2 flex-wrap">
               <Filter className="w-4 h-4 text-black/40" />
               {categories.map((cat) => (
-                <button key={cat} onClick={() => setSelectedCategory(cat)}
+                <button key={cat} onClick={() => handleCategory(cat)}
                   className={`px-4 py-2 text-sm font-bold border-4 border-black rounded-xl transition-all ${
                     selectedCategory === cat
                       ? "bg-black text-white shadow-[3px_3px_0px_0px_rgba(99,102,241,1)]"
@@ -164,9 +173,9 @@ export default function BlogPage() {
           </div>
 
           {/* Articles grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-            <AnimatePresence>
-              {filtered.map((article, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+            <AnimatePresence mode="wait">
+              {paginated.map((article, index) => (
                 <motion.div key={article.title}
                   initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.2, delay: index * 0.03 }}
@@ -205,6 +214,30 @@ export default function BlogPage() {
               <button onClick={() => { setSearchQuery(""); setSelectedCategory("All"); }}
                 className="px-6 py-3 bg-black text-white font-bold border-4 border-black rounded-xl shadow-[4px_4px_0px_0px_rgba(99,102,241,1)] hover:shadow-[1px_1px_0px_0px_rgba(99,102,241,1)] hover:translate-x-0.5 hover:translate-y-0.5 transition-all">
                 Clear Filters
+              </button>
+            </div>
+          )}
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="flex items-center justify-center gap-3 mb-16">
+              <button onClick={() => setPage((p) => Math.max(1, p - 1))} disabled={page === 1}
+                className="w-11 h-11 flex items-center justify-center bg-white border-4 border-black rounded-xl shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:translate-x-0.5 hover:translate-y-0.5 transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:translate-x-0 disabled:translate-y-0">
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
+                <button key={n} onClick={() => setPage(n)}
+                  className={`w-11 h-11 flex items-center justify-center font-bold text-sm border-4 border-black rounded-xl transition-all ${
+                    n === page
+                      ? "bg-black text-white shadow-[3px_3px_0px_0px_rgba(99,102,241,1)]"
+                      : "bg-white text-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:translate-x-0.5 hover:translate-y-0.5"
+                  }`}>
+                  {n}
+                </button>
+              ))}
+              <button onClick={() => setPage((p) => Math.min(totalPages, p + 1))} disabled={page === totalPages}
+                className="w-11 h-11 flex items-center justify-center bg-white border-4 border-black rounded-xl shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:translate-x-0.5 hover:translate-y-0.5 transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:translate-x-0 disabled:translate-y-0">
+                <ChevronRight className="w-5 h-5" />
               </button>
             </div>
           )}

@@ -110,17 +110,7 @@ export const projects: Project[] = [
     github: "#",
     demo: "https://fusion-app-drab.vercel.app/",
   },
-  {
-    slug: "manuchim-dev-blog",
-    title: "Manuchim.dev — Personal Blog",
-    description: "A personal blog documenting the intersection of web development, technical writing, and cybersecurity — design, philosophy, and code.",
-    longDescription: "Manuchim.dev is a personal blog and digital space for documenting the synthesis of design and philosophy. It covers web development (crafting high-performance, accessible interfaces), technical writing (deconstructing complex concepts into legible narratives), and cybersecurity (exploring digital sovereignty, privacy, and defensive security frameworks). Built with a minimal, focused aesthetic that puts the writing front and center.",
-    image: "/blog.png",
-    technologies: ["Next.js", "Tailwind CSS", "TypeScript"],
-    github: "#",
-    demo: "https://blog-drab-rho-95.vercel.app/",
-  },
-  {
+    {
     slug: "avulex-technology",
     title: "Avulex Technology",
     description: "A forward-thinking technology company website dedicated to delivering innovative digital solutions that empower businesses to thrive in the digital age.",
@@ -130,6 +120,17 @@ export const projects: Project[] = [
     github: "#",
     demo: "https://avulextech.site/",
   },
+  {
+    slug: "manuchim-dev-blog",
+    title: "Nweke Manuchimso — Developer & Writer Blog",
+    description: "A personal blog covering web development, cybersecurity, and technical writing — built with a neo-brutalist design aesthetic and a full CMS.",
+    longDescription: "A full-featured personal blog built with Next.js 16 App Router and Supabase. Features a public-facing site with article pages, text-to-speech, dynamic OG image generation, full SEO (sitemap, robots.txt, JSON-LD structured data), and a newsletter. The admin dashboard (/admin) is protected by Supabase Auth and supports creating, editing, and publishing articles with a rich text/markdown editor, featured image uploads to Supabase Storage, and a security center with MFA status and session info. View counts are bot-protected with UA checks, referer validation, rate limiting, and session deduplication.",
+    image: "/blog.png",
+    technologies: ["Next.js 16", "TypeScript", "Tailwind CSS v4", "Supabase", "PostgreSQL", "Supabase Auth", "Lexical", "Vercel"],
+    github: "https://github.com/Manuel-co/newblog",
+    demo: "https://blog.manuchim.site",
+  },
+
 ];
 
 export function getProjectBySlug(slug: string): Project | undefined {

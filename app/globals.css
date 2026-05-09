@@ -124,34 +124,42 @@ html {
   scroll-behavior: smooth;
 }
 
-/* ─── Custom Scrollbar ───────────────────────────────────── */
+/* ─── Text Selection ─────────────────────────────────────── */
+
+::selection {
+  background-color: #6366F1;
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background-color: #6366F1;
+  color: #ffffff;
+}
 
 /* Firefox */
 * {
-  scrollbar-width: thin;
-  scrollbar-color: #0b0b0b #e5e5e5;
+  scrollbar-width: auto;
+  scrollbar-color: #6366F1 #e5e5e5;
 }
 
 /* Chrome / Safari / Edge */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 12px;
+  height: 12px;
 }
 
 ::-webkit-scrollbar-track {
   background: #f0f0f0;
-  border-left: 2px solid #0b0b0b;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #0b0b0b;
+  background: #6366F1;
   border-radius: 0;
-  border: 2px solid #0b0b0b;
+  border: 2px solid #f0f0f0;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #6366F1;
-  border-color: #6366F1;
+  background: #4f46e5;
 }
 
 ::-webkit-scrollbar-corner {

@@ -93,12 +93,17 @@ export default function ProjectPage() {
                       <p className="text-gray-500 text-sm leading-relaxed line-clamp-3 mb-4 flex-1">
                         {project.description}
                       </p>
-                      <div className="flex flex-wrap gap-1.5">
-                        {project.technologies.map((tech) => (
+                      <div className="flex flex-wrap gap-1.5 mt-auto">
+                        {project.technologies.slice(0, 4).map((tech) => (
                           <span key={tech} className="text-xs px-2.5 py-1 rounded-full bg-black/5 border-2 border-black/15 font-bold text-black/60">
                             {tech}
                           </span>
                         ))}
+                        {project.technologies.length > 4 && (
+                          <span className="text-xs px-2.5 py-1 rounded-full bg-black/5 border-2 border-black/15 font-bold text-black/40">
+                            +{project.technologies.length - 4}
+                          </span>
+                        )}
                       </div>
                     </div>
                   </Link>
