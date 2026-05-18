@@ -110,6 +110,7 @@ export const projects: Project[] = [
     github: "#",
     demo: "https://fusion-app-drab.vercel.app/",
   },
+ 
     {
     slug: "avulex-technology",
     title: "Avulex Technology",
@@ -129,6 +130,16 @@ export const projects: Project[] = [
     technologies: ["Next.js 16", "TypeScript", "Tailwind CSS v4", "Supabase", "PostgreSQL", "Supabase Auth", "Lexical", "Vercel"],
     github: "https://github.com/Manuel-co/newblog",
     demo: "https://blog.manuchim.site",
+  },
+   {
+    slug: "job-scraper",
+    title: "Job Finder",
+    description: "A full-stack remote job board that automatically scrapes listings from multiple job boards and ATS public APIs, with full-text search and smart deduplication.",
+    longDescription: "A full-stack remote job board built with Next.js and FastAPI. It automatically scrapes listings every 6 hours from Remotive, Arbeitnow, Himalayas, Jobicy, Remote OK, We Work Remotely, and ATS providers (Greenhouse, Lever, Ashby, SmartRecruiters, Workable). Features smart deduplication so the same job from multiple sources is stored once, full-text search across title, company, description and tags, filters by job type/source/location, structured descriptions with HTML stripped into readable sections, real company logos via Google's favicon service, a stats page with source breakdowns, and an admin dashboard with JWT auth for managing scrapes.",
+    image: "/jobs.png",
+    technologies: ["Next.js 16", "TypeScript", "Tailwind CSS", "FastAPI", "Python", "SQLAlchemy", "PostgreSQL", "APScheduler"],
+    github: "https://github.com/Manuel-co/job-scraper",
+    demo: "https://job-scraper-nu-nine.vercel.app/",
   },
 
 ];
