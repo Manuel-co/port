@@ -141,6 +141,16 @@ export const projects: Project[] = [
     github: "https://github.com/Manuel-co/job-scraper",
     demo: "https://job-scraper-nu-nine.vercel.app/",
   },
+  {
+    slug: "healthyzero",
+    title: "HealthyZero",
+    description: "A telemedicine platform connecting patients with licensed medical professionals for private, judgment-free remote consultations and mental wellness support.",
+    longDescription: "HealthyZero is a digital healthcare platform connecting patients with licensed medical professionals for remote consultations. It offers 24/7 access to 500+ licensed practitioners, individual therapy, couples counseling, and mental wellness programs, with end-to-end confidential sessions, between-session text support, progress tracking, and crisis support on premium plans. Built for remote workers, people managing chronic conditions, and anyone who prefers care without a waiting room.",
+    image: "/Hzero.png",
+    technologies: ["Next.js", "Tailwind CSS", "TypeScript"],
+    github: "#",
+    demo: "https://healthy-0.vercel.app/",
+  },
 
 ];
 
