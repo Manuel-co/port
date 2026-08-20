@@ -25,7 +25,7 @@ export default function NotFound() {
               404
             </span>
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="bg-[#FF6B7A] border-4 border-black rounded-2xl px-6 py-3 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+              <div className="bg-[#FF6B7A] border-4 border-black rounded-none px-6 py-3 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
                 <span className="text-white font-bold text-xl font-zalando">Page Not Found</span>
               </div>
             </div>
@@ -38,7 +38,7 @@ export default function NotFound() {
           {/* Primary CTA */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
             <Link href="/"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-black text-white font-bold text-base border-4 border-black rounded-xl shadow-[6px_6px_0px_0px_rgba(99,102,241,1)] hover:shadow-[2px_2px_0px_0px_rgba(99,102,241,1)] hover:translate-x-1 hover:translate-y-1 transition-all font-zalando">
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-black text-white font-bold text-base border-4 border-black rounded-none shadow-[6px_6px_0px_0px_rgba(99,102,241,1)] hover:shadow-[2px_2px_0px_0px_rgba(99,102,241,1)] hover:translate-x-1 hover:translate-y-1 transition-all font-zalando">
               <Home className="w-5 h-5" /> Go Home
             </Link>
            

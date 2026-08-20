@@ -9,6 +9,7 @@ import emailjs from "@emailjs/browser"
 import toast from "react-hot-toast"
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import * as Yup from "yup"
+import { motion } from "framer-motion"
 
 const validationSchema = Yup.object({
   name: Yup.string().min(2).max(50).matches(/^[a-zA-Z\s]+$/, "Letters only").required("Name is required"),
@@ -49,29 +50,39 @@ export default function ContactPage() {
         <div className="container max-w-6xl mx-auto px-4">
 
           {/* Page header */}
-          <div className="text-center mb-16">
-            {/* <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#6366F1] text-white font-bold text-sm border-4 border-black rounded-full shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mb-6">
-              <Mail className="w-4 h-4" /> Contact
-            </div> */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <span className="inline-block font-mono text-xs font-bold tracking-[0.2em] text-black/40 mb-3 uppercase">
+              Get In Touch
+            </span>
             <h1 className="text-5xl md:text-6xl font-bold mb-4 font-zalando text-black">
-              Let's work{" "}
-              <span className="bg-[#6366F1] text-white px-3 py-1 inline-block border-4 border-black rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+              Let&apos;s work{" "}
+              <span className="bg-[#6366F1] text-white px-3 py-1 inline-block border-4 border-black rounded-none shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
                 together.
               </span>
             </h1>
             <p className="text-gray-600 text-lg max-w-xl mx-auto">
-              Available for freelance work, collaborations, and interesting projects. Reach out and let's build something great.
+              Available for freelance work, collaborations, and interesting projects. Reach out and let&apos;s build something great.
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid lg:grid-cols-[1fr_1.5fr] gap-8 items-start">
 
             {/* Contact links */}
-            <div className="flex flex-col gap-4">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className="flex flex-col gap-4"
+            >
               {contactLinks.map(({ icon: Icon, label, value, href, color }) => (
                 <Link key={href} href={href} target={href.startsWith("mailto") ? undefined : "_blank"}
-                  className="flex items-center gap-4 p-4 bg-white border-4 border-black rounded-2xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:translate-x-0.5 hover:translate-y-0.5 transition-all no-underline">
-                  <span className={`w-12 h-12 ${color} border-2 border-black rounded-xl flex items-center justify-center flex-shrink-0 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]`}>
+                  className="flex items-center gap-4 p-4 bg-white border-4 border-black rounded-none shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:translate-x-0.5 hover:translate-y-0.5 transition-all no-underline">
+                  <span className={`w-12 h-12 ${color} border-2 border-black rounded-none flex items-center justify-center flex-shrink-0 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]`}>
                     <Icon className="w-5 h-5 text-white" />
                   </span>
                   <div className="flex-1 min-w-0">
@@ -83,19 +94,24 @@ export default function ContactPage() {
               ))}
 
               {/* Availability card */}
-              <div className="bg-[#FCD34D] border-4 border-black rounded-2xl p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mt-2">
+              <div className="bg-[#FCD34D] border-4 border-black rounded-none p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mt-2">
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="w-3 h-3 rounded-full bg-green-600 animate-pulse" />
+                  <span className="w-3 h-3 rounded-none bg-green-600 animate-pulse" />
                   <span className="font-bold text-black text-sm">Currently available</span>
                 </div>
                 <p className="text-black/70 text-sm font-medium">
                   Open to freelance projects, full-time roles, and collaborations.
                 </p>
               </div>
-            </div>
+            </motion.div>
 
             {/* Form */}
-            <div className="bg-[#F5F5F5] border-4 border-black rounded-3xl p-8 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+              className="bg-[#F5F5F5] border-4 border-black rounded-none p-8 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]"
+            >
               <h3 className="text-xl font-bold text-black mb-6 font-zalando">Send a message</h3>
               <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
                 {({ errors, touched, isValid, dirty }) => (
@@ -104,24 +120,24 @@ export default function ContactPage() {
                       <div>
                         <label htmlFor="name" className="block text-xs font-bold text-black/50 uppercase tracking-widest mb-2">Name</label>
                         <Field id="name" name="name" type="text" placeholder="Your name"
-                          className={`w-full px-4 py-3 bg-white border-4 rounded-xl text-black text-sm font-medium placeholder-black/30 outline-none transition-all ${errors.name && touched.name ? "border-red-500" : "border-black focus:border-[#6366F1]"}`} />
+                          className={`w-full px-4 py-3 bg-white border-4 rounded-none text-black text-sm font-medium placeholder-black/30 outline-none transition-all ${errors.name && touched.name ? "border-red-500" : "border-black focus:border-[#6366F1]"}`} />
                         <ErrorMessage name="name" component="p" className="text-red-500 text-xs mt-1 font-semibold" />
                       </div>
                       <div>
                         <label htmlFor="email" className="block text-xs font-bold text-black/50 uppercase tracking-widest mb-2">Email</label>
                         <Field id="email" name="email" type="email" placeholder="your@email.com"
-                          className={`w-full px-4 py-3 bg-white border-4 rounded-xl text-black text-sm font-medium placeholder-black/30 outline-none transition-all ${errors.email && touched.email ? "border-red-500" : "border-black focus:border-[#6366F1]"}`} />
+                          className={`w-full px-4 py-3 bg-white border-4 rounded-none text-black text-sm font-medium placeholder-black/30 outline-none transition-all ${errors.email && touched.email ? "border-red-500" : "border-black focus:border-[#6366F1]"}`} />
                         <ErrorMessage name="email" component="p" className="text-red-500 text-xs mt-1 font-semibold" />
                       </div>
                     </div>
                     <div>
                       <label htmlFor="message" className="block text-xs font-bold text-black/50 uppercase tracking-widest mb-2">Message</label>
                       <Field as="textarea" id="message" name="message" rows={5} placeholder="Tell me about your project..."
-                        className={`w-full px-4 py-3 bg-white border-4 rounded-xl text-black text-sm font-medium placeholder-black/30 outline-none transition-all resize-vertical ${errors.message && touched.message ? "border-red-500" : "border-black focus:border-[#6366F1]"}`} />
+                        className={`w-full px-4 py-3 bg-white border-4 rounded-none text-black text-sm font-medium placeholder-black/30 outline-none transition-all resize-vertical ${errors.message && touched.message ? "border-red-500" : "border-black focus:border-[#6366F1]"}`} />
                       <ErrorMessage name="message" component="p" className="text-red-500 text-xs mt-1 font-semibold" />
                     </div>
                     <button type="submit" disabled={isLoading || !isValid || !dirty}
-                      className={`flex items-center justify-center gap-2 py-4 font-bold text-sm border-4 border-black rounded-xl transition-all font-zalando ${
+                      className={`flex items-center justify-center gap-2 py-4 font-bold text-sm border-4 border-black rounded-none transition-all font-zalando ${
                         isLoading || !isValid || !dirty
                           ? "bg-black/15 text-black/30 cursor-not-allowed"
                           : "bg-black text-white shadow-[4px_4px_0px_0px_rgba(99,102,241,1)] hover:shadow-[1px_1px_0px_0px_rgba(99,102,241,1)] hover:translate-x-0.5 hover:translate-y-0.5"
@@ -132,7 +148,7 @@ export default function ContactPage() {
                   </Form>
                 )}
               </Formik>
-            </div>
+            </motion.div>
           </div>
         </div>
       </main>

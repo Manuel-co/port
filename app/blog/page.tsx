@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ExternalLink, Search, Filter, BookOpen, ChevronLeft, ChevronRight } from "lucide-react";
+import { ExternalLink, Search, Filter, ChevronLeft, ChevronRight } from "lucide-react";
 import { Header } from "../../components/layout/Header";
 import { Footer } from "../../components/layout/Footer";
 import { useState } from "react";
@@ -125,20 +125,25 @@ export default function BlogPage() {
         <div className="container max-w-6xl mx-auto px-4">
 
           {/* Page header */}
-          <div className="text-center mb-16">
-            {/* <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#2F81F7] text-white font-bold text-sm border-4 border-black rounded-full shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mb-6">
-              <BookOpen className="w-4 h-4" /> Writing
-            </div> */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <span className="inline-block font-mono text-xs font-bold tracking-[0.2em] text-black/40 mb-3 uppercase">
+              Writing
+            </span>
             <h1 className="text-5xl md:text-6xl font-bold mb-4 font-zalando text-black">
               Articles &amp;{" "}
-              <span className="bg-[#2F81F7] text-white px-3 py-1 inline-block border-4 border-black rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+              <span className="bg-[#2F81F7] text-white px-3 py-1 inline-block border-4 border-black rounded-none shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
                 News
               </span>
             </h1>
             <p className="text-gray-600 text-lg max-w-xl mx-auto">
               Technical articles, tutorials, and insights about web development, React, and more.
             </p>
-          </div>
+          </motion.div>
 
           {/* Search + Filter */}
           <div className="mb-12 space-y-5 max-w-2xl mx-auto">
@@ -149,7 +154,7 @@ export default function BlogPage() {
                 placeholder="Search articles..."
                 value={searchQuery}
                 onChange={(e) => handleSearch(e.target.value)}
-                className="w-full pl-12 pr-4 py-4 bg-white border-4 border-black rounded-2xl text-black placeholder-black/30 font-medium focus:outline-none shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] focus:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] focus:translate-x-0.5 focus:translate-y-0.5 transition-all"
+                className="w-full pl-12 pr-4 py-4 bg-white border-4 border-black rounded-none text-black placeholder-black/30 font-medium focus:outline-none shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] focus:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] focus:translate-x-0.5 focus:translate-y-0.5 transition-all"
               />
             </div>
 
@@ -157,7 +162,7 @@ export default function BlogPage() {
               <Filter className="w-4 h-4 text-black/40" />
               {categories.map((cat) => (
                 <button key={cat} onClick={() => handleCategory(cat)}
-                  className={`px-4 py-2 text-sm font-bold border-4 border-black rounded-xl transition-all ${
+                  className={`px-4 py-2 text-sm font-bold border-4 border-black rounded-none transition-all ${
                     selectedCategory === cat
                       ? "bg-black text-white shadow-[3px_3px_0px_0px_rgba(99,102,241,1)]"
                       : "bg-white text-black/50 hover:text-black hover:bg-black/5 shadow-[2px_2px_0px_0px_rgba(0,0,0,0.1)]"
@@ -180,9 +185,9 @@ export default function BlogPage() {
                   initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.2, delay: index * 0.03 }}
                   className="h-full">
-                  <div className={`h-full flex flex-col bg-white border-4 border-black rounded-3xl overflow-hidden hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 border-l-8 ${cardAccents[index % cardAccents.length]}`}>
+                  <div className={`h-full flex flex-col bg-white border-4 border-black rounded-none overflow-hidden hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 border-l-8 ${cardAccents[index % cardAccents.length]}`}>
                     <div className="flex flex-col flex-1 p-6">
-                      <span className={`inline-block ${categoryColors[article.category] ?? "bg-black"} text-white text-xs font-bold px-3 py-1.5 rounded-full border-2 border-black mb-4 w-fit`}>
+                      <span className={`inline-block ${categoryColors[article.category] ?? "bg-black"} text-white text-xs font-bold px-3 py-1.5 rounded-none border-2 border-black mb-4 w-fit`}>
                         {article.category}
                       </span>
                       <h2 className="text-base font-bold text-black mb-3 leading-snug line-clamp-2">
@@ -193,7 +198,7 @@ export default function BlogPage() {
                       </p>
                       <div className="mt-auto">
                         <Link href={article.link} target="_blank"
-                          className={`inline-flex items-center justify-center gap-2 text-sm font-bold px-4 py-2.5 w-full border-4 border-black rounded-xl transition-all ${
+                          className={`inline-flex items-center justify-center gap-2 text-sm font-bold px-4 py-2.5 w-full border-4 border-black rounded-none transition-all ${
                             article.link === "#"
                               ? "bg-black/10 text-black/30 cursor-not-allowed pointer-events-none"
                               : "bg-black text-white shadow-[3px_3px_0px_0px_rgba(99,102,241,1)] hover:shadow-[1px_1px_0px_0px_rgba(99,102,241,1)] hover:translate-x-0.5 hover:translate-y-0.5"
@@ -212,7 +217,7 @@ export default function BlogPage() {
             <div className="text-center py-16">
               <p className="text-black/40 font-bold mb-4">No articles found.</p>
               <button onClick={() => { setSearchQuery(""); setSelectedCategory("All"); }}
-                className="px-6 py-3 bg-black text-white font-bold border-4 border-black rounded-xl shadow-[4px_4px_0px_0px_rgba(99,102,241,1)] hover:shadow-[1px_1px_0px_0px_rgba(99,102,241,1)] hover:translate-x-0.5 hover:translate-y-0.5 transition-all">
+                className="px-6 py-3 bg-black text-white font-bold border-4 border-black rounded-none shadow-[4px_4px_0px_0px_rgba(99,102,241,1)] hover:shadow-[1px_1px_0px_0px_rgba(99,102,241,1)] hover:translate-x-0.5 hover:translate-y-0.5 transition-all">
                 Clear Filters
               </button>
             </div>
@@ -222,12 +227,12 @@ export default function BlogPage() {
           {totalPages > 1 && (
             <div className="flex items-center justify-center gap-3 mb-16">
               <button onClick={() => setPage((p) => Math.max(1, p - 1))} disabled={page === 1}
-                className="w-11 h-11 flex items-center justify-center bg-white border-4 border-black rounded-xl shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:translate-x-0.5 hover:translate-y-0.5 transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:translate-x-0 disabled:translate-y-0">
+                className="w-11 h-11 flex items-center justify-center bg-white border-4 border-black rounded-none shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:translate-x-0.5 hover:translate-y-0.5 transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:translate-x-0 disabled:translate-y-0">
                 <ChevronLeft className="w-5 h-5" />
               </button>
               {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
                 <button key={n} onClick={() => setPage(n)}
-                  className={`w-11 h-11 flex items-center justify-center font-bold text-sm border-4 border-black rounded-xl transition-all ${
+                  className={`w-11 h-11 flex items-center justify-center font-bold text-sm border-4 border-black rounded-none transition-all ${
                     n === page
                       ? "bg-black text-white shadow-[3px_3px_0px_0px_rgba(99,102,241,1)]"
                       : "bg-white text-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:translate-x-0.5 hover:translate-y-0.5"
@@ -236,7 +241,7 @@ export default function BlogPage() {
                 </button>
               ))}
               <button onClick={() => setPage((p) => Math.min(totalPages, p + 1))} disabled={page === totalPages}
-                className="w-11 h-11 flex items-center justify-center bg-white border-4 border-black rounded-xl shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:translate-x-0.5 hover:translate-y-0.5 transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:translate-x-0 disabled:translate-y-0">
+                className="w-11 h-11 flex items-center justify-center bg-white border-4 border-black rounded-none shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:translate-x-0.5 hover:translate-y-0.5 transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:translate-x-0 disabled:translate-y-0">
                 <ChevronRight className="w-5 h-5" />
               </button>
             </div>
@@ -246,7 +251,7 @@ export default function BlogPage() {
           <div className="mt-8">
             <h2 className="text-2xl font-bold text-center mb-8 font-zalando">
               Read more on these{" "}
-              <span className="bg-[#FCD34D] text-black px-2 py-0.5 inline-block border-4 border-black rounded-lg shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
+              <span className="bg-[#FCD34D] text-black px-2 py-0.5 inline-block border-4 border-black rounded-none shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
                 platforms
               </span>
             </h2>
@@ -257,7 +262,7 @@ export default function BlogPage() {
                 { name: "Dev.to", url: "https://dev.to/", color: "bg-[#2F81F7]" },
               ].map(({ name, url, color }) => (
                 <Link key={name} href={url} target="_blank"
-                  className={`${color} text-white font-bold text-center py-5 px-6 border-4 border-black rounded-2xl shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-0.5 hover:translate-y-0.5 transition-all flex items-center justify-center gap-2`}>
+                  className={`${color} text-white font-bold text-center py-5 px-6 border-4 border-black rounded-none shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-0.5 hover:translate-y-0.5 transition-all flex items-center justify-center gap-2`}>
                   {name} <ExternalLink className="w-4 h-4" />
                 </Link>
               ))}

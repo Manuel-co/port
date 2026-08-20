@@ -1,6 +1,9 @@
+"use client"
+
 import Link from "next/link"
 import Image from "next/image"
 import { Pencil, ArrowRight } from "lucide-react"
+import { motion } from "framer-motion"
 
 const articles = [
   {
@@ -40,22 +43,39 @@ export function Blog() {
       <div className="container max-w-6xl mx-auto px-4">
 
         {/* Header */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold font-zalando text-black">
-            Articles
-          </h2>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-12"
+        >
+          <div>
+            <span className="inline-block font-mono text-xs font-bold tracking-[0.2em] text-black/40 mb-3 uppercase">
+              Writing — 05
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold font-zalando text-black">
+              Articles
+            </h2>
+          </div>
           <Link href="/blog"
-            className="inline-flex items-center gap-2 px-5 py-3 bg-white text-black font-bold text-sm border-4 border-black rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:translate-x-0.5 hover:translate-y-0.5 transition-all font-zalando">
+            className="inline-flex items-center gap-2 px-5 py-3 bg-white text-black font-bold text-sm border-4 border-black rounded-none shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:translate-x-0.5 hover:translate-y-0.5 transition-all font-zalando">
             <Pencil className="w-4 h-4" /> Browse all articles
           </Link>
-        </div>
+        </motion.div>
 
         <div className="grid md:grid-cols-[1fr_1fr] gap-6 items-stretch">
           {/* Featured large card */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          >
           <Link href={featured.href} target="_blank"
-            className="group bg-white border-4 border-black rounded-3xl overflow-hidden hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 flex flex-col">
+            className="group bg-white border-4 border-black rounded-none overflow-hidden hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 flex flex-col">
             <div className={`${featured.tagColor} h-56 relative overflow-hidden flex-shrink-0`}>
-              <span className="absolute top-4 right-4 z-10 bg-black text-white text-xs font-bold px-3 py-1.5 rounded-lg border-2 border-black">
+              <span className="absolute top-4 right-4 z-10 bg-black text-white text-xs font-bold px-3 py-1.5 rounded-none border-2 border-black">
                 {featured.tag}
               </span>
               {featured.image ? (
@@ -73,16 +93,24 @@ export function Blog() {
               </div>
             </div>
           </Link>
+          </motion.div>
 
           {/* Smaller cards */}
           <div className="flex flex-col gap-6 h-full">
-            {rest.map((article) => (
-              <Link key={article.title} href={article.href} target="_blank"
-                className="group bg-white border-4 border-black rounded-3xl overflow-hidden hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 flex flex-1">
+            {rest.map((article, i) => (
+              <motion.div key={article.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.5, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="flex flex-1"
+              >
+              <Link href={article.href} target="_blank"
+                className="group bg-white border-4 border-black rounded-none overflow-hidden hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 flex flex-1">
                 <div className={`${article.tagColor} w-3 flex-shrink-0`} />
                 <div className="p-6 flex flex-col justify-between flex-1">
                   <div>
-                    <span className={`inline-block ${article.tagColor} text-white text-xs font-bold px-3 py-1 rounded-full border-2 border-black mb-3`}>
+                    <span className={`inline-block ${article.tagColor} text-white text-xs font-bold px-3 py-1 rounded-none border-2 border-black mb-3`}>
                       {article.tag}
                     </span>
                     <h3 className="text-base md:text-lg font-bold text-black font-zalando leading-snug mb-2 group-hover:text-[#2F81F7] transition-colors">
@@ -90,11 +118,12 @@ export function Blog() {
                     </h3>
                     <p className="text-gray-500 text-sm leading-relaxed line-clamp-2">{article.description}</p>
                   </div>
-                  <div className="flex items-center gap-1 mt-4 text-gray-400 text-xs font-bold group-hover:text-black transition-colors">
+                  <div className="flex items-center gap-1 mt-4 text-gray-500 text-xs font-bold group-hover:text-black transition-colors">
                     Read article <ArrowRight className="w-3 h-3" />
                   </div>
                 </div>
               </Link>
+              </motion.div>
             ))}
           </div>
         </div>

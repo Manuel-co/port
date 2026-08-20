@@ -19,6 +19,7 @@ module.exports = {
     extend: {
       fontFamily: {
         'zalando': ['Zalando Sans Expanded', 'sans-serif'],
+        'mono': ['DM Mono', 'monospace'],
       },
       colors: {
         border: "hsl(var(--border))",
