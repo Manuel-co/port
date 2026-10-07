@@ -6,6 +6,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Zalando+Sans+Expanded&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap');
 
 /* ─── Font Utilities ─────────────────────────────────────── */
 
@@ -105,7 +106,40 @@
     @apply border-border;
   }
   body {
-    @apply bg-white text-black font-zalando;
+    @apply bg-paper text-ink font-sans antialiased;
+  }
+}
+
+/* ─── Desktop-canvas primitives (clicktokeep-inspired) ───── */
+
+@layer components {
+  /* Giant uppercase headline that scales with the viewport */
+  .display-xl {
+    @apply font-display font-semibold uppercase leading-[0.86] tracking-[-0.045em];
+    font-size: clamp(3.5rem, 15.5vw, 17rem);
+  }
+  .display-lg {
+    @apply font-display font-semibold uppercase leading-[0.9] tracking-[-0.04em];
+    font-size: clamp(2.75rem, 9.5vw, 10rem);
+  }
+  .display-md {
+    @apply font-display font-semibold uppercase leading-[0.92] tracking-[-0.035em];
+    font-size: clamp(2rem, 5.5vw, 5.5rem);
+  }
+  /* Tiny annotation copy */
+  .note {
+    @apply text-[11px] leading-[1.35] md:text-xs;
+  }
+  .hairline {
+    @apply border-ink/80;
+    border-width: 0;
+    border-bottom-width: 1px;
+  }
+  .pill {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-ink px-5 py-2 text-sm transition-colors duration-200 hover:bg-ink hover:text-paper;
+  }
+  .pill-inverse {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-paper px-5 py-2 text-sm transition-colors duration-200 hover:bg-paper hover:text-ink;
   }
 }
 
@@ -127,43 +161,39 @@ html {
 /* ─── Text Selection ─────────────────────────────────────── */
 
 ::selection {
-  background-color: #6366F1;
-  color: #ffffff;
+  background-color: #000;
+  color: #efefef;
 }
 
 ::-moz-selection {
-  background-color: #6366F1;
-  color: #ffffff;
+  background-color: #000;
+  color: #efefef;
 }
 
 /* Firefox */
 * {
-  scrollbar-width: auto;
-  scrollbar-color: #6366F1 #e5e5e5;
+  scrollbar-width: thin;
+  scrollbar-color: #000 #efefef;
 }
 
 /* Chrome / Safari / Edge */
 ::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f0f0f0;
+  background: #efefef;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #6366F1;
-  border-radius: 0;
-  border: 2px solid #f0f0f0;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #4f46e5;
+  background: #000;
+  border-radius: 999px;
+  border: 2px solid #efefef;
 }
 
 ::-webkit-scrollbar-corner {
-  background: #f0f0f0;
+  background: #efefef;
 }
 
 

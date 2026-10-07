@@ -1,10 +1,12 @@
+import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { getProjectBySlug, projects } from "@/lib/projects";
-import { ArrowLeft, ExternalLink, Mail } from "lucide-react";
+import { PageHero } from "@/components/desk/PageHero";
+import { Label, RevealLine } from "@/components/desk/primitives";
+import { getProjectBySlug, projects, projectsSorted } from "@/lib/projects";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -19,98 +21,101 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
   };
 }
 
+const shortTitle = (title: string) => title.split("—")[0].trim();
+
 export default function ProjectSlugPage({ params }: { params: { slug: string } }) {
   const project = getProjectBySlug(params.slug);
   if (!project) notFound();
 
+  const index = projectsSorted.findIndex((p) => p.slug === project.slug);
+  const next = projectsSorted[(index + 1) % projectsSorted.length];
+  const hasSource = project.github && project.github !== "#";
+
+  const specs: { label: string; value: ReactNode }[] = [
+    { label: "File", value: `${String(index + 1).padStart(2, "0")} / ${String(projectsSorted.length).padStart(2, "0")}` },
+    { label: "Stack", value: project.technologies.join(", ") },
+    {
+      label: "Live",
+      value: (
+        <Link href={project.demo} target="_blank" className="underline underline-offset-4 hover:no-underline break-all">
+          {project.demo.replace(/^https?:\/\//, "").replace(/\/$/, "")} ↗
+        </Link>
+      ),
+    },
+    ...(hasSource
+      ? [{
+          label: "Source",
+          value: (
+            <Link href={project.github} target="_blank" className="underline underline-offset-4 hover:no-underline">
+              GitHub ↗
+            </Link>
+          ),
+        }]
+      : []),
+  ];
+
   return (
-    <div className="min-h-screen bg-white text-black">
+    <div className="min-h-screen bg-paper text-ink">
       <Header />
-      <main className="pt-36 pb-24">
-        <div className="container max-w-5xl mx-auto px-4">
+      <main>
+        <PageHero
+          lines={[shortTitle(project.title)]}
+          notes={[project.description, <>{project.technologies.slice(0, 3).join(" · ")}</>]}
+          back={{ href: "/project", label: "All projects" }}
+        />
 
-          {/* Back */}
-          <Link href="/project"
-            className="inline-flex items-center gap-2 text-sm font-bold text-black/50 hover:text-black mb-10 transition-colors">
-            <ArrowLeft className="w-4 h-4" /> Back to Projects
-          </Link>
-
-          {/* Title */}
-          <h1 className="text-4xl md:text-5xl font-bold font-zalando text-black mb-10 leading-tight">
-            {project.title}
-          </h1>
-
-          {/* Browser mockup preview */}
-          <div className="border-4 border-black rounded-none overflow-hidden shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] mb-12">
-            {/* Browser chrome */}
-            <div className="bg-[#F5F5F5] border-b-4 border-black px-4 py-3 flex items-center gap-3">
-              <div className="flex gap-1.5">
-                <span className="w-3 h-3 rounded-none bg-[#FF6B7A] border-2 border-black" />
-                <span className="w-3 h-3 rounded-none bg-[#FCD34D] border-2 border-black" />
-                <span className="w-3 h-3 rounded-none bg-[#34D399] border-2 border-black" />
-              </div>
-              <div className="flex-1 bg-white border-2 border-black rounded-none px-3 py-1 text-xs font-bold text-black/40 truncate">
-                {project.demo}
-              </div>
+        {/* Screenshot in a desktop window */}
+        <section className="px-4 md:px-6 mt-12">
+          <div className="border border-ink bg-paper shadow-[0_30px_80px_-30px_rgba(0,0,0,0.35)]">
+            <div className="flex items-center gap-2 border-b border-ink px-3 py-2">
+              <span className="h-3 w-3 rounded-full bg-[#FF5F57] border border-black/20" />
+              <span className="h-3 w-3 rounded-full bg-[#FEBC2E] border border-black/20" />
+              <span className="h-3 w-3 rounded-full bg-[#28C840] border border-black/20" />
               <Link href={project.demo} target="_blank"
-                className="flex items-center gap-1 text-xs font-bold text-black/50 hover:text-black transition-colors">
-                <ExternalLink className="w-3.5 h-3.5" />
+                className="ml-3 flex-1 truncate rounded-full border border-ink/30 px-3 py-0.5 note text-ink/60 hover:text-ink">
+                {project.demo}
               </Link>
             </div>
-            {/* Screenshot */}
-            <div className="relative w-full aspect-video bg-white">
-              <Image src={project.image} alt={project.title} fill className="object-contain" />
+            <div className="relative aspect-video bg-white">
+              <Image src={project.image} alt={project.title} fill className="object-cover object-top" priority />
             </div>
           </div>
+        </section>
 
-          {/* Content grid */}
-          <div className="grid lg:grid-cols-[1fr_280px] gap-8">
-
-            {/* Left — About + CTA */}
-            <div className="space-y-6">
-              <div className="bg-white border-4 border-black rounded-none p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-                <h2 className="text-xl font-bold font-zalando mb-4">About the Project</h2>
-                <p className="text-gray-600 leading-relaxed">{project.longDescription}</p>
-              </div>
-
-              <div className="bg-[#FCD34D] border-4 border-black rounded-none p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-                <h2 className="text-xl font-bold font-zalando text-black mb-2">Want to build something similar?</h2>
-                <p className="text-black/70 text-sm mb-6">
-                  I&apos;m available for freelance projects. Let&apos;s talk about your idea.
-                </p>
-                <Link href="/contact"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-black text-white font-bold text-sm border-4 border-black rounded-none shadow-[4px_4px_0px_0px_rgba(99,102,241,1)] hover:shadow-[1px_1px_0px_0px_rgba(99,102,241,1)] hover:translate-x-0.5 hover:translate-y-0.5 transition-all font-zalando">
-                  <Mail className="w-4 h-4" /> Get in Touch
-                </Link>
-              </div>
-            </div>
-
-            {/* Right — Technologies + Links */}
-            <div className="space-y-6">
-              <div className="bg-white border-4 border-black rounded-none p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-                <h3 className="text-xs font-bold uppercase tracking-widest text-black/40 mb-4">Technologies</h3>
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech) => (
-                    <span key={tech}
-                      className="px-3 py-1.5 bg-[#6366F1] text-white text-xs font-bold border-2 border-black rounded-none shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="bg-white border-4 border-black rounded-none p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-                <h3 className="text-xs font-bold uppercase tracking-widest text-black/40 mb-4">Links</h3>
-                <div className="flex flex-col gap-3">
-                  <Link href={project.demo} target="_blank"
-                    className="flex items-center gap-3 px-4 py-3 bg-black text-white font-bold text-sm border-4 border-black rounded-none shadow-[3px_3px_0px_0px_rgba(99,102,241,1)] hover:shadow-[1px_1px_0px_0px_rgba(99,102,241,1)] hover:translate-x-0.5 hover:translate-y-0.5 transition-all">
-                    <ExternalLink className="w-4 h-4" /> Live Demo
-                  </Link>
-                </div>
-              </div>
-            </div>
+        {/* About + specs */}
+        <section className="px-4 md:px-6 mt-24 grid lg:grid-cols-[1.5fr_1fr] gap-14">
+          <div>
+            <Label index="A">About the project</Label>
+            <p className="mt-8 text-xl md:text-2xl leading-snug tracking-[-0.01em] max-w-[44ch]">
+              {project.longDescription}
+            </p>
           </div>
-        </div>
+          <dl className="border-t border-ink/80 self-start">
+            {specs.map(({ label, value }) => (
+              <div key={label} className="grid grid-cols-[5rem_1fr] gap-4 border-b border-ink/80 py-4">
+                <dt className="note uppercase tracking-wide text-ink/50">{label}</dt>
+                <dd className="text-sm leading-relaxed">{value}</dd>
+              </div>
+            ))}
+            <div className="pt-6 flex flex-wrap gap-3">
+              <Link href={project.demo} target="_blank" className="pill">Open live site ↗</Link>
+              <Link href="/contact" className="pill">Build something similar</Link>
+            </div>
+          </dl>
+        </section>
+
+        {/* Next */}
+        <section className="mt-32 bg-ink text-paper px-4 md:px-6 pt-16 pb-10">
+          <Label index="→" inverse>Next file</Label>
+          <Link href={`/project/${next.slug}`} className="group mt-8 block">
+            <RevealLine inverse className="display-lg">
+              <span className="inline-flex items-baseline gap-[0.2em]">
+                {shortTitle(next.title)}
+                <span className="transition-transform duration-500 group-hover:translate-x-4">→</span>
+              </span>
+            </RevealLine>
+          </Link>
+        </section>
       </main>
       <Footer />
     </div>

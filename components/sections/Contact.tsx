@@ -1,13 +1,14 @@
 "use client"
 
 import Link from "next/link"
-import { Mail, Twitter, Linkedin, Github, Send, ArrowUpRight } from "lucide-react"
+import Image from "next/image"
 import { useState } from "react"
 import emailjs from "@emailjs/browser"
 import toast from "react-hot-toast"
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import * as Yup from "yup"
-import { motion } from "framer-motion"
+import { projectsSorted } from "@/lib/projects"
+import { Label, Note, RevealLine } from "../desk/primitives"
 
 const validationSchema = Yup.object({
   name: Yup.string().min(2).max(50).matches(/^[a-zA-Z\s]+$/, "Letters only").required("Name is required"),
@@ -16,13 +17,26 @@ const validationSchema = Yup.object({
 })
 
 const contactLinks = [
-  { icon: Mail, label: "Email", value: "manuchimsoemmanuel2k@gmail.com", href: "mailto:manuchimsoemmanuel2k@gmail.com", color: "bg-[#FF6B7A]" },
-  { icon: Twitter, label: "X / Twitter", value: "@NwekeManuchimso", href: "https://x.com/NwekeManuchimso", color: "bg-[#2F81F7]" },
-  { icon: Linkedin, label: "LinkedIn", value: "Nweke Emmanuel", href: "https://www.linkedin.com/in/nweke-emmanuel-435a3923b/", color: "bg-[#6366F1]" },
-  { icon: Github, label: "GitHub", value: "Manuel-co", href: "https://github.com/Manuel-co", color: "bg-black" },
+  { label: "Email", value: "manuchimsoemmanuel2k@gmail.com", href: "mailto:manuchimsoemmanuel2k@gmail.com" },
+  { label: "X / Twitter", value: "@NwekeManuchimso", href: "https://x.com/NwekeManuchimso" },
+  { label: "LinkedIn", value: "Nweke Emmanuel", href: "https://www.linkedin.com/in/nweke-emmanuel-435a3923b/" },
+  { label: "GitHub", value: "Manuel-co", href: "https://github.com/Manuel-co" },
 ]
 
-export function Contact() {
+const inputBase =
+  "w-full bg-transparent border-0 border-b py-3 text-paper text-base outline-none placeholder:text-paper/30 transition-colors"
+
+export function Contact({
+  lines = ["Do you really", "need to keep", "scrolling?"],
+  notes = ["Freelance, contract or full-time.", "The value is in building, not browsing."],
+  label = "Get in touch",
+  as: Heading = "h2",
+}: {
+  lines?: [string, string, string]
+  notes?: [string, string]
+  label?: string
+  as?: "h1" | "h2"
+} = {}) {
   const [isLoading, setIsLoading] = useState(false)
   const initialValues = { name: "", email: "", message: "" }
 
@@ -41,101 +55,90 @@ export function Contact() {
     finally { setIsLoading(false) }
   }
 
+  const field = (invalid: boolean) =>
+    `${inputBase} ${invalid ? "border-red-400" : "border-paper/50 focus:border-paper"}`
+
   return (
-    <section id="contact" className="py-24 bg-white text-black">
-      <div className="container max-w-6xl mx-auto px-4">
+    <section id="contact" className="bg-ink text-paper pt-28 md:pt-36">
+      <div className="px-4 md:px-6">
+        <Label index="06" inverse>{label}</Label>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
-        >
-          <span className="inline-block font-mono text-xs font-bold tracking-[0.2em] text-black/40 mb-3 uppercase">
-            Get In Touch — 06
-          </span>
-          <h2 className="text-4xl md:text-5xl font-bold font-zalando text-black mb-4">
-            Let&apos;s work{" "}
-            <span className="bg-[#6366F1] text-white px-3 py-1 inline-block border-4 border-black rounded-none shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-              together.
-            </span>
-          </h2>
-          <p className="text-gray-500 text-lg max-w-xl">
-            Available for freelance work, collaborations, and interesting projects. Reach out and let&apos;s build something great.
-          </p>
-        </motion.div>
+        <Heading className="sr-only">{lines.join(" ")}</Heading>
+        <div className="mt-10">
+          <div aria-hidden>
+            <RevealLine inverse className="display-lg">{lines[0]}</RevealLine>
+            <RevealLine inverse className="display-lg" delay={0.08}>{lines[1]}</RevealLine>
+          </div>
+          <div className="flex flex-col md:flex-row md:items-end gap-6 md:gap-16 border-b border-paper/70">
+            <div aria-hidden>
+              <RevealLine inverse rule={false} className="display-lg" delay={0.16}>{lines[2]}</RevealLine>
+            </div>
+            <div className="flex gap-10 pb-4">
+              <Note inverse>{notes[0]}</Note>
+              <Note inverse>{notes[1]}</Note>
+            </div>
+          </div>
+        </div>
 
-        <div className="grid lg:grid-cols-[1fr_1.4fr] gap-8">
-
-          {/* Contact links */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col gap-4"
-          >
-            {contactLinks.map(({ icon: Icon, label, value, href, color }) => (
-              <Link key={href} href={href} target={href.startsWith("mailto") ? undefined : "_blank"}
-                className="flex items-center gap-4 p-4 bg-white border-4 border-black rounded-none shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:translate-x-0.5 hover:translate-y-0.5 transition-all no-underline">
-                <span className={`w-11 h-11 ${color} border-2 border-black rounded-none flex items-center justify-center flex-shrink-0`}>
-                  <Icon className="w-5 h-5 text-white" />
-                </span>
-                <div className="flex-1 min-w-0">
-                  <p className="text-xs font-bold text-black/40 uppercase tracking-widest mb-0.5">{label}</p>
-                  <p className="text-sm font-bold text-black truncate">{value}</p>
-                </div>
-                <ArrowUpRight className="w-4 h-4 text-black/30 flex-shrink-0" />
+        <div id="contact-form" className="mt-20 grid lg:grid-cols-[1fr_1.3fr] gap-16 scroll-mt-24">
+          {/* Links */}
+          <div className="min-w-0">
+            {contactLinks.map(({ label, value, href }) => (
+              <Link
+                key={href}
+                href={href}
+                target={href.startsWith("mailto") ? undefined : "_blank"}
+                className="group flex items-baseline justify-between gap-4 border-b border-paper/30 py-4 first:border-t"
+              >
+                <span className="note uppercase tracking-wide text-paper/50 w-24 shrink-0">{label}</span>
+                <span className="flex-1 min-w-0 truncate text-base md:text-lg transition-transform duration-300 group-hover:translate-x-2">{value}</span>
+                <span className="transition-transform duration-300 group-hover:-rotate-45">→</span>
               </Link>
             ))}
-          </motion.div>
+          </div>
 
           {/* Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-            className="bg-[#F5F5F5] border-4 border-black rounded-none p-8 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
-            <h3 className="text-xl font-bold text-black mb-6 font-zalando">Send a message</h3>
-            <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
-              {({ errors, touched, isValid, dirty }) => (
-                <Form className="flex flex-col gap-5">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label htmlFor="name" className="block text-xs font-bold text-black/50 uppercase tracking-widest mb-2">Name</label>
-                      <Field id="name" name="name" type="text"
-                        className={`w-full px-4 py-3 bg-white border-4 rounded-none text-black text-sm font-medium outline-none transition-all ${errors.name && touched.name ? "border-red-500" : "border-black focus:border-[#6366F1]"}`} />
-                      <ErrorMessage name="name" component="p" className="text-red-500 text-xs mt-1 font-semibold" />
-                    </div>
-                    <div>
-                      <label htmlFor="email" className="block text-xs font-bold text-black/50 uppercase tracking-widest mb-2">Email</label>
-                      <Field id="email" name="email" type="email"
-                        className={`w-full px-4 py-3 bg-white border-4 rounded-none text-black text-sm font-medium outline-none transition-all ${errors.email && touched.email ? "border-red-500" : "border-black focus:border-[#6366F1]"}`} />
-                      <ErrorMessage name="email" component="p" className="text-red-500 text-xs mt-1 font-semibold" />
-                    </div>
+          <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
+            {({ errors, touched, isValid, dirty }) => (
+              <Form className="flex flex-col gap-8">
+                <div className="grid sm:grid-cols-2 gap-8">
+                  <div>
+                    <label htmlFor="name" className="note uppercase tracking-wide text-paper/50">Name</label>
+                    <Field id="name" name="name" type="text" placeholder="Your name" className={field(!!(errors.name && touched.name))} />
+                    <ErrorMessage name="name" component="p" className="text-red-400 text-xs mt-1" />
                   </div>
                   <div>
-                    <label htmlFor="message" className="block text-xs font-bold text-black/50 uppercase tracking-widest mb-2">Message</label>
-                    <Field as="textarea" id="message" name="message" rows={5}
-                      className={`w-full px-4 py-3 bg-white border-4 rounded-none text-black text-sm font-medium outline-none transition-all resize-vertical ${errors.message && touched.message ? "border-red-500" : "border-black focus:border-[#6366F1]"}`} />
-                    <ErrorMessage name="message" component="p" className="text-red-500 text-xs mt-1 font-semibold" />
+                    <label htmlFor="email" className="note uppercase tracking-wide text-paper/50">Email</label>
+                    <Field id="email" name="email" type="email" placeholder="you@company.com" className={field(!!(errors.email && touched.email))} />
+                    <ErrorMessage name="email" component="p" className="text-red-400 text-xs mt-1" />
                   </div>
-                  <button type="submit" disabled={isLoading || !isValid || !dirty}
-                    className={`flex items-center justify-center gap-2 py-4 font-bold text-sm border-4 rounded-none transition-all font-zalando ${
-                      isLoading || !isValid || !dirty
-                        ? "bg-black/10 text-black/30 border-black/20 cursor-not-allowed"
-                        : "bg-black text-white border-black shadow-[4px_4px_0px_0px_rgba(99,102,241,1)] hover:shadow-[1px_1px_0px_0px_rgba(99,102,241,1)] hover:translate-x-0.5 hover:translate-y-0.5"
-                    }`}>
-                    <Send className="w-4 h-4" />
-                    {isLoading ? "Sending…" : "Send Message"}
-                  </button>
-                </Form>
-              )}
-            </Formik>
-          </motion.div>
+                </div>
+                <div>
+                  <label htmlFor="message" className="note uppercase tracking-wide text-paper/50">Message</label>
+                  <Field as="textarea" id="message" name="message" rows={4} placeholder="Tell me what you're building…"
+                    className={`${field(!!(errors.message && touched.message))} resize-none`} />
+                  <ErrorMessage name="message" component="p" className="text-red-400 text-xs mt-1" />
+                </div>
+                <button
+                  type="submit"
+                  disabled={isLoading || !isValid || !dirty}
+                  className="pill-inverse self-start px-8 py-3 disabled:opacity-30 disabled:pointer-events-none"
+                >
+                  {isLoading ? "Sending…" : "Click to send"}
+                </button>
+              </Form>
+            )}
+          </Formik>
         </div>
+      </div>
+
+      {/* Blurred strip of past work — sharpens on hover */}
+      <div className="mt-28 flex h-40 md:h-56 overflow-hidden">
+        {projectsSorted.map((p) => (
+          <Link key={p.slug} href={`/project/${p.slug}`} className="relative flex-1 min-w-[48px] group" aria-label={p.title}>
+            <Image src={p.image} alt="" fill className="object-cover blur-md scale-110 transition-all duration-500 group-hover:blur-0 group-hover:scale-100" />
+          </Link>
+        ))}
       </div>
     </section>
   )

@@ -1,127 +1,109 @@
 "use client";
 
 import Link from "next/link";
-import { Menu, X, Mail } from "lucide-react";
-import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 const navItems = [
-  // { href: "/", label: "Home" },
   { href: "/project", label: "Projects" },
-  { href: "/blog", label: "Blog" },
-  { href: "/contact", label: "Contact" },
+  { href: "/blog", label: "Writing" },
+  { href: "/contact#contact-form", label: "Contact" },
 ];
+
+const ease = [0.16, 1, 0.3, 1] as const;
+
+// Signature drawn as a mask so it takes the current text colour (needed for the difference blend).
+function Logo({ className = "" }: { className?: string }) {
+  return (
+    <span
+      role="img"
+      aria-label="Manuchim"
+      className={`block aspect-[476.75/237] bg-current ${className}`}
+      style={{
+        WebkitMask: "url(/manuchim-logo.svg) center / contain no-repeat",
+        mask: "url(/manuchim-logo.svg) center / contain no-repeat",
+      }}
+    />
+  );
+}
 
 export function Header() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
-  const isActive = (path: string) => path === "/" ? pathname === "/" : pathname.startsWith(path);
+  const isActive = (href: string) => pathname.startsWith(href.split("#")[0]);
+
+  useEffect(() => setIsOpen(false), [pathname]);
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [isOpen]);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 pt-4 px-4">
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className="max-w-5xl mx-auto bg-white border-4 border-black rounded-none px-6 py-3 flex items-center justify-between shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]"
-      >
+    <>
+      {/* Difference blend keeps the header legible over both paper and black sections */}
+      <header className="fixed inset-x-0 top-0 z-50 text-white mix-blend-difference">
+        <motion.div
+          initial={{ opacity: 0, y: -12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease }}
+          className="flex items-center justify-between px-4 md:px-6 py-3"
+        >
+          <Link href="/" aria-label="Nweke Manuchimso — home">
+            <Logo className="h-7 md:h-8" />
+          </Link>
 
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.5 no-underline">
-          <div className="relative w-9 h-9 rounded-none border-2 border-black overflow-hidden bg-black flex-shrink-0">
-            <Image src="/logo.png" alt="Nweke Manuchimso" fill className="object-cover" />
-          </div>
-          <span className="font-bold text-black text-sm font-zalando tracking-tight">
-            Manuchimso
-          </span>
-        </Link>
-
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-1">
-          {navItems.map(({ href, label }) => {
-            const active = isActive(href);
-            return (
-              <Link key={href} href={href}
-                className={`px-4 py-2 rounded-none text-sm font-bold transition-all font-zalando border-2 ${
-                  active
-                    ? "bg-black text-white border-black shadow-[3px_3px_0px_0px_rgba(99,102,241,1)]"
-                    : "text-black/50 border-transparent hover:text-black hover:bg-black/5 hover:border-black/20"
-                }`}>
+          <nav className="hidden md:flex gap-6">
+            {navItems.map(({ href, label }) => (
+              <Link key={href} href={href} className="note uppercase tracking-wide flex items-center gap-2">
+                <span className={`h-1.5 w-1.5 rounded-full bg-white transition-opacity ${isActive(href) ? "opacity-100" : "opacity-0"}`} />
                 {label}
               </Link>
-            );
-          })}
-        </nav>
+            ))}
+          </nav>
 
-        {/* CTA */}
-        <Link href="/contact"
-          className="hidden md:inline-flex items-center gap-1.5 px-5 py-2.5 bg-black text-white font-bold text-sm border-4 border-black rounded-none shadow-[4px_4px_0px_0px_rgba(99,102,241,1)] hover:shadow-[1px_1px_0px_0px_rgba(99,102,241,1)] hover:translate-x-0.5 hover:translate-y-0.5 transition-all font-zalando">
-          <Mail className="w-4 h-4" /> Get in touch
-        </Link>
+          <button
+            onClick={() => setIsOpen(true)}
+            className="md:hidden note uppercase tracking-wide"
+            aria-label="Open menu"
+          >
+            Menu
+          </button>
+        </motion.div>
+      </header>
 
-        {/* Mobile trigger */}
-        <Sheet open={isOpen} onOpenChange={setIsOpen}>
-          <SheetTrigger asChild>
-            <button className="md:hidden w-10 h-10 flex items-center justify-center bg-black text-white border-2 border-black rounded-none" aria-label="Open menu">
-              <Menu className="w-5 h-5" />
-            </button>
-          </SheetTrigger>
-
-          <SheetContent side="right" className="w-72 bg-white border-l-4 border-black p-0 flex flex-col font-zalando [&>button]:hidden">
-            {/* Header */}
-            <div className="flex items-center justify-between p-5 border-b-4 border-black">
-              <div className="flex items-center gap-3">
-                <div className="relative w-10 h-10 rounded-none border-2 border-black overflow-hidden bg-black">
-                  <Image src="/logo.png" alt="Nweke Manuchimso" fill className="object-cover" />
-                </div>
-                <div>
-                  <p className="text-sm font-bold text-black">Manuchimso</p>
-                  <p className="text-xs text-black/40 uppercase tracking-widest">Developer</p>
-                </div>
-              </div>
-              <SheetClose asChild>
-                <button className="w-9 h-9 flex items-center justify-center bg-black text-white border-2 border-black rounded-none">
-                  <X className="w-4 h-4" />
-                </button>
-              </SheetClose>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ clipPath: "inset(0 0 100% 0)" }}
+            animate={{ clipPath: "inset(0 0 0% 0)" }}
+            exit={{ clipPath: "inset(0 0 100% 0)" }}
+            transition={{ duration: 0.6, ease }}
+            className="fixed inset-0 z-[60] bg-ink text-paper flex flex-col px-4 py-3"
+          >
+            <div className="flex items-center justify-between">
+              <Logo className="h-7" />
+              <button onClick={() => setIsOpen(false)} className="note uppercase tracking-wide" aria-label="Close menu">
+                Close
+              </button>
             </div>
-
-            {/* Nav */}
-            <nav className="p-4 flex-1">
-              {navItems.map(({ href, label }) => {
-                const active = isActive(href);
-                return (
-                  <SheetClose asChild key={href}>
-                    <Link href={href}
-                      className={`flex items-center px-4 py-3 rounded-none mb-2 text-sm font-bold border-2 transition-all ${
-                        active
-                          ? "bg-black text-white border-black shadow-[3px_3px_0px_0px_rgba(99,102,241,1)]"
-                          : "text-black/50 border-transparent hover:text-black hover:bg-black/5 hover:border-black/20"
-                      }`}>
-                      {label}
-                      {active && <span className="ml-auto w-2 h-2 rounded-none bg-[#6366F1]" />}
-                    </Link>
-                  </SheetClose>
-                );
-              })}
+            <nav className="mt-auto mb-10">
+              {[{ href: "/", label: "Home" }, ...navItems].map(({ href, label }, i) => (
+                <div key={href} className="overflow-hidden border-b border-paper/60">
+                  <motion.div
+                    initial={{ y: "100%" }}
+                    animate={{ y: 0 }}
+                    transition={{ duration: 0.7, ease, delay: 0.15 + i * 0.06 }}
+                  >
+                    <Link href={href} className="block display-md py-2">{label}</Link>
+                  </motion.div>
+                </div>
+              ))}
             </nav>
-
-            {/* Footer CTA */}
-            <div className="p-4 border-t-4 border-black">
-              <SheetClose asChild>
-                <Link href="/contact"
-                  className="flex items-center justify-center gap-2 w-full py-3 bg-black text-white font-bold text-sm border-4 border-black rounded-none shadow-[4px_4px_0px_0px_rgba(99,102,241,1)] hover:shadow-[1px_1px_0px_0px_rgba(99,102,241,1)] hover:translate-x-0.5 hover:translate-y-0.5 transition-all">
-                  <Mail className="w-4 h-4" /> Get in touch
-                </Link>
-              </SheetClose>
-            </div>
-          </SheetContent>
-        </Sheet>
-      </motion.div>
-    </header>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }

@@ -20,8 +20,12 @@ module.exports = {
       fontFamily: {
         'zalando': ['Zalando Sans Expanded', 'sans-serif'],
         'mono': ['DM Mono', 'monospace'],
+        'display': ['Inter Tight', 'Helvetica Neue', 'Arial', 'sans-serif'],
+        'sans': ['Inter Tight', 'Helvetica Neue', 'Arial', 'sans-serif'],
       },
       colors: {
+        paper: "#efefef",
+        ink: "#000000",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

@@ -209,7 +209,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
-      <body className="font-zalando bg-white text-black">
+      <body className="font-sans bg-paper text-ink antialiased">
         {children}
         <Toaster position="top-center" />
       </body>

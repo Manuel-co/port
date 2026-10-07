@@ -2,19 +2,18 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Search, ChevronLeft, ChevronRight } from "lucide-react";
 import { Header } from "../../components/layout/Header";
 import { Footer } from "../../components/layout/Footer";
+import { PageHero } from "@/components/desk/PageHero";
+import { Note, RevealLine } from "@/components/desk/primitives";
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { projectsSorted } from "@/lib/projects";
 
 const PER_PAGE = 6;
 
-const accentColors = [
-  "bg-[#6366F1]", "bg-[#FF6B7A]", "bg-[#2F81F7]", "bg-[#FCD34D]",
-  "bg-[#34D399]", "bg-[#F97316]", "bg-[#A855F7]",
-];
+const fileName = (title: string) =>
+  title.split("—")[0].trim().toUpperCase().replace(/[^A-Z0-9]+/g, "_").replace(/^_|_$/g, "") + ".PNG";
 
 export default function ProjectPage() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -37,80 +36,71 @@ export default function ProjectPage() {
     setPage(1);
   };
 
+  const goTo = (n: number) => {
+    setPage(n);
+    document.getElementById("folder")?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <div className="min-h-screen bg-white text-black">
+    <div className="min-h-screen bg-paper text-ink">
       <Header />
-      <main className="pt-36 pb-24">
-        <div className="container max-w-6xl mx-auto px-4">
+      <main>
+        <PageHero
+          lines={["Every", "project", "I kept"]}
+          notes={["Web development & technical writing, newest first.", <>This folder holds {projectsSorted.length} builds.</>]}
+          back={{ href: "/", label: "Home" }}
+        />
 
-          {/* Page header */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <span className="inline-block font-mono text-xs font-bold tracking-[0.2em] text-black/40 mb-3 uppercase">
-              Case Studies
-            </span>
-            <h1 className="text-5xl md:text-6xl font-bold mb-4 font-zalando text-black">
-              My{" "}
-              <span className="bg-[#6366F1] text-white px-3 py-1 inline-block border-4 border-black rounded-none shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-                Projects
-              </span>
-            </h1>
-            <p className="text-gray-600 text-lg max-w-xl mx-auto">
-              A collection of my work in web development and technical writing.
-            </p>
-          </motion.div>
-
-          {/* Search */}
-          <div className="mb-12 max-w-2xl mx-auto">
-            <div className="relative">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-black/40" />
-              <input type="text" placeholder="Search by title, description, or technology..."
-                value={searchQuery} onChange={(e) => handleSearch(e.target.value)}
-                className="w-full pl-12 pr-4 py-4 bg-white border-4 border-black rounded-none text-black placeholder-black/30 font-medium focus:outline-none shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] focus:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] focus:translate-x-0.5 focus:translate-y-0.5 transition-all" />
-            </div>
-            <p className="text-center text-sm font-bold text-black/40 mt-4">
-              {filtered.length} project{filtered.length !== 1 ? "s" : ""} found
+        {/* Search */}
+        <section id="folder" className="px-4 md:px-6 mt-16 scroll-mt-20">
+          <div className="grid md:grid-cols-[1fr_auto] items-end gap-6 border-b border-ink/80">
+            <label className="block">
+              <span className="sr-only">Search projects</span>
+              <input
+                type="text"
+                placeholder="Search the folder…"
+                value={searchQuery}
+                onChange={(e) => handleSearch(e.target.value)}
+                className="w-full bg-transparent py-4 font-display font-semibold uppercase tracking-[-0.03em] text-[clamp(1.5rem,4vw,3rem)] outline-none placeholder:text-ink/25"
+              />
+            </label>
+            <p className="note uppercase tracking-wide pb-5 tabular-nums">
+              {String(filtered.length).padStart(2, "0")} item{filtered.length !== 1 ? "s" : ""} found
             </p>
           </div>
 
-          {/* Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-            <AnimatePresence mode="wait">
+          {/* Grid of files */}
+          <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-ink/80 border border-ink/80">
+            <AnimatePresence mode="popLayout">
               {paginated.map((project, index) => (
-                <motion.div key={project.slug}
-                  initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.2, delay: index * 0.04 }}
-                  className="h-full">
-                  <Link href={`/project/${project.slug}`}
-                    className="h-full flex flex-col bg-white border-4 border-black rounded-none overflow-hidden hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-300">
-                    <div className={`relative h-48 shrink-0 ${accentColors[index % accentColors.length]}`}>
-                      <Image src={project.image} alt={project.title} fill className="object-cover" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                <motion.div
+                  key={project.slug}
+                  layout
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3, delay: index * 0.04 }}
+                  className="bg-paper"
+                >
+                  <Link href={`/project/${project.slug}`} className="group flex h-full flex-col p-4 md:p-5">
+                    <div className="relative aspect-[4/3] overflow-hidden bg-white">
+                      <Image src={project.image} alt={project.title} fill
+                        className="object-cover object-top transition-transform duration-700 group-hover:scale-105" />
                     </div>
-                    <div className="flex flex-col flex-1 p-6">
-                      <h2 className="text-base font-bold text-black mb-2 leading-snug line-clamp-2 min-h-[2.5rem] group-hover:text-[#6366F1] transition-colors">
-                        {project.title}
-                      </h2>
-                      <p className="text-gray-500 text-sm leading-relaxed line-clamp-3 mb-4 flex-1">
-                        {project.description}
-                      </p>
-                      <div className="flex flex-wrap gap-1.5 mt-auto">
-                        {project.technologies.slice(0, 4).map((tech) => (
-                          <span key={tech} className="text-xs px-2.5 py-1 rounded-none bg-black/5 border-2 border-black/15 font-bold text-black/60">
-                            {tech}
-                          </span>
-                        ))}
-                        {project.technologies.length > 4 && (
-                          <span className="text-xs px-2.5 py-1 rounded-none bg-black/5 border-2 border-black/15 font-bold text-black/40">
-                            +{project.technologies.length - 4}
-                          </span>
-                        )}
-                      </div>
+                    <div className="mt-3 flex justify-between gap-4 text-[10px] tracking-wide">
+                      <span className="truncate">{fileName(project.title)}</span>
+                      <span className="text-ink/50">
+                        {String((page - 1) * PER_PAGE + index + 1).padStart(2, "0")}
+                      </span>
                     </div>
+                    <h2 className="mt-4 font-display font-semibold uppercase tracking-[-0.03em] leading-[0.95] text-2xl md:text-3xl group-hover:underline decoration-2 underline-offset-4">
+                      {project.title.split("—")[0].trim()}
+                    </h2>
+                    <p className="mt-3 text-sm leading-relaxed text-ink/70 line-clamp-3">{project.description}</p>
+                    <p className="mt-auto pt-6 note text-ink/50">
+                      {project.technologies.slice(0, 4).join(" · ")}
+                      {project.technologies.length > 4 && ` +${project.technologies.length - 4}`}
+                    </p>
                   </Link>
                 </motion.div>
               ))}
@@ -118,56 +108,42 @@ export default function ProjectPage() {
           </div>
 
           {filtered.length === 0 && (
-            <div className="text-center py-16">
-              <p className="text-black/40 font-bold mb-4">No projects found.</p>
-              <button onClick={() => handleSearch("")}
-                className="px-6 py-3 bg-black text-white font-bold border-4 border-black rounded-none shadow-[4px_4px_0px_0px_rgba(99,102,241,1)] hover:shadow-[1px_1px_0px_0px_rgba(99,102,241,1)] hover:translate-x-0.5 hover:translate-y-0.5 transition-all">
-                Clear Search
-              </button>
+            <div className="py-20 flex flex-col items-center gap-5">
+              <Note>Nothing saved under that name.</Note>
+              <button onClick={() => handleSearch("")} className="pill">Clear search</button>
             </div>
           )}
 
           {/* Pagination */}
           {totalPages > 1 && (
-            <div className="flex items-center justify-center gap-3 mb-16">
-              <button
-                onClick={() => setPage((p) => Math.max(1, p - 1))}
-                disabled={page === 1}
-                className="w-11 h-11 flex items-center justify-center bg-white border-4 border-black rounded-none shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:translate-x-0.5 hover:translate-y-0.5 transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:translate-x-0 disabled:translate-y-0 disabled:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-
-              {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
-                <button key={n} onClick={() => setPage(n)}
-                  className={`w-11 h-11 flex items-center justify-center font-bold text-sm border-4 border-black rounded-none transition-all ${
-                    n === page
-                      ? "bg-black text-white shadow-[3px_3px_0px_0px_rgba(99,102,241,1)]"
-                      : "bg-white text-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:translate-x-0.5 hover:translate-y-0.5"
-                  }`}>
-                  {n}
-                </button>
-              ))}
-
-              <button
-                onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-                disabled={page === totalPages}
-                className="w-11 h-11 flex items-center justify-center bg-white border-4 border-black rounded-none shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:translate-x-0.5 hover:translate-y-0.5 transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:translate-x-0 disabled:translate-y-0 disabled:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
-                <ChevronRight className="w-5 h-5" />
-              </button>
+            <div className="mt-8 flex items-center justify-between note uppercase tracking-wide">
+              <button onClick={() => goTo(Math.max(1, page - 1))} disabled={page === 1}
+                className="hover:underline underline-offset-4 disabled:opacity-30">← Prev</button>
+              <div className="flex gap-4">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
+                  <button key={n} onClick={() => goTo(n)}
+                    className={`tabular-nums ${n === page ? "underline underline-offset-4" : "text-ink/40 hover:text-ink"}`}>
+                    {String(n).padStart(2, "0")}
+                  </button>
+                ))}
+              </div>
+              <button onClick={() => goTo(Math.min(totalPages, page + 1))} disabled={page === totalPages}
+                className="hover:underline underline-offset-4 disabled:opacity-30">Next →</button>
             </div>
           )}
+        </section>
 
-          {/* CTA */}
-          <div className="text-center">
-            <div className="inline-block bg-[#FCD34D] border-4 border-black rounded-none p-10 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
-              <p className="text-black font-bold text-lg mb-4">Interested in working together?</p>
-              <Link href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-black text-white font-bold border-4 border-black rounded-none shadow-[4px_4px_0px_0px_rgba(99,102,241,1)] hover:shadow-[1px_1px_0px_0px_rgba(99,102,241,1)] hover:translate-x-0.5 hover:translate-y-0.5 transition-all font-zalando">
-                Get in Touch
-              </Link>
-            </div>
-          </div>
-        </div>
+        {/* CTA */}
+        <section className="mt-28 bg-ink text-paper px-4 md:px-6 pt-20 pb-10">
+          <Link href="/contact" className="group block">
+            <RevealLine inverse className="display-lg">Want one</RevealLine>
+            <RevealLine inverse className="display-lg" delay={0.08}>
+              <span className="inline-flex items-baseline gap-[0.2em]">
+                of your own? <span className="transition-transform duration-500 group-hover:-rotate-45">→</span>
+              </span>
+            </RevealLine>
+          </Link>
+        </section>
       </main>
       <Footer />
     </div>
