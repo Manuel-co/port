@@ -210,7 +210,7 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans bg-paper text-ink antialiased">
-        {children}
+        <div className="site-frame">{children}</div>
         <Toaster position="top-center" />
       </body>
     </html>

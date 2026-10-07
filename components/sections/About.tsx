@@ -4,7 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { projects } from "@/lib/projects"
-import { Counter, Label, Note, ease } from "../desk/primitives"
+import { Counter, Label, Note, ease, useFinePointer } from "../desk/primitives"
 
 // Each line of the statement is offset differently, like the scattered copy on clicktokeep.
 const statement: { text: string; indent: string; light?: boolean }[] = [
@@ -24,6 +24,7 @@ const stats = [
 ]
 
 export function About() {
+  const canDrag = useFinePointer()
   return (
     <section id="about" className="relative px-4 md:px-6 py-28 md:py-40">
       <Label index="01">About</Label>
@@ -45,14 +46,14 @@ export function About() {
 
         {/* Memoji as a file on the desk */}
         <motion.figure
-          drag
+          drag={canDrag}
           dragSnapToOrigin
           whileDrag={{ scale: 1.05, rotate: -3 }}
           initial={{ opacity: 0, rotate: 4 }}
           whileInView={{ opacity: 1, rotate: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease }}
-          className="self-end justify-self-start md:justify-self-end w-40 md:w-48 cursor-grab active:cursor-grabbing select-none"
+          className={`self-end justify-self-start md:justify-self-end w-40 md:w-48 select-none ${canDrag ? "cursor-grab active:cursor-grabbing" : ""}`}
         >
           <div className="relative aspect-[4/5] bg-white border border-ink overflow-hidden">
             <Image

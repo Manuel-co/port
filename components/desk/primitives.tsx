@@ -6,6 +6,22 @@ import type { ReactNode } from "react"
 
 export const ease = [0.16, 1, 0.3, 1] as const
 
+/**
+ * True only for a real mouse/trackpad. Dragging is enabled just for these — on touch screens
+ * a draggable element swallows the swipe and the page stops scrolling.
+ */
+export function useFinePointer() {
+  const [fine, setFine] = useState(false)
+  useEffect(() => {
+    const mq = window.matchMedia("(hover: hover) and (pointer: fine)")
+    const update = () => setFine(mq.matches)
+    update()
+    mq.addEventListener("change", update)
+    return () => mq.removeEventListener("change", update)
+  }, [])
+  return fine
+}
+
 /** Small two-line annotation with a solid bullet — the clicktokeep corner notes. */
 export function Note({
   children,

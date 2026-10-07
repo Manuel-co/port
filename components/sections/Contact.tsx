@@ -1,14 +1,13 @@
 "use client"
 
 import Link from "next/link"
-import Image from "next/image"
 import { useState } from "react"
+import { motion } from "framer-motion"
 import emailjs from "@emailjs/browser"
 import toast from "react-hot-toast"
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import * as Yup from "yup"
-import { projectsSorted } from "@/lib/projects"
-import { Label, Note, RevealLine } from "../desk/primitives"
+import { Label, Note, RevealLine, ease } from "../desk/primitives"
 
 const validationSchema = Yup.object({
   name: Yup.string().min(2).max(50).matches(/^[a-zA-Z\s]+$/, "Letters only").required("Name is required"),
@@ -17,10 +16,10 @@ const validationSchema = Yup.object({
 })
 
 const contactLinks = [
-  { label: "Email", value: "manuchimsoemmanuel2k@gmail.com", href: "mailto:manuchimsoemmanuel2k@gmail.com" },
-  { label: "X / Twitter", value: "@NwekeManuchimso", href: "https://x.com/NwekeManuchimso" },
-  { label: "LinkedIn", value: "Nweke Emmanuel", href: "https://www.linkedin.com/in/nweke-emmanuel-435a3923b/" },
-  { label: "GitHub", value: "Manuel-co", href: "https://github.com/Manuel-co" },
+  { label: "Email", href: "mailto:manuchimsoemmanuel2k@gmail.com" },
+  { label: "X / Twitter", href: "https://x.com/NwekeManuchimso" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/nweke-emmanuel-435a3923b/" },
+  { label: "GitHub", href: "https://github.com/Manuel-co" },
 ]
 
 const inputBase =
@@ -59,7 +58,7 @@ export function Contact({
     `${inputBase} ${invalid ? "border-red-400" : "border-paper/50 focus:border-paper"}`
 
   return (
-    <section id="contact" className="bg-ink text-paper pt-28 md:pt-36">
+    <section id="contact" className="bleed-ink bg-ink text-paper pt-28 md:pt-36">
       <div className="px-4 md:px-6">
         <Label index="06" inverse>{label}</Label>
 
@@ -83,15 +82,14 @@ export function Contact({
         <div id="contact-form" className="mt-20 grid lg:grid-cols-[1fr_1.3fr] gap-16 scroll-mt-24">
           {/* Links */}
           <div className="min-w-0">
-            {contactLinks.map(({ label, value, href }) => (
+            {contactLinks.map(({ label, href }) => (
               <Link
                 key={href}
                 href={href}
                 target={href.startsWith("mailto") ? undefined : "_blank"}
                 className="group flex items-baseline justify-between gap-4 border-b border-paper/30 py-4 first:border-t"
               >
-                <span className="note uppercase tracking-wide text-paper/50 w-24 shrink-0">{label}</span>
-                <span className="flex-1 min-w-0 truncate text-base md:text-lg transition-transform duration-300 group-hover:translate-x-2">{value}</span>
+                <span className="flex-1 min-w-0 truncate text-base md:text-lg transition-transform duration-300 group-hover:translate-x-2">{label}</span>
                 <span className="transition-transform duration-300 group-hover:-rotate-45">→</span>
               </Link>
             ))}
@@ -132,14 +130,24 @@ export function Contact({
         </div>
       </div>
 
-      {/* Blurred strip of past work — sharpens on hover */}
-      <div className="mt-28 flex h-40 md:h-56 overflow-hidden">
-        {projectsSorted.map((p) => (
-          <Link key={p.slug} href={`/project/${p.slug}`} className="relative flex-1 min-w-[48px] group" aria-label={p.title}>
-            <Image src={p.image} alt="" fill className="object-cover blur-md scale-110 transition-all duration-500 group-hover:blur-0 group-hover:scale-100" />
-          </Link>
-        ))}
-      </div>
+      {/* Signature sign-off — the SVG is used as a mask so it paints in the paper colour */}
+      {/* The observer sits on the unclipped wrapper; a fully clipped element never counts as in view */}
+      {/* <motion.div
+        initial="hidden"
+        whileInView="shown"
+        viewport={{ once: true, amount: 0.3 }}
+        className="mt-28 px-4 md:px-6 pb-6"
+      >
+        <motion.img
+          variants={{ hidden: { clipPath: "inset(0 100% 0 0)" }, shown: { clipPath: "inset(0 0% 0 0)" } }}
+          transition={{ duration: 1.6, ease }}
+          src="/manuchim-logo.svg"
+          alt="Manuchim signature"
+          draggable={false}
+          // Full width at its natural proportions. The file is black; invert renders it in the paper colour.
+          className="block w-50% h-auto select-none invert-[0.94]"
+        />
+      </motion.div> */}
     </section>
   )
 }

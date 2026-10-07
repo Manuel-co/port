@@ -105,7 +105,7 @@ export default function ProjectSlugPage({ params }: { params: { slug: string } }
         </section>
 
         {/* Next */}
-        <section className="mt-32 bg-ink text-paper px-4 md:px-6 pt-16 pb-10">
+        <section className="bleed-ink mt-32 bg-ink text-paper px-4 md:px-6 pt-16 pb-10">
           <Label index="→" inverse>Next file</Label>
           <Link href={`/project/${next.slug}`} className="group mt-8 block">
             <RevealLine inverse className="display-lg">

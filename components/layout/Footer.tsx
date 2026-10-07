@@ -19,20 +19,20 @@ const pages = [
 
 export function Footer() {
   return (
-    <footer className="bg-ink text-paper px-4 md:px-6 pt-10 pb-6">
+    <footer className="bleed-ink bg-ink text-paper px-4 md:px-6 pt-10 pb-6">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-paper/30 pt-8">
         <p className="note col-span-2 md:col-span-1 max-w-[30ch] text-paper/70">
           This site was designed &amp; built by Nweke Manuchimso Emmanuel with Next.js, Tailwind and Framer Motion.
         </p>
-        <nav className="flex flex-col gap-1.5">
+        <nav className="flex flex-col md:gap-1.5">
           {pages.map(({ href, label }) => (
-            <Link key={href} href={href} className="note uppercase tracking-wide hover:underline underline-offset-4">{label}</Link>
+            <Link key={href} href={href} className="note uppercase tracking-wide py-2.5 md:py-0 hover:underline underline-offset-4">{label}</Link>
           ))}
         </nav>
-        <nav className="flex flex-col gap-1.5">
+        <nav className="flex flex-col md:gap-1.5">
           {socials.map(({ href, label }) => (
             <Link key={href} href={href} target={href.startsWith("mailto") ? undefined : "_blank"}
-              className="note uppercase tracking-wide hover:underline underline-offset-4">{label} ↗</Link>
+              className="note uppercase tracking-wide py-2.5 md:py-0 hover:underline underline-offset-4">{label} ↗</Link>
           ))}
         </nav>
         <div className="col-span-2 md:col-span-1 md:justify-self-end">

@@ -118,23 +118,23 @@ export default function ProjectPage() {
           {totalPages > 1 && (
             <div className="mt-8 flex items-center justify-between note uppercase tracking-wide">
               <button onClick={() => goTo(Math.max(1, page - 1))} disabled={page === 1}
-                className="hover:underline underline-offset-4 disabled:opacity-30">← Prev</button>
+                className="py-3 hover:underline underline-offset-4 disabled:opacity-30">← Prev</button>
               <div className="flex gap-4">
                 {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
                   <button key={n} onClick={() => goTo(n)}
-                    className={`tabular-nums ${n === page ? "underline underline-offset-4" : "text-ink/40 hover:text-ink"}`}>
+                    className={`tabular-nums px-2 py-3 ${n === page ? "underline underline-offset-4" : "text-ink/40 hover:text-ink"}`}>
                     {String(n).padStart(2, "0")}
                   </button>
                 ))}
               </div>
               <button onClick={() => goTo(Math.min(totalPages, page + 1))} disabled={page === totalPages}
-                className="hover:underline underline-offset-4 disabled:opacity-30">Next →</button>
+                className="py-3 hover:underline underline-offset-4 disabled:opacity-30">Next →</button>
             </div>
           )}
         </section>
 
         {/* CTA */}
-        <section className="mt-28 bg-ink text-paper px-4 md:px-6 pt-20 pb-10">
+        <section className="bleed-ink mt-28 bg-ink text-paper px-4 md:px-6 pt-20 pb-10">
           <Link href="/contact" className="group block">
             <RevealLine inverse className="display-lg">Want one</RevealLine>
             <RevealLine inverse className="display-lg" delay={0.08}>

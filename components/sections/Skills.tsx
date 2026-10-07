@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
-import { FolderIcon, Label, Note, RevealLine, ease } from "../desk/primitives"
+import { FolderIcon, Label, Note, RevealLine, ease, useFinePointer } from "../desk/primitives"
 
 const BASE = "https://cdn.jsdelivr.net/npm/devicon@2.16.0/icons"
 
@@ -59,6 +59,7 @@ export function Skills() {
   const [open, setOpen] = useState<string[]>([])
   const focus = (name: string) => setOpen((o) => [...o.filter((n) => n !== name), name])
   const close = (name: string) => setOpen((o) => o.filter((n) => n !== name))
+  const canDrag = useFinePointer()
 
   return (
     <section id="skills" className="px-4 md:px-6 py-28 md:py-36">
@@ -77,7 +78,7 @@ export function Skills() {
         {files.map(({ name, src, x, y }, i) => (
           <motion.div
             key={name}
-            drag
+            drag={canDrag}
             dragConstraints={desk}
             dragElastic={0.15}
             dragMomentum={false}
@@ -87,7 +88,7 @@ export function Skills() {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.5, ease, delay: i * 0.03 }}
             style={{ ["--x" as string]: `${x}%`, ["--y" as string]: `${y}%` }}
-            className="flex flex-col items-center gap-2 w-24 justify-self-center cursor-grab active:cursor-grabbing select-none touch-none md:absolute md:left-[var(--x)] md:top-[var(--y)]"
+            className={`flex flex-col items-center gap-2 w-24 justify-self-center select-none md:absolute md:left-[var(--x)] md:top-[var(--y)] ${canDrag ? "cursor-grab active:cursor-grabbing" : ""}`}
           >
             <span
               className="relative grid place-items-center w-12 h-[60px] bg-white border border-ink"
@@ -99,14 +100,15 @@ export function Skills() {
           </motion.div>
         ))}
 
-        {/* Folders */}
-        <div className="col-span-full grid grid-cols-4 gap-4 mt-4 md:mt-0 md:absolute md:right-0 md:top-0 md:flex md:flex-col md:gap-6">
+        {/* Folders — first on mobile, since they hold the real content */}
+        <div className="col-span-full order-first md:order-none grid grid-cols-4 gap-2 pb-6 mb-2 border-b border-ink/80 md:pb-0 md:mb-0 md:border-0 md:absolute md:right-0 md:top-0 md:flex md:flex-col md:gap-6">
+          <p className="col-span-full note text-ink/60 mb-1 md:hidden">Tap a folder to open it.</p>
           {folders.map(({ name }) => (
             <button
               key={name}
               onClick={() => focus(name)}
               aria-pressed={open.includes(name)}
-              className="group flex flex-col items-center gap-1"
+              className="group flex flex-col items-center gap-1 py-2 md:py-0"
             >
               <motion.span whileHover={{ y: -3 }} whileTap={{ scale: 0.92 }}>
                 <FolderIcon className="w-12 md:w-14" />
@@ -127,29 +129,40 @@ export function Skills() {
             return (
             <motion.div
               key={folder.name}
-              drag
+              drag={canDrag}
               dragConstraints={desk}
               dragMomentum={false}
               onPointerDown={() => !isFront && focus(folder.name)}
-              initial={{ opacity: 0, scale: 0.92 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 24 }}
               transition={{ duration: 0.35, ease }}
               style={{ zIndex: 40 + layer, ["--o" as string]: `${i * 32}px` }}
-              className={`absolute inset-x-0 top-[var(--o)] md:inset-x-auto md:left-[calc(14%+var(--o)*1.6)] md:top-[calc(6%+var(--o))] md:w-[min(500px,58%)] bg-paper border border-ink cursor-grab active:cursor-grabbing transition-shadow ${
-                isFront ? "shadow-[0_24px_60px_-20px_rgba(0,0,0,0.4)]" : "shadow-[0_10px_30px_-18px_rgba(0,0,0,0.3)]"
-              }`}
+              // Mobile: a sheet pinned to the bottom of the screen, right under the thumb.
+              // Desktop: a cascaded, draggable window on the desk.
+              className={`fixed inset-x-3 bottom-[calc(0.75rem+var(--o)/4)] max-h-[70svh] overflow-y-auto md:overflow-visible md:max-h-none md:absolute md:bottom-auto md:inset-x-auto md:left-[calc(14%+var(--o)*1.6)] md:top-[calc(6%+var(--o))] md:w-[min(500px,58%)] bg-paper border border-ink transition-shadow ${
+                canDrag ? "cursor-grab active:cursor-grabbing" : ""
+              } ${isFront ? "shadow-[0_24px_60px_-20px_rgba(0,0,0,0.4)]" : "shadow-[0_10px_30px_-18px_rgba(0,0,0,0.3)]"}`}
             >
-              <div className={`flex items-center gap-2 border-b border-ink px-3 py-2 ${isFront ? "" : "opacity-60"}`}>
+              <div className={`sticky top-0 bg-paper flex items-center gap-2 border-b border-ink px-3 py-2 ${isFront ? "" : "opacity-60"}`}>
                 <button
                   onClick={(e) => { e.stopPropagation(); close(folder.name) }}
                   onPointerDown={(e) => e.stopPropagation()}
                   aria-label={`Close ${folder.name} window`}
-                  className="h-3 w-3 rounded-full bg-[#FF5F57] border border-black/20"
+                  className="relative h-3 w-3 rounded-full bg-[#FF5F57] border border-black/20 after:absolute after:-inset-3"
                 />
                 <span className="h-3 w-3 rounded-full bg-[#FEBC2E] border border-black/20" />
                 <span className="h-3 w-3 rounded-full bg-[#28C840] border border-black/20" />
-                <span className="ml-2 note uppercase tracking-wide">~/desk/{folder.name.toLowerCase()}</span>
+                <span className="ml-2 note uppercase tracking-wide truncate">~/desk/{folder.name.toLowerCase()}</span>
+                <button
+                  onClick={(e) => { e.stopPropagation(); close(folder.name) }}
+                  onPointerDown={(e) => e.stopPropagation()}
+                  className="md:hidden ml-auto -my-2 -mr-3 px-4 py-3 note uppercase tracking-wide"
+                  tabIndex={-1}
+                  aria-hidden
+                >
+                  Close ✕
+                </button>
               </div>
               <div className="p-5 md:p-6 cursor-auto">
                 <p className="display-md !text-[clamp(1.6rem,3vw,2.4rem)] mb-3">{folder.title}</p>

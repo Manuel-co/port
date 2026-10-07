@@ -48,7 +48,7 @@ export function Header() {
           initial={{ opacity: 0, y: -12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease }}
-          className="flex items-center justify-between px-4 md:px-6 py-3"
+          className="site-frame flex items-center justify-between px-4 md:px-6 py-3"
         >
           <Link href="/" aria-label="Nweke Manuchimso — home">
             <Logo className="h-7 md:h-8" />
@@ -65,9 +65,14 @@ export function Header() {
 
           <button
             onClick={() => setIsOpen(true)}
-            className="md:hidden note uppercase tracking-wide"
+            className="md:hidden inline-flex items-center gap-2 -mr-2 px-2 h-10 text-xs uppercase tracking-wide"
             aria-label="Open menu"
+            aria-expanded={isOpen}
           >
+            <span className="flex flex-col gap-[3px]" aria-hidden>
+              <span className="block h-px w-3.5 bg-white" />
+              <span className="block h-px w-3.5 bg-white" />
+            </span>
             Menu
           </button>
         </motion.div>
@@ -83,12 +88,19 @@ export function Header() {
             className="fixed inset-0 z-[60] bg-ink text-paper flex flex-col px-4 py-3"
           >
             <div className="flex items-center justify-between">
-              <Logo className="h-7" />
-              <button onClick={() => setIsOpen(false)} className="note uppercase tracking-wide" aria-label="Close menu">
-                Close
+              <Link href="/" onClick={() => setIsOpen(false)} aria-label="Home">
+                <Logo className="h-7" />
+              </Link>
+              <button
+                onClick={() => setIsOpen(false)}
+                className="inline-flex items-center -mr-2 px-2 h-10 text-xs uppercase tracking-wide"
+                aria-label="Close menu"
+              >
+                Close ✕
               </button>
             </div>
-            <nav className="mt-auto mb-10">
+
+            <nav className="mt-auto mb-6" aria-label="Pages">
               {[{ href: "/", label: "Home" }, ...navItems].map(({ href, label }, i) => (
                 <div key={href} className="overflow-hidden border-b border-paper/60">
                   <motion.div
@@ -96,7 +108,14 @@ export function Header() {
                     animate={{ y: 0 }}
                     transition={{ duration: 0.7, ease, delay: 0.15 + i * 0.06 }}
                   >
-                    <Link href={href} className="block display-md py-2">{label}</Link>
+                    <Link
+                      href={href}
+                      onClick={() => setIsOpen(false)}
+                      className="flex items-baseline justify-between display-md py-2"
+                    >
+                      {label}
+                      {isActive(href) && href !== "/" && <span className="h-2.5 w-2.5 rounded-full bg-paper" />}
+                    </Link>
                   </motion.div>
                 </div>
               ))}

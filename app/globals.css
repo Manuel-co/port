@@ -138,6 +138,14 @@
   .pill {
     @apply inline-flex items-center justify-center gap-2 rounded-full border border-ink px-5 py-2 text-sm transition-colors duration-200 hover:bg-ink hover:text-paper;
   }
+  /* Site is capped at 1920px; black bands still paint edge-to-edge on wider screens */
+  .site-frame {
+    @apply mx-auto w-full max-w-[1920px];
+  }
+  .bleed-ink {
+    box-shadow: 0 0 0 100vmax #000;
+    clip-path: inset(0 -100vmax);
+  }
   .pill-inverse {
     @apply inline-flex items-center justify-center gap-2 rounded-full border border-paper px-5 py-2 text-sm transition-colors duration-200 hover:bg-paper hover:text-ink;
   }
