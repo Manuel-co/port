@@ -53,18 +53,18 @@ export function About() {
           whileInView={{ opacity: 1, rotate: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease }}
-          className={`self-end justify-self-start md:justify-self-end w-40 md:w-48 select-none ${canDrag ? "cursor-grab active:cursor-grabbing" : ""}`}
+          className={`self-end justify-self-start md:justify-self-end w-64 md:w-80 select-none ${canDrag ? "cursor-grab active:cursor-grabbing" : ""}`}
         >
-          <div className="relative aspect-[4/5] bg-white border border-ink overflow-hidden">
+          <div className="relative aspect-[900/647] bg-white border border-ink overflow-hidden">
             <Image
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Male%20Memojis-Bs1QqTa06Ao8hBOm0sQZ3XkeNeen0m.svg"
-              alt="Nweke Manuchimso"
+              src="/manuchim-logo.svg"
+              alt="Manuchim signature"
               fill
               draggable={false}
-              className="object-contain p-4"
+              className="object-contain p-8 md:p-10"
             />
           </div>
-          <figcaption className="note uppercase tracking-wide mt-2 text-center">Manuchimso.svg</figcaption>
+          <figcaption className="note uppercase tracking-wide mt-2 text-center">Manuchim.svg</figcaption>
         </motion.figure>
       </div>
 
